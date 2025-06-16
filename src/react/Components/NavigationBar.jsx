@@ -6,10 +6,11 @@ import {
 } from '@mui/material'
 
 import {
-    HealthAndSafety as HomeIcon,
     Pets as CatIcon,
     Person4 as ProfileIcon
 } from '@mui/icons-material'
+
+import HomeIcon from './Icons/HomeIcon'
 
 const NavigationBar = ({ navigationIndex, navigate }) => {
     return (
