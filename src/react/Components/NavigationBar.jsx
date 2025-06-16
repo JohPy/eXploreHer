@@ -7,7 +7,8 @@ import {
 
 import {
     Pets as CatIcon,
-    Person4 as ProfileIcon
+    Person4 as ProfileIcon,
+    Settings as SettingsIcon
 } from '@mui/icons-material'
 
 import HomeIcon from './Icons/HomeIcon'
@@ -34,6 +35,10 @@ const NavigationBar = ({ navigationIndex, navigate }) => {
                 icon={<ProfileIcon />}
                 onClick={() => navigate('/profile')}
             />
+            <BottomNavigationAction
+                label="Settings"
+                icon={<SettingsIcon />}
+                onClick={() => navigate('/profile/settings')} />
         </BottomNavigation>
     );
 }
