@@ -32,7 +32,7 @@ const ChapterHeader = () => {
             <Typography variant="h5">Der Menstruationszyklus</Typography>
           </Box>
         </Grid2>
-        <Grid2 sx={{ display: 'flex', alignItems: 'center' }}>
+        <Grid2 sx={{ display: 'flex', alignItems: 'center', px: 1 }}>
           <BookIcon width={30} height={30} />
         </Grid2>
       </Grid2>
