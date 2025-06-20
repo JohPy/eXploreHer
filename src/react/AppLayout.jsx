@@ -20,6 +20,7 @@ import {
 import AppRoutes from './AppRoutes'
 
 import AppLogo from '../assets/favicon.svg'
+import ChapterHeader from './Components/ChapterHeader'
 
 const borderRadius = 6
 
@@ -31,15 +32,15 @@ const AppLayout = () => {
   if (location.pathname.startsWith('/catnames')) navigationIndex = 1
   if (location.pathname.startsWith('/profile')) navigationIndex = 2
 
-  return (
+return (
     <Stack
       direction="row"
       justifyContent="center"
       sx={{
         width: '100%',
         height: '100%',
-        paddingTop: theme => theme.spacing(5),
-        paddingBottom: theme => theme.spacing(5)
+        paddingTop: (theme) => theme.spacing(5),
+        paddingBottom: (theme) => theme.spacing(5),
       }}
     >
       <Container
@@ -48,7 +49,7 @@ const AppLayout = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100%'
+          height: '100%',
         }}
       >
         <Stack
@@ -62,12 +63,10 @@ const AppLayout = () => {
             alt="App Logo"
             style={{
               width: '40px',
-              height: '40px'
+              height: '40px',
             }}
           />
-          <Typography variant="h5">
-            My Mobile Health App
-          </Typography>
+          <Typography variant="h5">My Mobile Health App</Typography>
         </Stack>
         <Paper
           elevation={6}
@@ -80,8 +79,8 @@ const AppLayout = () => {
             paddingBottom: 2,
             paddingLeft: 1,
             overflow: 'hidden',
-            borderRadius: theme => theme.spacing(borderRadius),
-            background: theme => theme.palette.grey[900]
+            borderRadius: (theme) => theme.spacing(borderRadius),
+            background: (theme) => theme.palette.grey[900],
           }}
         >
           <Stack
@@ -91,37 +90,23 @@ const AppLayout = () => {
             alignItems="center"
             sx={{
               overflow: 'hidden',
-              borderRadius: theme => theme.spacing(borderRadius),
-              background: theme => theme.palette.background.paper
+              borderRadius: (theme) => theme.spacing(borderRadius),
+              background: (theme) => theme.palette.background.paper,
             }}
           >
+            <ChapterHeader />
             <AppRoutes />
-            <BottomNavigation
-              showLabels
-              value={navigationIndex}
-              sx={{ width: '100%' }}
-            >
-              <BottomNavigationAction
-                label="Home"
-                icon={<HomeIcon />}
-                onClick={() => navigate('/')}
-              />
-              <BottomNavigationAction
-                label="Cat Names"
-                icon={<CatIcon />}
-                onClick={() => navigate('/catnames')}
-              />
-              <BottomNavigationAction
-                label="Profile"
-                icon={<ProfileIcon />}
-                onClick={() => navigate('/profile')}
-              />
+            <BottomNavigation showLabels value={navigationIndex} sx={{ width: '100%' }}>
+              <BottomNavigationAction label="Home" icon={<HomeIcon />} onClick={() => navigate('/')} />
+              <BottomNavigationAction label="Cat Names" icon={<CatIcon />} onClick={() => navigate('/catnames')} />
+              <BottomNavigationAction label="Profile" icon={<ProfileIcon />} onClick={() => navigate('/profile')} />
             </BottomNavigation>
           </Stack>
         </Paper>
       </Container>
     </Stack>
-  )
+)
+
 }
 
 export default AppLayout
