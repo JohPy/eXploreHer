@@ -27,7 +27,7 @@ const theme = createTheme({
       fontWeight: 900,
       fontSize: '2rem',
       textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
-      lineHeight: 1,
+      lineHeight: 0.5,
     },
   },
 });
