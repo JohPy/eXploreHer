@@ -24,12 +24,25 @@ const ChapterHeader = () => (
             sx={{
               textTransform: 'uppercase',
               opacity: 0.6,
-              fontSize: '1.2rem',
+                xs: '0.9rem',
+                sm: '1rem',
+                md: '1.2rem'
             }}
           >
             Kapitel 1
           </Typography>
-          <Typography variant="h5">Der Menstruationszyklus</Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              fontSize: {
+                xs: '1.5rem',
+                sm: '1.8rem',
+                md: '2rem'
+              }
+            }}
+          >
+            Der Menstruationszyklus
+          </Typography>
         </Box>
       </Grid2>
       <Grid2 sx={{ display: 'flex', alignItems: 'center', px: 1 }}>
