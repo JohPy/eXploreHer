@@ -20,7 +20,7 @@ import {
 import AppRoutes from './AppRoutes'
 
 import AppLogo from '../assets/favicon.svg'
-import ChapterHeader from './Components/ChapterHeader'
+
 
 const borderRadius = 6
 
@@ -32,7 +32,7 @@ const AppLayout = () => {
   if (location.pathname.startsWith('/catnames')) navigationIndex = 1
   if (location.pathname.startsWith('/profile')) navigationIndex = 2
 
-return (
+  return (
     <Stack
       direction="row"
       justifyContent="center"
@@ -94,7 +94,6 @@ return (
               background: (theme) => theme.palette.background.paper,
             }}
           >
-            <ChapterHeader />
             <AppRoutes />
             <BottomNavigation showLabels value={navigationIndex} sx={{ width: '100%' }}>
               <BottomNavigationAction label="Home" icon={<HomeIcon />} onClick={() => navigate('/')} />
@@ -105,8 +104,7 @@ return (
         </Paper>
       </Container>
     </Stack>
-)
-
+  )
 }
 
 export default AppLayout
