@@ -5,13 +5,10 @@ import {
     BottomNavigationAction
 } from '@mui/material'
 
-import {
-    Settings as SettingsIcon
-} from '@mui/icons-material'
-
 import HomeIcon from './Icons/HomeIcon'
 import MistakesIcon from './Icons/MistakesIcon'
 import ProfileIcon from './Icons/ProfileIcon'
+import SettingsIcon from './Icons/SettingsIcon'
 
 const NavigationBar = ({ navigationIndex, navigate }) => {
     const iconStyle = { width: 30, height: 30 };
