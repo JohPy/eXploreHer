@@ -17,31 +17,33 @@ const NavigationBar = ({ navigationIndex, navigate }) => {
     const iconStyle = { width: 30, height: 30 };
 
     return (
-        <BottomNavigation
-            showLabels
-            value={navigationIndex}
-            sx={{ width: '100%' }}
-        >
-            <BottomNavigationAction
-                icon={<HomeIcon style={iconStyle} />}
-                onClick={() => navigate('/')}
-            />
-            <BottomNavigationAction
-                label="Cat Names"
-                icon={<CatIcon style={iconStyle} />}
-                onClick={() => navigate('/catnames')}
-            />
-            <BottomNavigationAction
-                label="Profile"
-                icon={<ProfileIcon style={iconStyle} />}
-                onClick={() => navigate('/profile')}
-            />
-            <BottomNavigationAction
-                label="Settings"
-                icon={<SettingsIcon style={iconStyle} />}
-                onClick={() => navigate('/profile/settings')}
-            />
-        </BottomNavigation>
+        <div style={{ borderTop: '1px solid #ccc', width: '100%' }}>
+            <BottomNavigation
+                showLabels
+                value={navigationIndex}
+                sx={{ width: '100%' }}
+            >
+                <BottomNavigationAction
+                    icon={<HomeIcon style={iconStyle} />}
+                    onClick={() => navigate('/')}
+                />
+                <BottomNavigationAction
+                    label="Cat Names"
+                    icon={<CatIcon style={iconStyle} />}
+                    onClick={() => navigate('/catnames')}
+                />
+                <BottomNavigationAction
+                    label="Profile"
+                    icon={<ProfileIcon style={iconStyle} />}
+                    onClick={() => navigate('/profile')}
+                />
+                <BottomNavigationAction
+                    label="Settings"
+                    icon={<SettingsIcon style={iconStyle} />}
+                    onClick={() => navigate('/profile/settings')}
+                />
+            </BottomNavigation>
+        </div>
     );
 }
 export default NavigationBar;
