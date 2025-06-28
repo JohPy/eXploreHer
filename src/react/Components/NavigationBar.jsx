@@ -6,12 +6,12 @@ import {
 } from '@mui/material'
 
 import {
-    Person4 as ProfileIcon,
     Settings as SettingsIcon
 } from '@mui/icons-material'
 
 import HomeIcon from './Icons/HomeIcon'
 import MistakesIcon from './Icons/MistakesIcon'
+import ProfileIcon from './Icons/ProfileIcon'
 
 const NavigationBar = ({ navigationIndex, navigate }) => {
     const iconStyle = { width: 30, height: 30 };
