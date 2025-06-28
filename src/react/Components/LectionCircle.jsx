@@ -16,13 +16,23 @@ const LectionCircle = ({ segments }) => {
 
   return (
     <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: 'auto' }}>
+
+      <defs>
+        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="#000" floodOpacity="0.3" />
+        </filter>
+      </defs>
+
       {/* Each segment is grouped by base segment + overlay + hitbox */}
       {segments.map((segment, i) => {
         const startOffset = totalLength - i * segmentLength
+        const generalOffset = 80
         const cursorStyle = segment.disabled ? 'not-allowed' : 'pointer'
         const isHovered = hoveredIndex === i
         const isActive = activeIndex === i
 
+        // The baseDash consists of: 1. the length of the first line 2. the gap afterwards
+        // --> Like this the circle consists of only one dash
         const baseDash = `${segmentLength - gap} ${totalLength - segmentLength + gap}`
 
         return (
@@ -33,15 +43,16 @@ const LectionCircle = ({ segments }) => {
               cy="50"
               r={r}
               fill="none"
-              stroke={segment.color || '#AC2C5F'}
+              stroke="#AC2C5F"
               strokeWidth="11"
               strokeDasharray={baseDash}
-              strokeDashoffset={startOffset}
+              strokeDashoffset={startOffset + generalOffset}
               strokeLinecap="round"
+              filter="url(#shadow)"
               style={{
                 cursor: cursorStyle,
                 opacity: segment.disabled ? 0.4 : 1,
-                transition: 'stroke 0.2s ease, opacity 0.2s ease',
+                transition: 'stroke 0.2s ease, opacity 0.2s ease'
               }}
             />
 
@@ -55,11 +66,11 @@ const LectionCircle = ({ segments }) => {
                 stroke={isActive ? '#000000' : '#666666'}
                 strokeWidth="10"
                 strokeDasharray={baseDash}
-                strokeDashoffset={startOffset}
+                strokeDashoffset={startOffset + generalOffset}
                 strokeLinecap="round"
                 style={{
                   pointerEvents: 'none',
-                  opacity: 0.3,
+                  opacity: 0.3
                 }}
               />
             )}
@@ -74,7 +85,7 @@ const LectionCircle = ({ segments }) => {
                 stroke="transparent"
                 strokeWidth="20"
                 strokeDasharray={baseDash}
-                strokeDashoffset={startOffset}
+                strokeDashoffset={startOffset + generalOffset}
                 strokeLinecap="round"
                 style={{ cursor: 'pointer' }}
                 onMouseEnter={() => setHoveredIndex(i)}
