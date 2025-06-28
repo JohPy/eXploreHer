@@ -6,12 +6,12 @@ import {
 } from '@mui/material'
 
 import {
-    Pets as CatIcon,
     Person4 as ProfileIcon,
     Settings as SettingsIcon
 } from '@mui/icons-material'
 
 import HomeIcon from './Icons/HomeIcon'
+import MistakesIcon from './Icons/MistakesIcon'
 
 const NavigationBar = ({ navigationIndex, navigate }) => {
     const iconStyle = { width: 30, height: 30 };
@@ -28,8 +28,8 @@ const NavigationBar = ({ navigationIndex, navigate }) => {
                     onClick={() => navigate('/')}
                 />
                 <BottomNavigationAction
-                    icon={<CatIcon style={iconStyle} />}
-                    onClick={() => navigate('/catnames')}
+                    icon={<MistakesIcon style={{ ...iconStyle, transform: 'rotate(180deg)' }} />}
+                    onClick={() => { }}
                 />
                 <BottomNavigationAction
                     icon={<ProfileIcon style={iconStyle} />}
