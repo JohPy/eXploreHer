@@ -2,10 +2,9 @@ import React from 'react'
 
 import { Stack, Box } from '@mui/material'
 
-import Lections from '../Components/Icons/Lections'
-import LectionPath from '../Components/Icons/LectionPath'
 import ChapterHeader from '../Components/ChapterHeader'
 import LectionCircle from '../Components/LectionCircle'
+import SmallBubble from '../Components/SmallBubble'
 
 const Home = () => (
 
@@ -16,9 +15,10 @@ const Home = () => (
 
     </Box>
     <Box
-      sx={{ flex: 1, overflow: 'auto', display: 'flex', justifyContent: 'center', p: 10 }}
+      sx={{ flex: 1, overflow: 'auto', display: 'flex', position: 'relative', justifyContent: 'center', p: 5, width: '100%', maxWidth: 380, minWidth: 280 }}
     >
 
+      <SmallBubble x={299} y={255} show />
       <LectionCircle
         segments={[
           { id: 'A', disabled: false, onClick: () => console.log('A') },
