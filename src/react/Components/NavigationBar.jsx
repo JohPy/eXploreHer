@@ -28,17 +28,14 @@ const NavigationBar = ({ navigationIndex, navigate }) => {
                     onClick={() => navigate('/')}
                 />
                 <BottomNavigationAction
-                    label="Cat Names"
                     icon={<CatIcon style={iconStyle} />}
                     onClick={() => navigate('/catnames')}
                 />
                 <BottomNavigationAction
-                    label="Profile"
                     icon={<ProfileIcon style={iconStyle} />}
                     onClick={() => navigate('/profile')}
                 />
                 <BottomNavigationAction
-                    label="Settings"
                     icon={<SettingsIcon style={iconStyle} />}
                     onClick={() => navigate('/profile/settings')}
                 />
