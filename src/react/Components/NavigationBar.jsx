@@ -14,6 +14,8 @@ import {
 import HomeIcon from './Icons/HomeIcon'
 
 const NavigationBar = ({ navigationIndex, navigate }) => {
+    const iconStyle = { width: 30, height: 30 };
+
     return (
         <BottomNavigation
             showLabels
@@ -21,24 +23,24 @@ const NavigationBar = ({ navigationIndex, navigate }) => {
             sx={{ width: '100%' }}
         >
             <BottomNavigationAction
-                label="Home"
-                icon={<HomeIcon />}
+                icon={<HomeIcon style={iconStyle} />}
                 onClick={() => navigate('/')}
             />
             <BottomNavigationAction
                 label="Cat Names"
-                icon={<CatIcon />}
+                icon={<CatIcon style={iconStyle} />}
                 onClick={() => navigate('/catnames')}
             />
             <BottomNavigationAction
                 label="Profile"
-                icon={<ProfileIcon />}
+                icon={<ProfileIcon style={iconStyle} />}
                 onClick={() => navigate('/profile')}
             />
             <BottomNavigationAction
                 label="Settings"
-                icon={<SettingsIcon />}
-                onClick={() => navigate('/profile/settings')} />
+                icon={<SettingsIcon style={iconStyle} />}
+                onClick={() => navigate('/profile/settings')}
+            />
         </BottomNavigation>
     );
 }
