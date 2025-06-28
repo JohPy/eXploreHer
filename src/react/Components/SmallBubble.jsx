@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-const SmallBubble = ({ x, y, show = 'none' }) => (
+const SmallBubble = ({ x, y, show = 'true' }) => (
   <Box
     sx={{
       position: 'absolute',
