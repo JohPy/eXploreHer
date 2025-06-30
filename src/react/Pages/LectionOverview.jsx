@@ -30,18 +30,18 @@ const Home = () => {
         <LargeBubble y={160} show={showLargeBubble} lectionNum={1} lectionCount={5} />
         <LectionCircle
           segments={[
-          { id: '1', disabled: false, onClick: () => handleSegmentClick({ segmentID: '1' }) },
-          { id: '2', disabled: true, onClick: () => console.log('2') },
-          { id: '3', disabled: true, onClick: () => console.log('3') },
-          { id: '4', disabled: true, onClick: () => console.log('4') },
-          { id: '5', disabled: true, onClick: () => console.log('5') }
-        ]}
+            { id: '1', disabled: false, onClick: () => handleSegmentClick({ segmentID: '1' }) },
+            { id: '2', disabled: true, onClick: () => console.log('2') },
+            { id: '3', disabled: true, onClick: () => console.log('3') },
+            { id: '4', disabled: true, onClick: () => console.log('4') },
+            { id: '5', disabled: true, onClick: () => console.log('5') }
+          ]}
         />
 
       </Box>
     </Stack>
 
-)
+  )
 }
 
 export default Home
