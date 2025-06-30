@@ -15,18 +15,18 @@ const LargeBubble = ({ y, show = 'false', lectionNum = '1', lectionCount = '5' }
   return (
     <Box
       sx={{
-      position: 'absolute',
-      // coordinates are originally moving the element by its left top corner
-      left: '50%',
-      top: y,
-      // moving point is changed to the middle top through transform
-      transform: 'translate(-50%, -0%)',
-      // zIndex ensures that LargeBubble lays on top of the circle segments
-      zIndex: 11,
-      display: show ? 'flex' : 'none',
-      width: '300px',
-      maxWidth: '90vw'
-    }}
+        position: 'absolute',
+        // coordinates are originally moving the element by its left top corner
+        left: '50%',
+        top: y,
+        // moving point is changed to the middle top through transform
+        transform: 'translate(-50%, -0%)',
+        // zIndex ensures that LargeBubble lays on top of the circle segments
+        zIndex: 11,
+        display: show ? 'flex' : 'none',
+        width: '300px',
+        maxWidth: '90vw'
+      }}
     >
       <svg
         viewBox="0 0 300 200"
@@ -42,32 +42,32 @@ const LargeBubble = ({ y, show = 'false', lectionNum = '1', lectionCount = '5' }
       </svg>
       <Box
         sx={{
-        width: '100%',
-        height: 'auto',
-        display: 'flex',
-        justifyContent: 'center',
-        color: 'white',
-        position: 'relative',
-        pt: '3em',
-        px: '1em',
-        flexDirection: 'column',
-        gap: 1
-      }}
+          width: '100%',
+          height: 'auto',
+          display: 'flex',
+          justifyContent: 'center',
+          color: 'white',
+          position: 'relative',
+          pt: '3em',
+          px: '1em',
+          flexDirection: 'column',
+          gap: 1
+        }}
       >
         <Typography
           sx={{
-          fontSize: '1.3rem',
-          fontWeight: 'bold'
-        }}
+            fontSize: '1.3rem',
+            fontWeight: 'bold'
+          }}
         >
           {lectionTitle}
         </Typography>
         <Typography
           sx={{
-          fontSize: '1.2rem',
-          fontWeight: 'regular',
-          opacity: 0.7
-        }}
+            fontSize: '1.2rem',
+            fontWeight: 'regular',
+            opacity: 0.7
+          }}
         >
           Lektion
           {' '}
@@ -97,11 +97,11 @@ const LargeBubble = ({ y, show = 'false', lectionNum = '1', lectionCount = '5' }
   )
 }
 
-  LargeBubble.propTypes = {
-      y: PropTypes.number,
-      show: PropTypes.any,
-      lectionNum: PropTypes.number,
-      lectionCount: PropTypes.number
-  }
+LargeBubble.propTypes = {
+  y: PropTypes.number,
+  show: PropTypes.any,
+  lectionNum: PropTypes.number,
+  lectionCount: PropTypes.number
+}
 
 export default LargeBubble

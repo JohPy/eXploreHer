@@ -30,22 +30,22 @@ const SmallBubble = ({ x, y, show = 'true' }) => (
     </svg>
     <Box
       sx={{
-          width: 133,
-          height: 55,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#AC2C5F',
-          position: 'relative'
-        }}
+        width: 133,
+        height: 55,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#AC2C5F',
+        position: 'relative'
+      }}
     >
       <Typography
         sx={{
-            textTransform: 'uppercase',
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            opacity: 0.8
-          }}
+          textTransform: 'uppercase',
+          fontSize: '1rem',
+          fontWeight: 'bold',
+          opacity: 0.8
+        }}
       >
         Anfangen
       </Typography>
