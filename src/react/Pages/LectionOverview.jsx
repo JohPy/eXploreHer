@@ -6,7 +6,7 @@ import LectionCircle from '../Components/LectionCircle'
 import SmallBubble from '../Components/SmallBubble'
 import LargeBubble from '../Components/LargeBubble'
 
-const Home = () => {
+const LectionOverview = () => {
   const [showSmallBubble, setShowSmallBubble] = useState(true)
   const [showLargeBubble, setShowLargeBubble] = useState(false)
 
@@ -44,4 +44,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default LectionOverview
