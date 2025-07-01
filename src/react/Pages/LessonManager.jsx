@@ -10,11 +10,12 @@ const LessonManager = () => {
         id: 101, // To identify the question when saving user mistakes
         task: 'Was passiert während der Follikelphase im Eierstock?', // This can be a question or an instruction like "Ordne diese Begriffe richtig zu"
         format: 'multiple-choice', // This is needed by the QuestionRender to know which component to load
-        content: // This can be an image or answer options - the format needs to be flexible
-        ['Das Corpus luteum bildet sich',
-          'Ein Follikel reift heran und produziert Östrogen',
-          'Mix Die Gebärmutterschleimhaut wird abgestoßen beidem',
-          'Die Eizelle wird befruchtet'],
+        content: [ // This can be an image or answer options - the format needs to be flexible
+          { correct: false, text: 'Das Corpus luteum bildet sich' },
+          { correct: true, text: 'Ein Follikel reift heran und produziert Östrogen' },
+          { correct: false, text: 'Die Gebärmutterschleimhaut wird abgestoßen' },
+          { correct: false, text: 'Die Eizelle wird befruchtet' }
+        ],
         explanation: 'In der Follikelphase reifen die Eibläschen (Follikel) heran' // Optional explanation text after submitting an answer
       }
     ]
