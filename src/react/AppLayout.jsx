@@ -9,13 +9,10 @@ import {
   Paper
 } from '@mui/material'
 
-
-
 import AppRoutes from './AppRoutes'
 import NavigationBar from './Components/NavigationBar'
 
 import AppLogo from '../assets/favicon.svg'
-
 
 const borderRadius = 6
 
@@ -36,7 +33,7 @@ const AppLayout = () => {
         width: '100%',
         height: '100%',
         paddingTop: (theme) => theme.spacing(5),
-        paddingBottom: (theme) => theme.spacing(5),
+        paddingBottom: (theme) => theme.spacing(5)
       }}
     >
       <Container
@@ -45,7 +42,7 @@ const AppLayout = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100%',
+          height: '100%'
         }}
       >
         <Stack
@@ -59,7 +56,7 @@ const AppLayout = () => {
             alt="App Logo"
             style={{
               width: '40px',
-              height: '40px',
+              height: '40px'
             }}
           />
           <Typography variant="h5">My Mobile Health App</Typography>
@@ -76,7 +73,7 @@ const AppLayout = () => {
             paddingLeft: 1,
             overflow: 'hidden',
             borderRadius: (theme) => theme.spacing(borderRadius),
-            background: (theme) => theme.palette.grey[900],
+            background: (theme) => theme.palette.grey[900]
           }}
         >
           <Stack
@@ -87,11 +84,13 @@ const AppLayout = () => {
             sx={{
               overflow: 'hidden',
               borderRadius: (theme) => theme.spacing(borderRadius),
-              background: (theme) => theme.palette.background.paper,
+              background: (theme) => theme.palette.background.paper
             }}
           >
             <AppRoutes />
-            <NavigationBar navigationIndex={navigationIndex} navigate={navigate} />
+            {!location.pathname.startsWith('/lections') && (
+              <NavigationBar navigationIndex={navigationIndex} navigate={navigate} />
+            )}
           </Stack>
         </Paper>
       </Container>
