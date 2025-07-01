@@ -3,6 +3,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import LectionOverview from './Pages/LectionOverview'
+import LectionManager from './Pages/LectionManager'
 import CatNames from './Pages/CatNames/CatNames'
 import Profile from './Pages/Profile/Profile'
 import ProfileOverview from './Pages/Profile/ProfileOverview'
@@ -13,6 +14,7 @@ import Error404 from './Pages/Error404'
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<LectionOverview />} />
+    <Route path="/lections/:id" element={<LectionManager />} />
     <Route path="/profile" element={<Profile />}>
       <Route path="" element={<ProfileOverview />} />
       <Route path="settings" element={<ProfileSettings />} />
