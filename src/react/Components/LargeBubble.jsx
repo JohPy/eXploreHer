@@ -1,4 +1,5 @@
 import { Box, Typography, Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
@@ -11,6 +12,12 @@ const LargeBubble = ({ y, show = 'false', lectionNum = '1', lectionCount = '5' }
     'Abschlusstest'
   ]
   const lectionTitle = titleList[lectionNum - 1]
+
+  const navigate = useNavigate()
+
+  const handleLectionStart = (id) => {
+    navigate(`/lections/${id}`)
+  }
 
   return (
     <Box
@@ -89,6 +96,7 @@ const LargeBubble = ({ y, show = 'false', lectionNum = '1', lectionCount = '5' }
               backgroundColor: '#f2f2f2'
             }
           }}
+          onClick={() => handleLectionStart(lectionNum)}
         >
           Anfangen + 15 XP
         </Button>
