@@ -88,7 +88,7 @@ const AppLayout = () => {
             }}
           >
             <AppRoutes />
-            {!location.pathname.startsWith('/lections') && (
+            {!location.pathname.startsWith('/lessons') && (
               <NavigationBar navigationIndex={navigationIndex} navigate={navigate} />
             )}
           </Stack>

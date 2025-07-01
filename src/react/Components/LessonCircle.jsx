@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const LectionCircle = ({ segments }) => {
+const LessonCircle = ({ segments }) => {
   // Circle radius
   const r = 40
   // Circumference
@@ -113,7 +113,7 @@ const LectionCircle = ({ segments }) => {
   )
 }
 
-LectionCircle.propTypes = {
+LessonCircle.propTypes = {
   segments: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -124,4 +124,4 @@ LectionCircle.propTypes = {
   ).isRequired
 }
 
-export default LectionCircle
+export default LessonCircle

@@ -24,9 +24,9 @@ const ChapterHeader = () => (
             sx={{
               textTransform: 'uppercase',
               opacity: 0.6,
-                xs: '0.9rem',
-                sm: '1rem',
-                md: '1.2rem'
+              xs: '0.9rem',
+              sm: '1rem',
+              md: '1.2rem'
             }}
           >
             Kapitel 1

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-const LargeBubble = ({ y, show = 'false', lectionNum = '1', lectionCount = '5' }) => {
+const LargeBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '5' }) => {
   const titleList = [
     'Die Phasen deines Zyklus',
     'Wenn die Hormone jubeln...',
@@ -11,12 +11,12 @@ const LargeBubble = ({ y, show = 'false', lectionNum = '1', lectionCount = '5' }
     'Unregelmäßigkeiten im Zyklus',
     'Abschlusstest'
   ]
-  const lectionTitle = titleList[lectionNum - 1]
+  const lessonTitle = titleList[lessonNum - 1]
 
   const navigate = useNavigate()
 
-  const handleLectionStart = (id) => {
-    navigate(`/lections/${id}`)
+  const handleLessonStart = (id) => {
+    navigate(`/lessons/${id}`)
   }
 
   return (
@@ -67,7 +67,7 @@ const LargeBubble = ({ y, show = 'false', lectionNum = '1', lectionCount = '5' }
             fontWeight: 'bold'
           }}
         >
-          {lectionTitle}
+          {lessonTitle}
         </Typography>
         <Typography
           sx={{
@@ -78,11 +78,11 @@ const LargeBubble = ({ y, show = 'false', lectionNum = '1', lectionCount = '5' }
         >
           Lektion
           {' '}
-          {lectionNum}
+          {lessonNum}
           {' '}
           von
           {' '}
-          {lectionCount}
+          {lessonCount}
         </Typography>
         <Button
           variant="contained"
@@ -96,7 +96,7 @@ const LargeBubble = ({ y, show = 'false', lectionNum = '1', lectionCount = '5' }
               backgroundColor: '#f2f2f2'
             }
           }}
-          onClick={() => handleLectionStart(lectionNum)}
+          onClick={() => handleLessonStart(lessonNum)}
         >
           Anfangen + 15 XP
         </Button>
@@ -108,8 +108,8 @@ const LargeBubble = ({ y, show = 'false', lectionNum = '1', lectionCount = '5' }
 LargeBubble.propTypes = {
   y: PropTypes.number,
   show: PropTypes.any,
-  lectionNum: PropTypes.number,
-  lectionCount: PropTypes.number
+  lessonNum: PropTypes.number,
+  lessonCount: PropTypes.number
 }
 
 export default LargeBubble

@@ -2,9 +2,9 @@ import { Button } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import React, { useState } from 'react'
 
-const LectionManager = () => {
+const LessonManager = () => {
   // Only for testing - actual implementation should go into json / database
-  const MOCK_LECTIONS = {
+  const MOCK_LESSONS = {
     1: [
       {
         id: 101, // To identify the question when saving user mistakes
@@ -20,12 +20,12 @@ const LectionManager = () => {
     ]
   }
   const { id } = useParams()
-  const lection = MOCK_LECTIONS[Number(id)]
+  const lesson = MOCK_LESSONS[Number(id)]
   const [currentIndex, setCurrentIndex] = useState(0)
-  const currentQuestion = lection[currentIndex]
+  const currentQuestion = lesson[currentIndex]
 
   const goToNext = () => {
-    if (currentIndex < lection.length - 1) {
+    if (currentIndex < lesson.length - 1) {
       setCurrentIndex(i => i + 1)
     } else {
       // TO DO: show success screen in the end
@@ -43,4 +43,4 @@ const LectionManager = () => {
   )
 }
 
-export default LectionManager
+export default LessonManager
