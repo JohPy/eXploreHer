@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-const LargeBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '5' }) => {
+const LessonStartBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '5' }) => {
   const titleList = [
     'Die Phasen deines Zyklus',
     'Wenn die Hormone jubeln...',
@@ -28,7 +28,7 @@ const LargeBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '5' }) 
         top: y,
         // moving point is changed to the middle top through transform
         transform: 'translate(-50%, -0%)',
-        // zIndex ensures that LargeBubble lays on top of the circle segments
+        // zIndex ensures that LessonStartBubble lays on top of the circle segments
         zIndex: 11,
         display: show ? 'flex' : 'none',
         width: '300px',
@@ -105,11 +105,11 @@ const LargeBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '5' }) 
   )
 }
 
-LargeBubble.propTypes = {
+LessonStartBubble.propTypes = {
   y: PropTypes.number,
   show: PropTypes.any,
   lessonNum: PropTypes.number,
   lessonCount: PropTypes.number
 }
 
-export default LargeBubble
+export default LessonStartBubble

@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-const SmallBubble = ({ x, y, show = 'true' }) => (
+const StartIndicatorBubble = ({ x, y, show = 'true' }) => (
   <Box
     sx={{
       position: 'absolute',
@@ -11,7 +11,7 @@ const SmallBubble = ({ x, y, show = 'true' }) => (
       top: y,
       // moving point is changed to the middle bottom through transform
       transform: 'translate(-50%, -100%)',
-      // zIndex ensures that SmallBubble lays on top of the circle segments
+      // zIndex ensures that StartIndicatorBubble lays on top of the circle segments
       zIndex: 10,
       display: show ? 'flex' : 'none'
     }}
@@ -53,10 +53,10 @@ const SmallBubble = ({ x, y, show = 'true' }) => (
   </Box>
 )
 
-SmallBubble.propTypes = {
+StartIndicatorBubble.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
   show: PropTypes.any
 }
 
-export default SmallBubble
+export default StartIndicatorBubble

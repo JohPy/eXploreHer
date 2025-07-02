@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import React, { useState } from 'react'
 
-const LessonManager = () => {
+const Lesson = () => {
   // Only for testing - actual implementation should go into json / database
   const MOCK_LESSONS = {
     1: [
@@ -10,7 +10,7 @@ const LessonManager = () => {
         id: 101, // To identify the question when saving user mistakes
         task: 'Was passiert während der Follikelphase im Eierstock?', // This can be a question or an instruction like "Ordne diese Begriffe richtig zu"
         format: 'multiple-choice', // This is needed by the QuestionRender to know which component to load
-        content: [ // This can be an image or answer options - the format needs to be flexible
+        content: [ // This can be an image path or answer options - the format needs to be flexible
           { correct: false, text: 'Das Corpus luteum bildet sich' },
           { correct: true, text: 'Ein Follikel reift heran und produziert Östrogen' },
           { correct: false, text: 'Die Gebärmutterschleimhaut wird abgestoßen' },
@@ -37,11 +37,11 @@ const LessonManager = () => {
     <div>
       {/* TO DO: Render points list */}
       {/* TO DO: Dynamically load questions
-      <QuestionRenderer question={currentQuestion} /> */}
+      <Question question={currentQuestion} /> */}
       {/* TO DO: Load Button as component instead */}
       <Button onClick={goToNext}>Weiter</Button>
     </div>
   )
 }
 
-export default LessonManager
+export default Lesson
