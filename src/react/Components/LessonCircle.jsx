@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
+import StartIndicatorBubble from './StartIndicatorBubble'
+import LessonStartBubble from './LessonStartBubble'
+
 const LessonCircle = ({ segments }) => {
+  const generalOffset = 80
   // Circle radius
   const r = 40
   // Circumference
@@ -14,50 +18,84 @@ const LessonCircle = ({ segments }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null)
   const [activeIndex, setActiveIndex] = useState(null)
 
+  const [showStartIndicatorBubble, setShowStartIndicatorBubble] = useState(true)
+  const [showLessonStartBubble, setShowLessonStartBubble] = useState(false)
+
+  const [selectedLesson, setSelectedLesson] = useState(1)
+
+  const handleSegmentClick = ({ segmentID }) => {
+    setShowStartIndicatorBubble(false)
+    setShowLessonStartBubble(true)
+    setSelectedLesson(segmentID)
+  }
+
+  const [xPosition, setXPosition] = useState(0)
+  const [yPosition, setYPosition] = useState(0)
+
+  // Calculate the optimal position of the StartIndicatorBubble
+  useEffect(() => {
+    const lastValidIndex = [...segments]
+      .map((s, i) => ({ s, i }))
+      .reverse()
+      .find(({ s }) => !s.disabled)?.i
+
+    if (lastValidIndex != null) {
+      const anglePerSegment = 360 / segments.length
+      const angle = anglePerSegment * lastValidIndex - 90
+      const radians = angle * (Math.PI / 180)
+
+      const x = 50 + Math.cos(radians) * (r - 3)
+      const y = 50 + Math.sin(radians) * (r - 3) - 5
+      setXPosition(x)
+      setYPosition(y)
+    }
+  }, [segments])
+
   return (
-    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: 'auto' }}>
+    <div style={{ position: 'relative' }}>
 
-      <defs>
-        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="#000" floodOpacity="0.3" />
-        </filter>
-      </defs>
+      <svg viewBox="0 -10 100 110" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: 'auto' }}>
 
-      {/* Each segment is grouped by base segment + overlay + hitbox */}
-      {segments.map((segment, i) => {
-        const startOffset = totalLength - i * segmentLength
-        const generalOffset = 80
-        const cursorStyle = segment.disabled ? 'not-allowed' : 'pointer'
-        const isHovered = hoveredIndex === i
-        const isActive = activeIndex === i
+        <defs>
+          <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="#000" floodOpacity="0.3" />
+          </filter>
+        </defs>
 
-        // The baseDash consists of: 1. the length of the first line 2. the gap afterwards
-        // --> Like this the circle consists of only one dash
-        const baseDash = `${segmentLength - gap} ${totalLength - segmentLength + gap}`
+        {/* Each segment is grouped by base segment + overlay + hitbox */}
+        {segments.map((segment, i) => {
+          const startOffset = totalLength - i * segmentLength
+          const cursorStyle = segment.disabled ? 'not-allowed' : 'pointer'
+          const isHovered = hoveredIndex === i
+          const isActive = activeIndex === i
 
-        return (
-          <g key={segment.id}>
-            {/* Base segment */}
-            <circle
-              cx="50"
-              cy="50"
-              r={r}
-              fill="none"
-              stroke="#AC2C5F"
-              strokeWidth="11"
-              strokeDasharray={baseDash}
-              strokeDashoffset={startOffset + generalOffset}
-              strokeLinecap="round"
-              filter="url(#shadow)"
-              style={{
-                cursor: cursorStyle,
-                opacity: segment.disabled ? 0.4 : 1,
-                transition: 'stroke 0.2s ease, opacity 0.2s ease'
-              }}
-            />
+          // The baseDash consists of: 1. the length of the first line 2. the gap afterwards
+          // --> Like this the circle consists of only one dash
+          const baseDash = `${segmentLength - gap} ${totalLength - segmentLength + gap}`
 
-            {/* Overlay for hover/active effect */}
-            {!segment.disabled && (isHovered || isActive) && (
+          return (
+            <g key={segment.id}>
+              {/* Base segment */}
+              <circle
+                cx="50"
+                cy="50"
+                r={r}
+                fill="none"
+                stroke="#AC2C5F"
+                strokeWidth="11"
+                strokeDasharray={baseDash}
+                strokeDashoffset={startOffset + generalOffset}
+                strokeLinecap="round"
+                filter="url(#shadow)"
+                style={{
+                  cursor: cursorStyle,
+                  opacity: segment.disabled ? 0.4 : 1,
+                  transition: 'stroke 0.2s ease, opacity 0.2s ease'
+                }}
+              />
+
+              {/* Overlay for hover/active effect */}
+              {!segment.disabled && (isHovered || isActive) && (
               <circle
                 cx="50"
                 cy="50"
@@ -73,10 +111,10 @@ const LessonCircle = ({ segments }) => {
                   opacity: 0.3
                 }}
               />
-            )}
+              )}
 
-            {/* Invisible hitbox for each segment */}
-            {!segment.disabled && (
+              {/* Invisible hitbox for each segment */}
+              {!segment.disabled && (
               <circle
                 cx="50"
                 cy="50"
@@ -95,7 +133,7 @@ const LessonCircle = ({ segments }) => {
                 }}
                 onMouseDown={() => setActiveIndex(i)}
                 onMouseUp={() => setActiveIndex(null)}
-                onClick={segment.onClick}
+                onClick={() => handleSegmentClick(i)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault()
@@ -105,11 +143,30 @@ const LessonCircle = ({ segments }) => {
                 role="button"
                 tabIndex={0}
               />
-            )}
-          </g>
-        )
-      })}
-    </svg>
+              )}
+
+            </g>
+          )
+        })}
+
+      </svg>
+
+      <div
+        style={{
+          position: 'absolute',
+          left: `${xPosition}%`,
+          top: `${yPosition}%`,
+          transform: 'translate(-50%, -100%)',
+          pointerEvents: 'none',
+          zIndex: 10
+        }}
+      >
+        <StartIndicatorBubble show={showStartIndicatorBubble} />
+      </div>
+      <div>
+        <LessonStartBubble y={140} show={showLessonStartBubble} lessonNum={selectedLesson} lessonCount={segments.length} />
+      </div>
+    </div>
   )
 }
 
