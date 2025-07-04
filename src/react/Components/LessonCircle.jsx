@@ -36,7 +36,7 @@ const LessonCircle = ({ segments }) => {
         const baseDash = `${segmentLength - gap} ${totalLength - segmentLength + gap}`
 
         return (
-          <g key={segment.id ?? i}>
+          <g key={segment.id}>
             {/* Base segment */}
             <circle
               cx="50"
@@ -80,7 +80,7 @@ const LessonCircle = ({ segments }) => {
               <circle
                 cx="50"
                 cy="50"
-                r={r + 5} // Increase clickable area
+                r={r} // Clickable area
                 fill="transparent"
                 stroke="transparent"
                 strokeWidth="20"
@@ -116,7 +116,7 @@ const LessonCircle = ({ segments }) => {
 LessonCircle.propTypes = {
   segments: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.string.isRequired,
       disabled: PropTypes.bool,
       onClick: PropTypes.func,
       color: PropTypes.string
