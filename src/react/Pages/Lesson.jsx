@@ -23,7 +23,7 @@ const Lesson = () => {
   const { id } = useParams()
   const lesson = MOCK_LESSONS[Number(id)]
   const [currentIndex, setCurrentIndex] = useState(0)
-  const currentQuestion = lesson[currentIndex]
+  const currentExercise = lesson[currentIndex]
 
   const goToNext = () => {
     if (currentIndex < lesson.length - 1) {
@@ -37,7 +37,7 @@ const Lesson = () => {
     <div>
       {/* TO DO: Render points list */}
       {/* TO DO: Dynamically load questions
-      <Question question={currentQuestion} /> */}
+      <Exercise exercise={currentExercise} /> */}
       {/* TO DO: Load Button as component instead */}
       <Button onClick={goToNext}>Weiter</Button>
     </div>
