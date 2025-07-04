@@ -31,7 +31,7 @@ const LessonStartBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '
         // zIndex ensures that LessonStartBubble lays on top of the circle segments
         zIndex: 11,
         display: show ? 'flex' : 'none',
-        width: '300px',
+        width: '95%',
         maxWidth: '90vw'
       }}
     >
@@ -63,7 +63,10 @@ const LessonStartBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '
       >
         <Typography
           sx={{
-            fontSize: '1.3rem',
+            fontSize: {
+              xs: '1.1rem',
+              sm: '1.3rem'
+            },
             fontWeight: 'bold'
           }}
         >
@@ -71,7 +74,10 @@ const LessonStartBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '
         </Typography>
         <Typography
           sx={{
-            fontSize: '1.2rem',
+            fontSize: {
+              xs: '1rem',
+              sm: '1.2rem'
+            },
             fontWeight: 'regular',
             opacity: 0.7
           }}
