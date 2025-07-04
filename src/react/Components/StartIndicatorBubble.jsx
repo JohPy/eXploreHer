@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-const StartIndicatorBubble = ({ x, y, show = 'true' }) => (
+const StartIndicatorBubble = ({ x = 0, y = 0, show = 'true' }) => (
   <Box
     sx={{
       position: 'absolute',
