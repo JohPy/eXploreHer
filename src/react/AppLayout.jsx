@@ -13,7 +13,6 @@ import AppRoutes from './AppRoutes'
 import NavigationBar from './Components/NavigationBar'
 
 import AppLogo from '../assets/favicon.svg'
-import ChapterHeader from './Components/ChapterHeader'
 
 const borderRadius = 6
 
@@ -88,9 +87,10 @@ const AppLayout = () => {
               background: (theme) => theme.palette.background.paper
             }}
           >
-            <ChapterHeader />
             <AppRoutes />
-            <NavigationBar navigationIndex={navigationIndex} navigate={navigate} />
+            {!location.pathname.startsWith('/lessons') && (
+              <NavigationBar navigationIndex={navigationIndex} navigate={navigate} />
+            )}
           </Stack>
         </Paper>
       </Container>
