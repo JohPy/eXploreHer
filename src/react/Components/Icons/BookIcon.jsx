@@ -1,5 +1,6 @@
-import { number } from 'prop-types'
 import * as React from 'react'
+
+import PropTypes from 'prop-types'
 
 const BookIcon = ({ width = 88, height = 79 }) => (
   <svg
@@ -39,8 +40,8 @@ const BookIcon = ({ width = 88, height = 79 }) => (
 )
 
 BookIcon.propTypes = {
-  width: number,
-  height: number
+  width: PropTypes.number,
+  height: PropTypes.number
 }
 
 export default BookIcon

@@ -1,9 +1,9 @@
 import React from 'react'
+
 import { Box, Grid2, Typography } from '@mui/material'
-import BookIcon from './Icons/BookIcon.jsx'
+import BookIcon from './Icons/BookIcon'
 
 const ChapterHeader = () => (
-
   <Box
     sx={{
       backgroundColor: '#AC2C5F',
@@ -13,7 +13,7 @@ const ChapterHeader = () => (
       px: 2.2,
       py: 1.2,
       boxShadow: 1,
-      mt: 4,
+      mt: 4
     }}
   >
     <Grid2 container alignItems="center" justifyContent="space-between" columnSpacing={2}>
