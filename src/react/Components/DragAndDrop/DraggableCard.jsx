@@ -7,14 +7,6 @@ const DraggableCard = ({ id, label }) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({ id })
 
   const style = {
-    borderRadius: '6px',
-    backgroundColor: 'white',
-    border: '2px solid #C4C4DF',
-    padding: '8px 16px',
-    cursor: 'grab',
-    width: 150,
-    textAlign: 'center',
-    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.15)',
     transform: transform
       ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
       : undefined
@@ -27,6 +19,16 @@ const DraggableCard = ({ id, label }) => {
       {...listeners}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...attributes}
+      sx={{
+        borderRadius: '6px',
+        backgroundColor: 'white',
+        border: (theme) => `2px solid ${theme.palette.berryGrey.main}`,
+        padding: '8px 16px',
+        cursor: 'grab',
+        width: 150,
+        textAlign: 'center',
+        boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.15)'
+      }}
       style={style}
     >
       <Typography variant="body2" fontWeight="bold">

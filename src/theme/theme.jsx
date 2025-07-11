@@ -29,6 +29,12 @@ const theme = createTheme({
       textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
       lineHeight: 0.5
     }
+  },
+  palette: {
+    berryGrey: {
+      main: '#C4C4DF',
+      light: '#eaeaf2'
+    }
   }
 })
 

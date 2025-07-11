@@ -14,13 +14,13 @@ const DropField = ({ id, label, item, sx = {} }) => {
         height: 40,
         width: 150,
         position: 'absolute',
-        border: '2px solid #C4C4DF',
+        border: (theme) => `2px solid ${theme.palette.berryGrey.main}`,
         borderRadius: '6px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         color: '#000',
-        backgroundColor: '#eaeaf2',
+        backgroundColor: 'berryGrey.light',
         ...sx
       }}
     >
