@@ -20,3 +20,4 @@ maps-data
 .firebase
 .yarn
 functions/static/**
+.vscode
