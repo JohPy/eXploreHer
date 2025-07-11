@@ -1,8 +1,8 @@
 import React from 'react'
 import { Stack, Box } from '@mui/material'
 
-import ChapterHeader from '../Components/ChapterHeader'
-import LessonCircle from '../Components/LessonCircle'
+import ChapterHeader from '../Components/LessonOverview/ChapterHeader'
+import LessonCircle from '../Components/LessonOverview/LessonCircle'
 
 const LessonOverview = () => (
   <Stack sx={{ height: '100%', alignItems: 'center' }}>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Box, Grid2, Typography } from '@mui/material'
-import BookIcon from './Icons/BookIcon'
+import BookIcon from '../Icons/BookIcon'
 
 const ChapterHeader = () => (
   <Box
