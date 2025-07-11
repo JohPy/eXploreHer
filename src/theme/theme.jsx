@@ -31,9 +31,21 @@ const theme = createTheme({
     }
   },
   palette: {
+    berry: {
+      main: '#AC2C5F',
+      disabled: '#D6C2CA'
+    },
     berryGrey: {
       main: '#C4C4DF',
       light: '#eaeaf2'
+    },
+    correct: {
+      main: '#19E65D',
+      transparent: '#19E65D26'
+    },
+    wrong: {
+      main: '#E6196B',
+      transparent: '#E6196B26'
     }
   }
 })
