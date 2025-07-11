@@ -1,31 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useDraggable } from '@dnd-kit/core'
-import { Paper, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 const DraggableCard = ({ id, label }) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({ id })
 
   const style = {
-    transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
-    padding: '12px 16px',
-    marginBottom: '10px',
-    backgroundColor: '#f5f5f5',
-    cursor: 'grab'
+    borderRadius: '6px',
+    backgroundColor: 'white',
+    border: '2px solid #C4C4DF',
+    padding: '8px 16px',
+    cursor: 'grab',
+    width: 150,
+    textAlign: 'center',
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.15)',
+    transform: transform
+      ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
+      : undefined
   }
 
   return (
-    <Paper
+    <Box
       ref={setNodeRef}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...listeners}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...attributes}
-      elevation={3}
       style={style}
     >
-      <Typography>{label}</Typography>
-    </Paper>
+      <Typography variant="body2" fontWeight="bold">
+        {label}
+      </Typography>
+    </Box>
   )
 }
 

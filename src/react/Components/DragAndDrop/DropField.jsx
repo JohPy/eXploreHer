@@ -11,14 +11,16 @@ const DropField = ({ id, label, item, sx = {} }) => {
       ref={setNodeRef}
       elevation={2}
       sx={{
-        height: 50,
+        height: 40,
         width: 150,
         position: 'absolute',
-        border: '2px dashed #aaa',
-        backgroundColor: isOver ? '#e0f7fa' : '#fafafa',
+        border: '2px solid #C4C4DF',
+        borderRadius: '6px',
         display: 'flex',
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'center',
+        color: '#000',
+        backgroundColor: '#eaeaf2',
         ...sx
       }}
     >
