@@ -1,6 +1,7 @@
-import { Button } from '@mui/material'
+import { Button, Box } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import React, { useState } from 'react'
+import LessonHeader from '../Components/LessonHeader'
 
 const Lesson = () => {
   // Only for testing - actual implementation should go into json / database
@@ -25,6 +26,16 @@ const Lesson = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const currentExercise = lesson[currentIndex]
 
+  const handleExit = () => {
+    // TODO: best with a hook that handles Exiting like useNavigate();
+    // with that, then probably like navigate('/LessonOverview')
+  }
+
+  const headerSteps = lesson.map((exercise, index) => ({
+    id: exercise.id,
+    status: index === currentIndex ? 'current' : 'unanswered'
+  }))
+
   const goToNext = () => {
     if (currentIndex < lesson.length - 1) {
       setCurrentIndex(i => i + 1)
@@ -35,9 +46,30 @@ const Lesson = () => {
 
   return (
     <div>
-      {/* TO DO: Render points list */}
-      {/* TO DO: Dynamically load questions
-      <Exercise exercise={currentExercise} /> */}
+      <Box
+        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}
+      >
+        <LessonHeader
+          onExit={handleExit}
+          activeStep={currentIndex}
+          maxSteps={lesson.length}
+          steps={headerSteps}
+        />
+        {/* TO DO: Dynamically load questions
+        <Exercise exercise={currentExercise} /> */}
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textAlign: 'center',
+            p: 3
+          }}
+        >
+          <h2>{currentExercise.task}</h2>
+        </Box>
+      </Box>
       {/* TO DO: Load Button as component instead */}
       <Button onClick={goToNext}>Weiter</Button>
     </div>

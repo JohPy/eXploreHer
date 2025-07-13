@@ -3,35 +3,16 @@ import PropTypes from 'prop-types'
 import { Box, IconButton, Typography } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 
-const statusStyles = {
-  correct: {
-    backgroundColor: '#3F8E76',
-    border: '1px solid #234F42'
-  },
-  incorrect: {
-    backgroundColor: '#F44336',
-    border: '1px solid #B71C1C'
-  },
-  current: {
-    backgroundColor: '#D7D7D7',
-    border: '1px solid #7C7C7C'
-  },
-  unanswered: {
-    backgroundColor: 'transparent',
-    border: '1px solid #7C7C7C'
-  }
-}
-
 const LessonHeader = ({ onExit, activeStep, maxSteps, steps }) => (
   <Box
     sx={{
       display: 'flex',
       alignItems: 'center',
-      width: '95%',
+      width: '90%',
       p: 1
     }}
   >
-    <IconButton onClick={onExit} aria-label="exit lesson">
+    <IconButton onClick={onExit}>
       <CloseIcon />
     </IconButton>
 
@@ -45,13 +26,14 @@ const LessonHeader = ({ onExit, activeStep, maxSteps, steps }) => (
       {steps.map((step) => (
         <Box
           key={step.id}
-          sx={{
+          sx={(theme) => ({
             width: '10px',
             height: '10px',
             borderRadius: '50%',
             margin: '0 4px',
-            ...statusStyles[step.status]
-          }}
+            backgroundColor: theme.palette.lessonStatus[step.status].main,
+            border: theme.palette.lessonStatus[step.status].border
+          })}
         />
       ))}
     </Box>
