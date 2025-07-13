@@ -1,7 +1,7 @@
 import { Button, Box } from '@mui/material'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
-import LessonHeader from '../Components/LessonHeader'
+import LessonHeader from '../Components/Lesson/LessonHeader'
 
 const Lesson = () => {
   // Only for testing - actual implementation should go into json / database
@@ -25,10 +25,10 @@ const Lesson = () => {
   const lesson = MOCK_LESSONS[Number(id)]
   const [currentIndex, setCurrentIndex] = useState(0)
   const currentExercise = lesson[currentIndex]
+  const navigate = useNavigate()
 
   const handleExit = () => {
-    // TODO: best with a hook that handles Exiting like useNavigate();
-    // with that, then probably like navigate('/LessonOverview')
+    navigate('/')
   }
 
   const headerSteps = lesson.map((exercise, index) => ({
