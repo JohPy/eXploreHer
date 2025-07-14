@@ -1,0 +1,14 @@
+.quiz-btn {
+    border-radius: 0.75rem;
+    padding: 1rem;
+    font-weight: 500;
+    border-width: 2px;
+    border-bottom-width: 4px;
+    cursor: pointer;
+    transition-property: background-color, color;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+    background-color: #fff;
+    border-color: #e5e7eb;
+    color: #374151;
+}
