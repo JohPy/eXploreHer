@@ -38,6 +38,9 @@ const useWordMatchQuizStore = create((set) => ({
   // the list of all questions available in the game
   questions,
 
+  // keeps track of buttons that should be disabled (to prevent reuse or mistakes)
+  disabledButtons: [],
+
   selectAnswer: (answer, id) => {
     set((state) => {
       // if the same answer is already selected, deselect it (toggle behavior)
@@ -64,7 +67,31 @@ const useWordMatchQuizStore = create((set) => ({
 
     // otherwise, select the new question
     return { selectedQuestion: { question, id } }
-  })
+  }),
+
+  checkAnswer: (question, answer) => {
+    const questionObj = questions.find((q) => q.question === question)
+    if (!questionObj) {
+      return false
+    }
+    if (questionObj.answer === answer) {
+      // if the answer is correct, reset the selected question and answer
+      set(() => ({
+        selectedQuestion: { question: null, id: null },
+        selectedAnswer: { answer: null, id: null }
+      }))
+      return true
+    }
+
+    return false
+  },
+
+  disableButton: (questionId, answerId) => set((state) => ({
+    disabledButtons: [
+      ...state.disabledButtons,
+      { questionId, answerId }
+    ]
+  }))
 }))
 
 export default useWordMatchQuizStore

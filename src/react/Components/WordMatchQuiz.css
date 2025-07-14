@@ -30,3 +30,20 @@
     border-color: #bae6fd;
     color: #0369a1;
 }
+
+.quiz-btn.correct {
+    background-color: #bbf7d0;
+    border-color: #86efac;
+    color: #166534;
+}
+
+.quiz-btn.incorrect {
+    background-color: #fecaca;
+    border-color: #fca5a5;
+    color: #991b1b;
+}
+
+.quiz-btn:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}

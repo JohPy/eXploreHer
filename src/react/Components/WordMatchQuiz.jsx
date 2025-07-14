@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect, useState } from 'react'
 
 import './WordMatchQuiz.css'
 import shuffle from '../utils/shuffle'
@@ -14,22 +14,85 @@ const WordMatchQuiz = () => {
   const shuffledQuestions = useMemo(() => shuffle(questions), [questions])
   const shuffledAnswers = useMemo(() => shuffle(questions.map((q) => q.answer)), [questions])
 
+  const disabledButtons = useWordMatchQuizStore((state) => state.disabledButtons) || []
+  const [tempFeedback, setTempFeedback] = useState(null)
+
   const handleQuestionClick = (question, id) => {
+    if (tempFeedback) return
     selectQuestion(question, id)
   }
 
   const handleAnswerClick = (answer, id) => {
+    if (tempFeedback) return
     selectAnswer(answer, id)
   }
 
+  useEffect(() => {
+    if (
+      selectedQuestion?.question &&
+      selectedAnswer?.answer &&
+      selectedQuestion.id &&
+      selectedAnswer.id
+    ) {
+      const isCorrect = useWordMatchQuizStore
+        .getState()
+        .checkAnswer(selectedQuestion.question, selectedAnswer.answer)
+
+      const questionId = selectedQuestion.id
+      const answerId = selectedAnswer.id
+
+      if (isCorrect) {
+        setTempFeedback({
+          questionId,
+          answerId,
+          isCorrect: 'correct'
+        })
+
+        setTimeout(() => {
+          setTempFeedback(null)
+          useWordMatchQuizStore.getState().disableButton(questionId, answerId)
+          selectQuestion(null, null)
+          selectAnswer(null, null)
+        }, 1000)
+      } else {
+        setTempFeedback({
+          questionId,
+          answerId,
+          isCorrect: 'incorrect'
+        })
+
+        setTimeout(() => {
+          setTempFeedback(null)
+          selectQuestion(null, null)
+          selectAnswer(null, null)
+        }, 1000)
+      }
+    }
+  }, [selectedQuestion, selectedAnswer])
+
+  const isSelectedAnswer = (questionId, answer) => (
+    selectedAnswer?.id === questionId &&
+    selectedAnswer?.answer === answer
+  )
+
+  const isSelectedQuestion = (questionId, question) => (
+    selectedQuestion?.id === questionId &&
+    selectedQuestion?.question === question
+  )
+
   // helper to get button class names
-  const getButtonClass = (type, question, answer) => {
+  const getButtonClass = (type, question, answer, index) => {
     const base = 'quiz-btn'
+    const feedback = tempFeedback
     if (type === 'question') {
-      if (selectedQuestion?.question === question.question && selectedQuestion?.id === question.id) return `${base} selected`
+      if (feedback?.isCorrect === 'correct' && feedback.questionId === question.id) return `${base} correct`
+      if (feedback?.isCorrect === 'incorrect' && feedback.questionId === question.id) return `${base} incorrect`
+      if (!feedback && isSelectedQuestion(question.id, question.question)) return `${base} selected`
       return base
     }
-    if (selectedAnswer?.answer === answer && selectedAnswer?.id === question.id) return `${base} selected`
+    if (feedback?.isCorrect === 'correct' && feedback.answerId === question.id) return `${base} correct`
+    if (feedback?.isCorrect === 'incorrect' && feedback.answerId === question.id) return `${base} incorrect`
+    if (!feedback && isSelectedAnswer(question.id, shuffledAnswers[index])) return `${base} selected`
     return base
   }
 
@@ -39,8 +102,11 @@ const WordMatchQuiz = () => {
         <div key={question.id} className="quiz-row">
           <button
             type="button"
+            disabled={disabledButtons.some(
+              (btn) => btn.questionId === question.id
+            )}
             onClick={() => handleQuestionClick(question.question, question.id)}
-            className={getButtonClass('question', question, null)}
+            className={getButtonClass('question', question, null, index)}
           >
             {question.question}
           </button>
@@ -50,7 +116,10 @@ const WordMatchQuiz = () => {
               shuffledAnswers[index],
               question.id
             )}
-            className={getButtonClass('answer', question, shuffledAnswers[index])}
+            disabled={disabledButtons.some(
+              (btn) => btn.answerId === question.id
+            )}
+            className={getButtonClass('answer', question, shuffledAnswers[index], index)}
           >
             {shuffledAnswers[index] || 'No answer available'}
           </button>
