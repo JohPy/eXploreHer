@@ -24,3 +24,9 @@
     border-color: #e5e7eb;
     color: #374151;
 }
+
+.quiz-btn.selected {
+    background-color: #e0f2fe;
+    border-color: #bae6fd;
+    color: #0369a1;
+}
