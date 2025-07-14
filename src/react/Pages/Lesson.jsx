@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
 
 const Lesson = () => {
@@ -24,12 +24,13 @@ const Lesson = () => {
   const lesson = MOCK_LESSONS[Number(id)]
   const [currentIndex, setCurrentIndex] = useState(0)
   const currentExercise = lesson[currentIndex]
+  const navigate = useNavigate()
 
   const goToNext = () => {
     if (currentIndex < lesson.length - 1) {
       setCurrentIndex(i => i + 1)
     } else {
-      // TO DO: show success screen in the end
+      navigate('/completion')
     }
   }
 
