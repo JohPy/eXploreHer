@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import './WordMatchQuiz.css'
+import shuffle from '../utils/shuffle'
 import useWordMatchQuizStore from '../stores/useWordMatchQuizStore'
 
 const WordMatchQuiz = () => {
@@ -9,6 +10,9 @@ const WordMatchQuiz = () => {
   const selectedQuestion = useWordMatchQuizStore((state) => state.selectedQuestion)
   const selectAnswer = useWordMatchQuizStore((state) => state.selectAnswer)
   const selectedAnswer = useWordMatchQuizStore((state) => state.selectedAnswer)
+
+  const shuffledQuestions = useMemo(() => shuffle(questions), [questions])
+  const shuffledAnswers = useMemo(() => shuffle(questions.map((q) => q.answer)), [questions])
 
   const handleQuestionClick = (question, id) => {
     selectQuestion(question, id)
@@ -31,7 +35,7 @@ const WordMatchQuiz = () => {
 
   return (
     <div className="quiz-container">
-      {questions.map((question) => (
+      {shuffledQuestions.map((question, index) => (
         <div key={question.id} className="quiz-row">
           <button
             type="button"
@@ -43,12 +47,12 @@ const WordMatchQuiz = () => {
           <button
             type="button"
             onClick={() => handleAnswerClick(
-              question.answer,
+              shuffledAnswers[index],
               question.id
             )}
-            className={getButtonClass('answer', question, question.answer)}
+            className={getButtonClass('answer', question, shuffledAnswers[index])}
           >
-            {question.answer}
+            {shuffledAnswers[index] || 'No answer available'}
           </button>
         </div>
       ))}
