@@ -4,7 +4,7 @@ import WordMatchQuiz from '../Components/WordMatchQuiz'
 
 const MatchScreen = () => (
   <div>
-    <h1>Tap the matching pairs</h1>
+    <h2>Finde die passenden Paare</h2>
     <WordMatchQuiz />
   </div>
 )
