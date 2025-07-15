@@ -3,28 +3,23 @@ import { create } from 'zustand'
 const questions = [
   {
     id: '1',
-    question: 'Und',
-    answer: 'And'
+    question: 'Follikelphase',
+    answer: 'Einer der herangreiften Follikel wird dominant und produziert das Hormon Östrogen'
   },
   {
     id: '2',
-    question: 'Klein',
-    answer: 'Small'
+    question: 'Eisprung',
+    answer: 'Die freigesetzte Eizelle wird in den Eileiter transportiert'
   },
   {
     id: '3',
-    question: 'Zu',
-    answer: 'To'
+    question: 'Menstruation',
+    answer: 'Die Gebärmutter stößt ihre innere Auskleidung aus Weichteilen und Blutgefäßen ab'
   },
   {
     id: '4',
-    question: 'Meer',
-    answer: 'Sea'
-  },
-  {
-    id: '5',
-    question: 'Langsam',
-    answer: 'Slowly'
+    question: 'Lutealphase',
+    answer: 'Der geplatzte Follikel wird zum Gelbkörper (Corpus luteum) und produziert Progesteron'
   }
 ]
 

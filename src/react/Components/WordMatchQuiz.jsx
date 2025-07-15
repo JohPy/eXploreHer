@@ -1,6 +1,5 @@
 import React, { useMemo, useEffect, useState } from 'react'
 
-import './WordMatchQuiz.css'
 import shuffle from '../utils/shuffle'
 import useWordMatchQuizStore from '../stores/useWordMatchQuizStore'
 
