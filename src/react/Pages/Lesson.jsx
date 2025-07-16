@@ -40,7 +40,7 @@ const Lesson = () => {
     if (currentIndex < lesson.length - 1) {
       setCurrentIndex(i => i + 1)
     } else {
-      // TO DO: show success screen in the end
+      navigate('/completion')
     }
   }
 

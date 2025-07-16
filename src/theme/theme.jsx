@@ -33,20 +33,20 @@ const theme = createTheme({
   palette: {
     lessonStatus: {
       correct: {
-        main: '#4B8F7AFF',
-        border: '1px solid #234F42'
+        main: '#19E65D',
+        border: '#234F42'
       },
       incorrect: {
-        main: '#DD5E55FF',
-        border: '1px solid #B71C1C'
+        main: '#E6196B',
+        border: '#740a34ff'
       },
       current: {
-        main: '#D7D7D7',
-        border: '1px solid #7C7C7C'
+        main: '#F0F0F5',
+        border: '#7C7C7C'
       },
       unanswered: {
         main: 'transparent',
-        border: '1px solid #7C7C7C'
+        border: '#7C7C7C'
       }
     }
   }

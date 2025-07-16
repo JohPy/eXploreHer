@@ -32,7 +32,7 @@ const LessonHeader = ({ onExit, activeStep, maxSteps, steps }) => (
             borderRadius: '50%',
             margin: '0 4px',
             backgroundColor: theme.palette.lessonStatus[step.status].main,
-            border: theme.palette.lessonStatus[step.status].border
+            border: `1px solid ${theme.palette.lessonStatus[step.status].border}`
           })}
         />
       ))}

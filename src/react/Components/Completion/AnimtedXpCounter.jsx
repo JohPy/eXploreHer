@@ -5,8 +5,8 @@ import { Typography, Box } from '@mui/material'
 
 const PopUp = () => (
   <motion.div
-    initial={{ y: 0, opacity: 1, scale: 0.5 }}
-    animate={{ y: -60, opacity: 0, scale: 0.5 }}
+    initial={{ y: -50, opacity: 1, scale: 2 }}
+    animate={{ y: -80, opacity: 0, scale: 5 }}
     exit={{ opacity: 0 }}
     transition={{ duration: 0.7, ease: 'easeOut' }}
     style={{ position: 'absolute' }}
@@ -33,13 +33,13 @@ const AnimatedXpCounter = ({ finalValue }) => {
           setPopUps((current) => [...current, newPopUp])
           setTimeout(() => {
             setPopUps((p) => p.filter((item) => item.id !== newPopUp.id))
-          })
+          }, 700)
         }
         previous.current = Math.floor(latest)
       }
     })
     return controls.stop
-  }, [finalValue])
+  }, [finalValue, count])
 
   return (
     <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

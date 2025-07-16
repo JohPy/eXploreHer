@@ -4,23 +4,25 @@ import { motion } from 'framer-motion'
 import AnimatedXpCounter from './AnimtedXpCounter'
 
 const totalDots = 8
-const dotSize = 15
-const circleRadius = 100
+const dotSize = 20
+const circleRadius = 130
 const xpGained = 25
 
-// animation variants --> animation of container of dots
+// animation variants
+// animation of container of dots
 const containerVariants = {
   initial: {}, // empty at first
   animate: {
     transition: {
-      staggerChildren: 0.08
+      staggerChildren: 0.1
     }
   }
 }
 
+// single dot animation
 const dotVariants = {
   initial: (index) => ({
-    x: (index - (totalDots - 1) * (dotSize + 10)),
+    x: (index - (totalDots - 1) / 2) * (dotSize + 8),
     y: -200
   }),
   animate: (index) => ({
@@ -42,7 +44,7 @@ const dots = Array.from({ length: totalDots }, (_, index) => ({
 const LessonCompletionCircle = () => (
   <Box
     sx={{
-      width: '100%',
+      width: 300,
       height: 300,
       position: 'relative',
       display: 'flex',
@@ -72,10 +74,10 @@ const LessonCompletionCircle = () => (
         />
       ))}
     </motion.div>
-    <motion.div // XP counter
+    <motion.div
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 1, duration: 0.5 }}
+      transition={{ duration: 1 }}
       style={{ position: 'absolute', textAlign: 'center' }}
     >
       <AnimatedXpCounter finalValue={xpGained} />
