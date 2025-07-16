@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import LessonCompletionAnimation from '../Components/LessonCompletionAnimation'
+import LessonCompletionAnimation from '../Components/Completion/LessonCompletionCircle'
 
 const Completion = () => {
   const navigate = useNavigate()
