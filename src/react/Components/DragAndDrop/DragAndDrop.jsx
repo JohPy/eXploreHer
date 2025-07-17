@@ -7,52 +7,53 @@ import DraggableCard from './DraggableCard'
 import DropField from './DropField'
 
 const DragAndDrop = ({ fields, ImageComponent, onCorrectChange }) => {
-
   const [correct, setCorrect] = useState(null)
 
-  {/* Report back to the parent wether the assignments are correct */}
+  // Report back to the parent wether the assignments are correct
   useEffect(() => {
-    onCorrectChange(correct);
-  }, [correct, onCorrectChange]);
+    onCorrectChange(correct)
+  }, [correct, onCorrectChange])
 
-  const emptyAssignments = {};
+  const emptyAssignments = {}
   fields.forEach((item) => {
-    emptyAssignments[item.id] = null;
-  });
+    emptyAssignments[item.id] = null
+  })
 
-  {/* Set the initial state for the dropableIds as null */}
-  const [assignments, setAssignments] = useState(emptyAssignments);
+  // Set the initial state for the dropableIds as null
+  const [assignments, setAssignments] = useState(emptyAssignments)
 
-  {/* Is called when a drag operation has been completed */}
+  // Is called when a drag operation has been completed
   const handleDragEnd = (event) => {
     const { over, active } = event
 
-    {/* If draggable ('active') operation ended above a drop destination ('over'), do stuff */}
-    {/* Example of assignments after drop event: 'const assignments = { follikel: 'luteal',   luteal: 'follikel' } */}
+    // If draggable ('active') operation ended above a drop destination ('over'), do stuff
+    // Example of assignments after drop event: 'const assignments = { follikel: 'luteal',   luteal: 'follikel' }
     if (over) {
       setAssignments((prev) => {
-      const newAssignments = {
-        ...prev,
-        [over.id]: active.id
-      }
-
-      {/* Check is all 'over' IDs are assigned */}
-      const allAssigned = Object.values(newAssignments).every((val) => val !== null);
-
-      if (allAssigned) {
-
-        {/* Check if all assignments are correct */}
-        let allCorrect = true;
-        for (const [dropId, dragId] of Object.entries(newAssignments)) {
-          if (dropId !== dragId) {
-            console.log(`Wrongly assigned: ${dropId} → ${dragId}`);
-            allCorrect = false;
-          }
+        const newAssignments = {
+          ...prev,
+          [over.id]: active.id
         }
-        setCorrect(allCorrect);
-      }
-      return newAssignments
-    })
+
+        // Check is all 'over' IDs are assigned
+        const allAssigned = Object.values(newAssignments).every((val) => val !== null)
+
+        if (allAssigned) {
+          // Check if all assignments are correct
+          let allCorrect = true
+          allCorrect = Object.entries(newAssignments).every(
+            ([dropId, dragId]) => {
+              const isCorrect = dropId === dragId
+              if (!isCorrect) {
+                console.log(`Wrongly assigned: ${dropId} → ${dragId}`)
+              }
+              return isCorrect
+            }
+          )
+          setCorrect(allCorrect)
+        }
+        return newAssignments
+      })
     }
   }
 
@@ -105,7 +106,9 @@ DragAndDrop.propTypes = {
       label: PropTypes.string,
       position: PropTypes.any
     }).isRequired
-  )
+  ),
+  ImageComponent: PropTypes.any.isRequired,
+  onCorrectChange: PropTypes.any.isRequired
 }
 
 export default DragAndDrop
