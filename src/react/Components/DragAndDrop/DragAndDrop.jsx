@@ -58,7 +58,7 @@ const DragAndDrop = ({ fields, ImageComponent, onCorrectChange }) => {
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
-      <Container sx={{ mt: 4, mb: 2 }}>
+      <Container sx={{ mt: 2, mb: 2 }}>
 
         <Box
           sx={{

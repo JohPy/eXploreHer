@@ -26,13 +26,16 @@ const DraggableCard = ({ id, label }) => {
         border: (theme) => `2px solid ${theme.palette.berryGrey.main}`,
         padding: '8px 16px',
         cursor: 'grab',
-        width: 150,
+        height: '15%',
+        maxHeight: 40,
+        width: '45%',
+        maxWidth: 150,
         textAlign: 'center',
         boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.15)'
       }}
       style={style}
     >
-      <Typography variant="body2" fontWeight="bold">
+      <Typography variant="body2" fontWeight="bold" sx={{ fontSize: { xs: '0.7rem', sm: '0.8rem', md: '0.9rem' } }}>
         {label}
       </Typography>
     </Box>

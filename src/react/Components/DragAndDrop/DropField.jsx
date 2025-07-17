@@ -33,8 +33,10 @@ const DropField = ({ id, assigned, position, correct }) => {
       ref={setNodeRef}
       elevation={2}
       sx={{
-        height: 40,
-        width: 150,
+        height: '15%',
+        maxHeight: 40,
+        width: '45%',
+        maxWidth: 150,
         position: 'absolute',
         border: (theme) => `2px solid ${theme.palette.berryGrey.main}`,
         borderRadius: '6px',
@@ -50,7 +52,7 @@ const DropField = ({ id, assigned, position, correct }) => {
 
       }}
     >
-      <Typography variant="body2" fontWeight="bold">
+      <Typography variant="body2" fontWeight="bold" sx={{ fontSize: { xs: '0.7rem', sm: '0.8rem', md: '0.9rem' } }}>
         {/* Show label of assigned card if available otherwise " " */}
         { assigned?.label || ' ' }
       </Typography>

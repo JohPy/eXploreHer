@@ -14,8 +14,8 @@ const Lesson = () => {
       task: 'Ordne die Phasen zu',
       type: 'drag-and-drop',
       fields: [
-        { id: 'follikel', label: 'Follikelphase', position: { top: '5%', right: '2%' } },
-        { id: 'luteal', label: 'Lutealphase', position: { top: '88%', left: '2%' } }
+        { id: 'follikel', label: 'Follikelphase', position: { top: '5%', right: '0%' } },
+        { id: 'luteal', label: 'Lutealphase', position: { top: '88%', left: '0%' } }
       ],
       ImageComponent: CycleCalendar
     },
