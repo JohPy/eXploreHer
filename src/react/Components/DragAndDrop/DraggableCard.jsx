@@ -6,6 +6,7 @@ import { Box, Typography } from '@mui/material'
 const DraggableCard = ({ id, label }) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({ id })
 
+  // If transform object exists move card into the given direction
   const style = {
     transform: transform
       ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
