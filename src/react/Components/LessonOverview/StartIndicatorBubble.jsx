@@ -35,7 +35,7 @@ const StartIndicatorBubble = ({ x = 0, y = 0, show = 'true' }) => (
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: '#AC2C5F',
+        color: (theme) => theme.palette.berry.main,
         position: 'relative'
       }}
     >

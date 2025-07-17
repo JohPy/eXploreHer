@@ -5,8 +5,8 @@ import BookIcon from '../Icons/BookIcon'
 
 const ChapterHeader = () => (
   <Box
-    sx={{
-      backgroundColor: '#AC2C5F',
+    sx={(theme) => ({
+      backgroundColor: theme.palette.berry.main,
       width: '100%',
       color: 'white',
       borderRadius: '16px',
@@ -14,7 +14,7 @@ const ChapterHeader = () => (
       py: 1.2,
       boxShadow: 1,
       mt: 4
-    }}
+    })}
   >
     <Grid2 container alignItems="center" justifyContent="space-between" columnSpacing={2}>
       <Grid2 sx={{ pb: 1.9 }}>

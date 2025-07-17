@@ -2,6 +2,7 @@ import { Box, Typography, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+import { useTheme } from '@mui/material/styles'
 
 const LessonStartBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '5' }) => {
   const titleList = [
@@ -18,6 +19,9 @@ const LessonStartBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '
   const handleLessonStart = (id) => {
     navigate(`/lessons/${id}`)
   }
+
+  const theme = useTheme()
+  const themeColor = theme.palette.berry.main
 
   return (
     <Box
@@ -42,7 +46,7 @@ const LessonStartBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '
       >
         <path
           d="M1 185c0 6.075 4.925 11 11 11h279c6.075 0 11-4.925 11-11V33.703c0-6.075-4.925-11-11-11H173.562a2.002 2.002 0 01-1.556-.743L156.53 2.816a3 3 0 00-4.62-.055l-16.329 19.236a2 2 0 01-1.525.706H12c-6.075 0-11 4.925-11 11V185z"
-          fill="#AC2C5F"
+          fill={themeColor}
           stroke="#fff"
           strokeWidth={0.4}
         />
@@ -94,7 +98,7 @@ const LessonStartBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '
           variant="contained"
           sx={{
             backgroundColor: '#fff',
-            color: '#AC2C5F',
+            color: 'berry.main',
             fontWeight: 'bold',
             mt: 1,
             boxShadow: '0px 4px 10px rgba(0,0,0,0.2)',

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { useTheme } from '@mui/material/styles'
 
 import StartIndicatorBubble from './StartIndicatorBubble'
 import LessonStartBubble from './LessonStartBubble'
 
 const LessonCircle = ({ segments }) => {
+  const theme = useTheme()
+  const themeColor = theme.palette.berry.main
+
   const generalOffset = 80
   // Circle radius
   const r = 40
@@ -81,7 +85,7 @@ const LessonCircle = ({ segments }) => {
                 cy="50"
                 r={r}
                 fill="none"
-                stroke="#AC2C5F"
+                stroke={themeColor}
                 strokeWidth="11"
                 strokeDasharray={baseDash}
                 strokeDashoffset={startOffset + generalOffset}
