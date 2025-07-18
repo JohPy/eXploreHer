@@ -2,6 +2,7 @@ import React, { useMemo, useEffect, useState } from 'react'
 
 import shuffle from '../utils/shuffle'
 import useWordMatchQuizStore from '../stores/useWordMatchQuizStore'
+import QuizButton from './QuizButton'
 
 const buttonStyle = {
   borderRadius: '0.75rem',
@@ -143,29 +144,24 @@ const WordMatchQuiz = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       {shuffledQuestions.map((question, index) => (
         <div key={question.id} style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '1rem' }}>
-          <button
-            type="button"
+          <QuizButton
             disabled={disabledButtons.some(
               (btn) => btn.questionId === question.id
             )}
-            onClick={() => handleQuestionClick(question.question, question.id)}
+            text={question.question}
+            questionId={question.id}
+            handleClick={handleQuestionClick}
             style={getButtonStyle('question', question, null, index)}
-          >
-            {question.question}
-          </button>
-          <button
-            type="button"
-            onClick={() => handleAnswerClick(
-              shuffledAnswers[index],
-              question.id
-            )}
+          />
+          <QuizButton
             disabled={disabledButtons.some(
               (btn) => btn.answerId === question.id
             )}
+            text={shuffledAnswers[index] || 'No answer available'}
+            questionId={question.id}
+            handleClick={handleAnswerClick}
             style={getButtonStyle('answer', question, shuffledAnswers[index], index)}
-          >
-            {shuffledAnswers[index] || 'No answer available'}
-          </button>
+          />
         </div>
       ))}
     </div>
