@@ -7,7 +7,7 @@ import LessonStartBubble from './LessonStartBubble'
 
 const LessonCircle = ({ segments }) => {
   const theme = useTheme()
-  const themeColor = theme.palette.berry.main
+  const themeColor = theme.palette.primary.main
 
   const generalOffset = 80
   // Circle radius
@@ -19,8 +19,8 @@ const LessonCircle = ({ segments }) => {
   // Calculate the individual length of each segment
   const segmentLength = totalLength / segments.length
 
-  const [hoveredIndex, setHoveredIndex] = useState(null)
-  const [activeIndex, setActiveIndex] = useState(null)
+  const [hoveredIndex, setHoveredIndex] = useState()
+  const [activeIndex, setActiveIndex] = useState()
 
   const [showStartIndicatorBubble, setShowStartIndicatorBubble] = useState(true)
   const [showLessonStartBubble, setShowLessonStartBubble] = useState(false)

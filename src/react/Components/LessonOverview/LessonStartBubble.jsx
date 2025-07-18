@@ -21,7 +21,7 @@ const LessonStartBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '
   }
 
   const theme = useTheme()
-  const themeColor = theme.palette.berry.main
+  const themeColor = theme.palette.primary.main
 
   return (
     <Box
@@ -98,7 +98,7 @@ const LessonStartBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '
           variant="contained"
           sx={{
             backgroundColor: '#fff',
-            color: 'berry.main',
+            color: 'primary.main',
             fontWeight: 'bold',
             mt: 1,
             boxShadow: '0px 4px 10px rgba(0,0,0,0.2)',
