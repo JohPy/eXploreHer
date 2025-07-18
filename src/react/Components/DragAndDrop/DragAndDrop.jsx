@@ -7,7 +7,7 @@ import DraggableCard from './DraggableCard'
 import DropField from './DropField'
 
 const DragAndDrop = ({ fields, ImageComponent, onCorrectChange }) => {
-  const [correct, setCorrect] = useState(null)
+  const [correct, setCorrect] = useState()
 
   // Report back to the parent wether the assignments are correct
   useEffect(() => {
@@ -87,7 +87,7 @@ const DragAndDrop = ({ fields, ImageComponent, onCorrectChange }) => {
         </Box>
 
         {/* Display the draggable cards at the bottom of the screen */}
-        <Stack direction="row" spacing={2} justifyContent="center">
+        <Stack direction="row" spacing={2} justifyContent="center" sx={{ minHeight: 40, transition: 'all 0.3s ease' }}>
           {fields.map((field) => (
             !Object.values(assignments).includes(field.id) && (
             <DraggableCard key={field.id} id={field.id} label={field.label} />
