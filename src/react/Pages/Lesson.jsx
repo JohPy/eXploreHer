@@ -9,28 +9,28 @@ const Lesson = () => {
   // Only for testing - actual implementation should go into json / database
   const MOCK_LESSONS = {
     1: [
-    {
-      id: '102',
-      task: 'Ordne die Phasen zu',
-      type: 'drag-and-drop',
-      fields: [
-        { id: 'follikel', label: 'Follikelphase', position: { top: '5%', right: '0%' } },
-        { id: 'luteal', label: 'Lutealphase', position: { top: '88%', left: '0%' } }
-      ],
-      ImageComponent: CycleCalendar
-    },
-    {
-      id: '101', // To identify the question when saving user mistakes
-      task: 'Was passiert während der Follikelphase im Eierstock?', // This can be a question or an instruction like "Ordne diese Begriffe richtig zu"
-      type: 'multiple-choice', // This is needed by the QuestionRender to know which component to load
-      content: [ // This can be an image path or answer options - the format needs to be flexible
-        { correct: false, text: 'Das Corpus luteum bildet sich' },
-        { correct: true, text: 'Ein Follikel reift heran und produziert Östrogen' },
-        { correct: false, text: 'Die Gebärmutterschleimhaut wird abgestoßen' },
-        { correct: false, text: 'Die Eizelle wird befruchtet' }
-      ],
-      explanation: 'In der Follikelphase reifen die Eibläschen (Follikel) heran' // Optional explanation text after submitting an answer
-    }
+      {
+        id: '102',
+        task: 'Ordne die Phasen zu',
+        type: 'drag-and-drop',
+        fields: [
+          { id: 'follikel', label: 'Follikelphase', position: { top: '5%', right: '0%' } },
+          { id: 'luteal', label: 'Lutealphase', position: { top: '88%', left: '0%' } }
+        ],
+        ImageComponent: CycleCalendar
+      },
+      {
+        id: '101', // To identify the question when saving user mistakes
+        task: 'Was passiert während der Follikelphase im Eierstock?', // This can be a question or an instruction like "Ordne diese Begriffe richtig zu"
+        type: 'multiple-choice', // This is needed by the QuestionRender to know which component to load
+        content: [ // This can be an image path or answer options - the format needs to be flexible
+          { correct: false, text: 'Das Corpus luteum bildet sich' },
+          { correct: true, text: 'Ein Follikel reift heran und produziert Östrogen' },
+          { correct: false, text: 'Die Gebärmutterschleimhaut wird abgestoßen' },
+          { correct: false, text: 'Die Eizelle wird befruchtet' }
+        ],
+        explanation: 'In der Follikelphase reifen die Eibläschen (Follikel) heran' // Optional explanation text after submitting an answer
+      }
     ]
   }
 
@@ -39,13 +39,13 @@ const Lesson = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const currentExercise = lesson[currentIndex]
   const navigate = useNavigate()
-  const [isCorrect, setIsCorrect] = useState(null);
+  const [isCorrect, setIsCorrect] = useState()
 
   const handleAnswer = (correct) => {
-    setIsCorrect(correct);
-    console.log(`Answer is ${correct}`)
+    setIsCorrect(correct)
+    console.log(`Answer is ${isCorrect}`)
     // TO DO: Enable button when answer is logged and provide feedback
-  };
+  }
 
   const handleExit = () => {
     navigate('/')
@@ -97,7 +97,7 @@ const Lesson = () => {
           justifyContent: 'center',
           alignItems: 'center',
           px: 2,
-          py: 2,
+          py: 2
         }}
       >
         <Box
@@ -108,7 +108,7 @@ const Lesson = () => {
             maxHeight: '100%',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
           <Exercise exercise={currentExercise} onCorrectChange={handleAnswer} />
@@ -116,7 +116,7 @@ const Lesson = () => {
       </Box>
 
       <Box sx={{ flexShrink: 0, p: 2, textAlign: 'center' }}>
-        <Button variant="contained" onClick={goToNext}>
+        <Button variant="contained" sx={{ width: '100%', minHeight: 45, borderRadius: '12px' }} onClick={goToNext}>
           Weiter
         </Button>
       </Box>
