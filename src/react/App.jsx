@@ -7,12 +7,14 @@ import { CssBaseline } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 
 import AppLayout from './AppLayout'
-import theme from '../theme/theme'
+// eslint-disable-next-line import/no-unresolved
+import Theme from '../theme/theme'
 
 const container = document.getElementById('app')
 const root = createRoot(container)
 root.render(
-  <ThemeProvider theme={theme}>
+
+  <ThemeProvider theme={Theme}>
     <CssBaseline />
     <Router>
       <AppLayout />
