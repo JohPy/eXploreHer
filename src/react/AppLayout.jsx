@@ -59,7 +59,7 @@ const AppLayout = () => {
               height: '40px'
             }}
           />
-          <Typography variant="h5">My Mobile Health App</Typography>
+          <Typography variant="h5">eXplore Her</Typography>
         </Stack>
         <Paper
           elevation={6}
