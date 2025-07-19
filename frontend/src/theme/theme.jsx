@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles'
 
 const theme = createTheme({
   components: {
@@ -6,19 +6,19 @@ const theme = createTheme({
       styleOverrides: (defaultTheme) => ({
         html: {
           width: '100%',
-          height: '100%',
+          height: '100%'
         },
         body: {
           width: '100%',
           height: '100%',
-          background: defaultTheme.palette.grey[200],
+          background: defaultTheme.palette.grey[200]
         },
         '#app': {
           width: '100%',
-          height: '100%',
-        },
-      }),
-    },
+          height: '100%'
+        }
+      })
+    }
   },
   typography: {
     fontFamily: '"Quicksand"',
@@ -27,9 +27,29 @@ const theme = createTheme({
       fontWeight: 900,
       fontSize: '2rem',
       textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
-      lineHeight: 0.5,
-    },
+      lineHeight: 0.5
+    }
   },
-});
+  palette: {
+    lessonStatus: {
+      correct: {
+        main: '#4B8F7AFF',
+        border: '1px solid #234F42'
+      },
+      incorrect: {
+        main: '#DD5E55FF',
+        border: '1px solid #B71C1C'
+      },
+      current: {
+        main: '#D7D7D7',
+        border: '1px solid #7C7C7C'
+      },
+      unanswered: {
+        main: 'transparent',
+        border: '1px solid #7C7C7C'
+      }
+    }
+  }
+})
 
-export default theme;
+export default theme
