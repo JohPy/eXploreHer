@@ -13,6 +13,19 @@ const DraggableCard = ({ id, label }) => {
       : undefined
   }
 
+  // Restrict wiggling to when the card is not being dragged
+  const shouldWiggle = !transform
+
+  // CSS keyframe animation
+  // Rotate the card slightly and go back to the starting position
+  const wiggleAnimation = {
+    '@keyframes wiggle': {
+      '0%': { transform: 'rotate(-2deg)' },
+      '50%': { transform: 'rotate(2deg)' },
+      '100%': { transform: 'rotate(-2deg)' }
+    }
+  }
+
   return (
     <Box
       ref={setNodeRef}
@@ -31,7 +44,10 @@ const DraggableCard = ({ id, label }) => {
         width: '45%',
         maxWidth: 150,
         textAlign: 'center',
-        boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.15)'
+        boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.15)',
+        ...wiggleAnimation,
+        animation: shouldWiggle ? 'wiggle 0.3s infinite' : 'none',
+        transformOrigin: 'center'
       }}
       style={style}
     >
