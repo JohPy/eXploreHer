@@ -35,6 +35,10 @@ const Theme = createTheme({
       main: '#AC2C5F',
       disabled: '#D6C2CA'
     },
+    secondary: {
+      main: '#F8B195',
+      light: '#FDE6DE'
+    },
     berryGrey: {
       main: '#C4C4DF',
       light: '#eaeaf2'
