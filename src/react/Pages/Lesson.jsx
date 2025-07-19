@@ -11,7 +11,7 @@ const Lesson = () => {
     1: [
       {
         id: '102',
-        task: 'Ordne die Phasen zu',
+        task: 'Ziehe die Phasen zur richtigen Lösung',
         type: 'drag-and-drop',
         fields: [
           { id: 'follikel', label: 'Follikelphase', position: { top: '5%', right: '0%' } },
@@ -82,7 +82,7 @@ const Lesson = () => {
           steps={headerSteps}
         />
         <Typography
-          sx={{ mt: 2, mb: 1, mx: 2, textAlign: 'left', fontSize: { xs: '1rem', sm: '1.3rem', md: '1.5rem' }, fontWeight: 'bold' }}
+          sx={{ mt: 2, mb: 1, mx: 2, textAlign: 'left', fontSize: { xs: '0.9rem', sm: '1.1rem', md: '1.3rem' }, fontWeight: 'bold' }}
         >
           {currentExercise.task}
         </Typography>
