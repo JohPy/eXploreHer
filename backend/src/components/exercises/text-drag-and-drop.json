@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_exercises_text_drag_and_drops",
+  "info": {
+    "displayName": "Text Drag and Drop",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "ClozeText": {
+      "type": "blocks",
+      "required": true
+    }
+  },
+  "config": {}
+}

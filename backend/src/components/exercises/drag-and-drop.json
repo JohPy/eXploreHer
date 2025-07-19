@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_exercises_drag_and_drops",
+  "info": {
+    "displayName": "Image Drag and Drop",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Dropfields": {
+      "type": "component",
+      "component": "buildingblocks.image-dropfield",
+      "repeatable": true,
+      "required": true,
+      "min": 1
+    }
+  },
+  "config": {}
+}
