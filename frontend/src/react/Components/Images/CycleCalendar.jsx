@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import PropTypes from 'prop-types'
 
 const CycleCalendar = ({ sx }) => (
-
+  
   <Box sx={sx}>
     <svg
       width="100%"
