@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import { motion } from 'framer-motion'
 import AnimatedXpCounter from './AnimtedXpCounter'
 
@@ -41,48 +42,51 @@ const dots = Array.from({ length: totalDots }, (_, index) => ({
   id: `dot-${index}`
 }))
 
-const LessonCompletionCircle = () => (
-  <Box
-    sx={{
-      width: 300,
-      height: 300,
-      position: 'relative',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }}
-  >
-    <motion.div
-      style={{ position: 'relative' }}
-      variants={containerVariants}
-      initial="initial"
-      animate="animate"
+const LessonCompletionCircle = () => {
+  const theme = useTheme()
+  return (
+    <Box
+      sx={{
+        width: 300,
+        height: 300,
+        position: 'relative',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
     >
-      {dots.map((dot, index) => (
-        <motion.div
-          key={dot.id}
-          custom={index}
-          variants={dotVariants}
-          style={{
-            position: 'absolute',
-            width: dotSize,
-            height: dotSize,
-            backgroundColor: '#4B8F7A', // TODO: use theme.jsx
-            border: '1px solid #234F42', // TODO: see above
-            borderRadius: '50%'
-          }}
-        />
-      ))}
-    </motion.div>
-    <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1 }}
-      style={{ position: 'absolute', textAlign: 'center' }}
-    >
-      <AnimatedXpCounter finalValue={xpGained} />
-    </motion.div>
-  </Box>
-)
+      <motion.div
+        style={{ position: 'relative' }}
+        variants={containerVariants}
+        initial="initial"
+        animate="animate"
+      >
+        {dots.map((dot, index) => (
+          <motion.div
+            key={dot.id}
+            custom={index}
+            variants={dotVariants}
+            style={{
+              position: 'absolute',
+              width: dotSize,
+              height: dotSize,
+              backgroundColor: theme.palette.lessonStatus.correct.main,
+              border: `1px solid ${theme.palette.lessonStatus.correct.border}`,
+              borderRadius: '50%'
+            }}
+          />
+        ))}
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1 }}
+        style={{ position: 'absolute', textAlign: 'center' }}
+      >
+        <AnimatedXpCounter finalValue={xpGained} />
+      </motion.div>
+    </Box>
+  )
+}
 
 export default LessonCompletionCircle
