@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_user_progresses",
+  "info": {
+    "displayName": "progress",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "chapter": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "lesson": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    }
+  },
+  "config": {}
+}
