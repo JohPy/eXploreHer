@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_exercises_multiple_choices",
+  "info": {
+    "displayName": "Multiple Choice",
+    "icon": "check"
+  },
+  "options": {},
+  "attributes": {
+    "Question": {
+      "type": "string",
+      "required": true
+    },
+    "Answers": {
+      "type": "component",
+      "component": "buildingblocks.answer",
+      "repeatable": true,
+      "required": true,
+      "min": 2
+    }
+  },
+  "config": {}
+}
