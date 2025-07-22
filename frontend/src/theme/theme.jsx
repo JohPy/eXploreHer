@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles'
 
-const theme = createTheme({
+const Theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: (defaultTheme) => ({
@@ -31,6 +31,26 @@ const theme = createTheme({
     }
   },
   palette: {
+    primary: {
+      main: '#AC2C5F',
+      disabled: '#D6C2CA'
+    },
+    secondary: {
+      main: '#F8B195',
+      light: '#FDE6DE'
+    },
+    berryGrey: {
+      main: '#C4C4DF',
+      light: '#eaeaf2'
+    },
+    correct: {
+      main: '#19E65D',
+      transparent: '#19E65D26'
+    },
+    wrong: {
+      main: '#E6196B',
+      transparent: '#E6196B26'
+    },
     lessonStatus: {
       correct: {
         main: '#4B8F7AFF',
@@ -52,4 +72,4 @@ const theme = createTheme({
   }
 })
 
-export default theme
+export default Theme

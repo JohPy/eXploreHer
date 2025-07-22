@@ -1,12 +1,12 @@
 import React from 'react'
 
 import { Box, Grid2, Typography } from '@mui/material'
-import BookIcon from './Icons/BookIcon'
+import BookIcon from '../Icons/BookIcon'
 
 const ChapterHeader = () => (
   <Box
     sx={{
-      backgroundColor: '#AC2C5F',
+      backgroundColor: 'primary.main',
       width: '100%',
       color: 'white',
       borderRadius: '16px',
