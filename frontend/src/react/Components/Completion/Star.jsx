@@ -1,30 +1,40 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { motion } from 'framer-motion'
 import StarIcon from '@mui/icons-material/Star'
 
-// single star animation
-const starVariants = {
-  initial: {
-    y: 50,
-    scale: 0,
-    opacity: 0,
-    rotate: Math.random() * 60 - 30
-  },
-  animate: {
-    y: 0,
-    scale: 1,
-    opacity: 1,
-    transition: {
-      y: { type: 'spring', stiffness: 300, damping: 15 },
-      duration: 0.5
-    }
-  }
-}
-
-const Star = () => (
-  <motion.div variants={starVariants}>
-    <StarIcon sx={{ fontSize: { xs: '2.5rem', sm: '3rem' }, color: '#ffc700' }} />
+const Star = ({ top, left, size, rotation, delay }) => (
+  <motion.div
+    style={{
+      position: 'absolute',
+      top,
+      left
+    }}
+    initial={{ opacity: 0, scale: 0.5, y: 50 }}
+    animate={{ opacity: 1, scale: 1, y: 0, rotate: rotation }}
+    transition={{
+      type: 'spring',
+      damping: 10,
+      stiffness: 100,
+      delay
+    }}
+  >
+    <StarIcon
+      sx={{
+        fontSize: `${size}px`,
+        color: '#FFC700',
+        filter: 'drop-shadow(0px 3px 4px rgba(255, 241, 52, 0.3))'
+      }}
+    />
   </motion.div>
 )
+
+Star.propTypes = {
+  top: PropTypes.string.isRequired,
+  left: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+  rotation: PropTypes.number.isRequired,
+  delay: PropTypes.number.isRequired
+}
 
 export default Star
