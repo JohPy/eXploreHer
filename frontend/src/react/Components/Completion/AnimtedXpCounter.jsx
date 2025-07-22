@@ -15,17 +15,17 @@ const PopUp = () => (
   </motion.div>
 )
 
-const AnimatedXpCounter = ({ finalValue }) => {
-  const count = useMotionValue(0)
+const AnimatedXpCounter = ({ startValue = 0, finalValue }) => {
+  const count = useMotionValue(startValue)
   // rounding for integers to show up, not decimal digits
   const rounded = useTransform(count, (latest) => Math.round(latest))
   const [popUps, setPopUps] = useState([])
-  const previous = useRef(0)
+  const previous = useRef(startValue)
 
   useEffect(() => {
-    const controls = animate(count, finalValue, {
+    const controls = animate(count, startValue + finalValue, {
       duration: 1.5,
-      delay: 0.5,
+      delay: 0,
       ease: 'easeOut',
       onUpdate: (latest) => { // checking if integer changed
         if (Math.floor(latest) > previous.current) {
@@ -39,7 +39,7 @@ const AnimatedXpCounter = ({ finalValue }) => {
       }
     })
     return controls.stop
-  }, [finalValue, count])
+  }, [startValue, finalValue, count])
 
   return (
     <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -57,6 +57,7 @@ const AnimatedXpCounter = ({ finalValue }) => {
 }
 
 AnimatedXpCounter.propTypes = {
+  startValue: PropTypes.number,
   finalValue: PropTypes.number.isRequired
 }
 
