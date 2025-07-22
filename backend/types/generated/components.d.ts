@@ -198,6 +198,32 @@ export interface SharedSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface UserProgress extends Struct.ComponentSchema {
+  collectionName: 'components_user_progresses';
+  info: {
+    displayName: 'progress';
+    icon: 'book';
+  };
+  attributes: {
+    chapter: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    lesson: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -215,6 +241,7 @@ declare module '@strapi/strapi' {
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
+      'user.progress': UserProgress;
     }
   }
 }
