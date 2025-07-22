@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lessons",
+  "info": {
+    "singularName": "lesson",
+    "pluralName": "lessons",
+    "displayName": "Lesson"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Exercises": {
+      "type": "dynamiczone",
+      "components": [
+        "exercises.multiple-choice",
+        "exercises.drag-and-drop",
+        "exercises.text-drag-and-drop",
+        "exercises.short-answer",
+        "exercises.match-pairs",
+        "exercises.fill-in-the-blank"
+      ],
+      "required": true,
+      "min": 1
+    }
+  }
+}

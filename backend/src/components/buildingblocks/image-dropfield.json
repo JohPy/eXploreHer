@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_buildingblocks_image_dropfields",
+  "info": {
+    "displayName": "Image Dropfield",
+    "icon": "expand"
+  },
+  "options": {},
+  "attributes": {
+    "YCoord": {
+      "type": "decimal",
+      "required": true,
+      "default": 0
+    },
+    "XCoord": {
+      "type": "decimal",
+      "required": true,
+      "default": 0
+    },
+    "Term": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

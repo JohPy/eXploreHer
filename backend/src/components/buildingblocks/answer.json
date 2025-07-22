@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_buildingblocks_answers",
+  "info": {
+    "displayName": "Answer",
+    "icon": "file"
+  },
+  "options": {},
+  "attributes": {
+    "Text": {
+      "type": "string",
+      "required": true
+    },
+    "IsCorrect": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  },
+  "config": {}
+}

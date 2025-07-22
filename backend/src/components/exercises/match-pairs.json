@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_exercises_match_pairs",
+  "info": {
+    "displayName": "Match Pairs",
+    "icon": "dashboard"
+  },
+  "options": {},
+  "attributes": {
+    "Pairs": {
+      "type": "component",
+      "component": "buildingblocks.pair",
+      "repeatable": true,
+      "required": true,
+      "min": 2
+    }
+  },
+  "config": {}
+}
