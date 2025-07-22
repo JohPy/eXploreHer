@@ -2,6 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Box, Button, Typography, Paper, Slide } from '@mui/material'
 
+/**
+ * LessonFooter knows these states which are communicated by the status prop:
+ *
+ * - 'disabled': The button is disabled; the user cannot proceed.
+ * - 'correct': The user gave a correct answer. Feedback is shown and the button is enabled.
+ * - 'wrong': The user gave a wrong answer. Feedback is shown and the button is enabled.
+ * - 'complete': The user finished the lesson; the button label is 'Abschließen'.
+ * - any other value (e.g. 'continue'): No feedback shown and the button is enabled.
+ */
 const LessonFooter = ({ status = 'disabled', onClick, explanation, containerRef }) => {
   const showFeedback = ['correct', 'wrong'].includes(status)
 
