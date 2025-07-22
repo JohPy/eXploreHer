@@ -111,7 +111,7 @@ const WordMatchQuiz = ({
             text={question.question}
             questionId={question.id}
             handleClick={handleQuestionClick}
-            style={getButtonType('question', question, null, index)}
+            buttonType={getButtonType('question', question, null, index)}
           />
           <QuizButton
             disabled={disabledButtons.some(
@@ -120,7 +120,7 @@ const WordMatchQuiz = ({
             text={shuffledAnswers[index] || 'No answer available'}
             questionId={question.id}
             handleClick={handleAnswerClick}
-            style={getButtonType('answer', question, shuffledAnswers[index], index)}
+            buttonType={getButtonType('answer', question, shuffledAnswers[index], index)}
           />
         </div>
       ))}
