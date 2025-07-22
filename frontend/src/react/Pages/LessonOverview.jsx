@@ -34,19 +34,19 @@ const LessonOverview = () => {
       {/* progress steppers */}
       <Stack sx={{ width: '100%', maxWidth: 320, p: 2, marginBottom: 2 }} spacing={2}>
         <ProgressStepper
-          label="Finish this chapter"
+          label="Beende dieses Kapitel"
           currentValue={20}
           maxValue={100}
-          barColor={theme.palette.primary.main}
-          progressColor={theme.palette.primary.disabled}
+          barColor={theme.palette.primary.light}
+          progressColor={theme.palette.primary.main}
           EndIcon={<XpBubble />}
         />
         <ProgressStepper
-          label="Show your expertise"
+          label="Zeig dein Fachwissen"
           currentValue={3}
           maxValue={40}
-          barColor={theme.palette.secondary.main}
-          progressColor={theme.palette.secondary.light}
+          barColor={theme.palette.secondary.light}
+          progressColor={theme.palette.secondary.main}
           EndIcon={<ExpertiseStar />}
         />
       </Stack>
