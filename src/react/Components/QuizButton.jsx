@@ -17,7 +17,7 @@ const buttonSx = {
   color: '#374151',
   borderStyle: 'solid',
   textTransform: 'none',
-  height: '105px'
+  height: '110px'
 }
 
 const buttonSelectedSx = {
