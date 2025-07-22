@@ -77,9 +77,11 @@
       "min": 0
     },
     "progress": {
-      "type": "component",
-      "component": "user.progress",
-      "repeatable": false,
+      "type": "json",
+      "default": {
+        "chapter": 0,
+        "lesson": 0
+      },
       "required": true
     }
   }
