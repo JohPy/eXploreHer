@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Box, Button, Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { motion } from 'framer-motion'
 import LessonCompletionAnimation from '../Components/Completion/LessonCompletionCircle'
 import Star from '../Components/Completion/Star'
+import LessonFooter from '../Components/Lesson/LessonFooter'
 
 const starContainerVariants = {
   initial: {},
@@ -38,6 +39,7 @@ const Completion = () => {
         <LessonCompletionAnimation />
       </Box>
 
+      {/* stack for star animation and typographies */}
       <Stack spacing={5} sx={{ width: '100%', alignItems: 'center' }}>
         <Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center' }}>
           Lektion geschafft!
@@ -68,15 +70,14 @@ const Completion = () => {
             ))}
           </motion.div>
         )}
-
-        {/* placeholder button */}
-        <Button
-          onClick={handleFinish}
-          variant="contained"
-        >
-          Abschließen
-        </Button>
       </Stack>
+      {/* lesson footer button */}
+      <Box sx={{ width: '400px', boxSizing: 'border-box' }}>
+        <LessonFooter
+          status="complete"
+          onClick={handleFinish}
+        />
+      </Box>
     </Stack>
   )
 }
