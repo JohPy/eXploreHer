@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Button from '@mui/material/Button'
 
-const buttonStyle = {
+const buttonSx = {
   borderRadius: '0.75rem',
-  padding: '1rem',
+  p: '1rem',
   fontWeight: 500,
   borderWidth: '2px',
   borderBottomWidth: '4px',
@@ -11,50 +12,53 @@ const buttonStyle = {
   transitionProperty: 'background-color, color',
   transitionDuration: '0.2s',
   transitionTimingFunction: 'ease-in-out',
-  backgroundColor: '#fff',
-  borderColor: '#e5e7eb',
-  color: '#374151'
+  backgroundColor: '#e8e8f0',
+  borderColor: '#b4b4cd',
+  color: '#374151',
+  borderStyle: 'solid',
+  textTransform: 'none',
+  height: '105px'
 }
 
-const buttonSelectedStyle = {
-  ...buttonStyle,
+const buttonSelectedSx = {
+  ...buttonSx,
   backgroundColor: '#e0f2fe',
   borderColor: '#bae6fd',
   color: '#0369a1'
 }
 
-const buttonCorrectStyle = {
-  ...buttonStyle,
-  backgroundColor: '#bbf7d0',
+const buttonCorrectSx = {
+  ...buttonSx,
+  backgroundColor: '#ddfbe7',
   borderColor: '#86efac',
   color: '#166534'
 }
 
-const buttonIncorrectStyle = {
-  ...buttonStyle,
-  backgroundColor: '#fecaca',
-  borderColor: '#fca5a5',
-  color: '#991b1b'
+const buttonIncorrectSx = {
+  ...buttonSx,
+  backgroundColor: '#fbdde9',
+  borderColor: '#e5196b',
+  color: '#e5196b'
 }
 
-const buttonDisabledStyle = {
-  ...buttonStyle,
+const buttonDisabledSx = {
+  ...buttonSx,
   opacity: 0.5,
   pointerEvents: 'none'
 }
 
-const getButtonStyle = (buttonType) => {
+const getButtonSx = (buttonType) => {
   switch (buttonType) {
     case 'disabled':
-      return buttonDisabledStyle
+      return buttonDisabledSx
     case 'correct':
-      return buttonCorrectStyle
+      return buttonCorrectSx
     case 'incorrect':
-      return buttonIncorrectStyle
+      return buttonIncorrectSx
     case 'selected':
-      return buttonSelectedStyle
+      return buttonSelectedSx
     default:
-      return buttonStyle
+      return buttonSx
   }
 }
 
@@ -65,14 +69,16 @@ const QuizButton = ({
   handleClick,
   buttonType
 }) => (
-  <button
+  <Button
     type="button"
     disabled={disabled}
     onClick={() => handleClick(text, questionId)}
-    style={getButtonStyle(buttonType)}
+    sx={getButtonSx(buttonType)}
+    variant="outlined"
+    fullWidth
   >
     {text}
-  </button>
+  </Button>
 )
 
 QuizButton.propTypes = {

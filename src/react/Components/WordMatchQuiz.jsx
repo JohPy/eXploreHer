@@ -130,7 +130,7 @@ const WordMatchQuiz = ({
 WordMatchQuiz.propTypes = {
   questions: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      id: PropTypes.string.isRequired,
       question: PropTypes.string.isRequired,
       answer: PropTypes.string.isRequired
     })
