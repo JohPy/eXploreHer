@@ -1,4 +1,5 @@
 import React, { useMemo, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 
 import shuffle from '../utils/shuffle'
 import useWordMatchQuizStore from '../stores/useWordMatchQuizStore'
@@ -46,8 +47,9 @@ const buttonDisabledStyle = {
   pointerEvents: 'none'
 }
 
-const WordMatchQuiz = () => {
-  const questions = useWordMatchQuizStore((state) => state.questions) || []
+const WordMatchQuiz = ({
+  questions = []
+}) => {
   const selectQuestion = useWordMatchQuizStore((state) => state.selectQuestion)
   const selectedQuestion = useWordMatchQuizStore((state) => state.selectedQuestion)
   const selectAnswer = useWordMatchQuizStore((state) => state.selectAnswer)
@@ -57,7 +59,7 @@ const WordMatchQuiz = () => {
   const shuffledAnswers = useMemo(() => shuffle(questions.map((q) => q.answer)), [questions])
 
   const disabledButtons = useWordMatchQuizStore((state) => state.disabledButtons) || []
-  const [tempFeedback, setTempFeedback] = useState(null)
+  const [tempFeedback, setTempFeedback] = useState()
 
   const handleQuestionClick = (question, id) => {
     if (tempFeedback) return
@@ -165,6 +167,15 @@ const WordMatchQuiz = () => {
         </div>
       ))}
     </div>
+  )
+}
+WordMatchQuiz.propTypes = {
+  questions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      question: PropTypes.string.isRequired,
+      answer: PropTypes.string.isRequired
+    })
   )
 }
 

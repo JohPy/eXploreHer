@@ -1,6 +1,7 @@
 import React from 'react'
 
 import WordMatchQuiz from '../Components/WordMatchQuiz'
+import useWordMatchQuizStore from '../stores/useWordMatchQuizStore'
 
 const containerStyle = {
   padding: '32px',
@@ -12,7 +13,9 @@ const containerStyle = {
 const MatchScreen = () => (
   <div style={containerStyle}>
     <h2>Finde die passenden Paare</h2>
-    <WordMatchQuiz />
+    <WordMatchQuiz
+      questions={useWordMatchQuizStore((state) => state.questions) || []}
+    />
   </div>
 )
 
