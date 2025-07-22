@@ -39,6 +39,10 @@ const Theme = createTheme({
       main: '#F8B195',
       light: '#FDE6DE'
     },
+    action: {
+      disabled: 'white',
+      disabledBackground: '#D6C2CA'
+    },
     berryGrey: {
       main: '#C4C4DF',
       light: '#eaeaf2'

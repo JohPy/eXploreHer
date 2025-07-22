@@ -1,9 +1,11 @@
-import { Button, Box, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { useParams, useNavigate } from 'react-router-dom'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
+
 import LessonHeader from '../Components/Lesson/LessonHeader'
 import Exercise from '../Components/Lesson/Exercise'
 import CycleCalendar from '../Components/Images/CycleCalendar'
+import LessonFooter from '../Components/Lesson/LessonFooter'
 
 const Lesson = () => {
   // Only for testing - actual implementation should go into json / database
@@ -39,12 +41,10 @@ const Lesson = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const currentExercise = lesson[currentIndex]
   const navigate = useNavigate()
-  const [isCorrect, setIsCorrect] = useState()
+  const [footerStatus, setFooterStatus] = useState('disabled')
 
   const handleAnswer = (correct) => {
-    setIsCorrect(correct)
-    console.log(`Answer is ${isCorrect}`)
-    // TO DO: Enable button when answer is logged and provide feedback
+    setFooterStatus(correct ? 'correct' : 'wrong')
   }
 
   const handleExit = () => {
@@ -59,17 +59,23 @@ const Lesson = () => {
   const goToNext = () => {
     if (currentIndex < lesson.length - 1) {
       setCurrentIndex(i => i + 1)
+      setFooterStatus('disabled')
     } else {
       navigate('/completion')
     }
   }
 
+  const containerRef = useRef()
+
   return (
     <Box
+      ref={containerRef}
       sx={{
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         height: '100vh',
+        width: '100%',
         overflow: 'hidden'
       }}
     >
@@ -82,13 +88,13 @@ const Lesson = () => {
           steps={headerSteps}
         />
         <Typography
-          sx={{ mt: 2, mb: 1, mx: 2, textAlign: 'left', fontSize: { xs: '0.9rem', sm: '1.1rem', md: '1.3rem' }, fontWeight: 'bold' }}
+          sx={{ mt: 2, mb: 1, mx: 4, textAlign: 'left', fontSize: { xs: '0.8rem', sm: '1rem', md: '1.2rem' }, fontWeight: 'bold' }}
         >
           {currentExercise.task}
         </Typography>
       </Box>
 
-      {/* Controll size of the exercise by defining maxWidt and */}
+      {/* Controll size of the exercise by defining maxWidth */}
       <Box
         sx={{
           flexGrow: 1,
@@ -116,9 +122,7 @@ const Lesson = () => {
       </Box>
 
       <Box sx={{ flexShrink: 0, p: 2, textAlign: 'center' }}>
-        <Button variant="contained" sx={{ width: '100%', minHeight: 45, borderRadius: '12px' }} onClick={goToNext}>
-          Weiter
-        </Button>
+        <LessonFooter status={footerStatus} onClick={goToNext} explanation={currentExercise.explanation} containerRef={containerRef} />
       </Box>
     </Box>
   )
