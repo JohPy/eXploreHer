@@ -5,48 +5,6 @@ import shuffle from '../utils/shuffle'
 import useWordMatchQuizStore from '../stores/useWordMatchQuizStore'
 import QuizButton from './QuizButton'
 
-const buttonStyle = {
-  borderRadius: '0.75rem',
-  padding: '1rem',
-  fontWeight: 500,
-  borderWidth: '2px',
-  borderBottomWidth: '4px',
-  cursor: 'pointer',
-  transitionProperty: 'background-color, color',
-  transitionDuration: '0.2s',
-  transitionTimingFunction: 'ease-in-out',
-  backgroundColor: '#fff',
-  borderColor: '#e5e7eb',
-  color: '#374151'
-}
-
-const buttonSelectedStyle = {
-  ...buttonStyle,
-  backgroundColor: '#e0f2fe',
-  borderColor: '#bae6fd',
-  color: '#0369a1'
-}
-
-const buttonCorrectStyle = {
-  ...buttonStyle,
-  backgroundColor: '#bbf7d0',
-  borderColor: '#86efac',
-  color: '#166534'
-}
-
-const buttonIncorrectStyle = {
-  ...buttonStyle,
-  backgroundColor: '#fecaca',
-  borderColor: '#fca5a5',
-  color: '#991b1b'
-}
-
-const buttonDisabledStyle = {
-  ...buttonStyle,
-  opacity: 0.5,
-  pointerEvents: 'none'
-}
-
 const WordMatchQuiz = ({
   questions = []
 }) => {
@@ -124,21 +82,21 @@ const WordMatchQuiz = ({
     selectedQuestion?.question === question
   )
 
-  // helper to get button sytle
-  const getButtonStyle = (type, question, answer, index) => {
-    const base = buttonStyle
+  // helper to get button type
+  const getButtonType = (type, question, answer, index) => {
+    const base = 'regular'
     const feedback = tempFeedback
     if (type === 'question') {
-      if (disabledButtons.some((btn) => btn.questionId === question.id)) return buttonDisabledStyle
-      if (feedback?.isCorrect === 'correct' && feedback.questionId === question.id) return buttonCorrectStyle
-      if (feedback?.isCorrect === 'incorrect' && feedback.questionId === question.id) return buttonIncorrectStyle
-      if (!feedback && isSelectedQuestion(question.id, question.question)) return buttonSelectedStyle
+      if (disabledButtons.some((btn) => btn.questionId === question.id)) return 'disabled'
+      if (feedback?.isCorrect === 'correct' && feedback.questionId === question.id) return 'correct'
+      if (feedback?.isCorrect === 'incorrect' && feedback.questionId === question.id) return 'incorrect'
+      if (!feedback && isSelectedQuestion(question.id, question.question)) return 'selected'
       return base
     }
-    if (disabledButtons.some((btn) => btn.answerId === question.id)) return buttonDisabledStyle
-    if (feedback?.isCorrect === 'correct' && feedback.answerId === question.id) return buttonCorrectStyle
-    if (feedback?.isCorrect === 'incorrect' && feedback.answerId === question.id) return buttonIncorrectStyle
-    if (!feedback && isSelectedAnswer(question.id, shuffledAnswers[index])) return buttonSelectedStyle
+    if (disabledButtons.some((btn) => btn.answerId === question.id)) return 'disabled'
+    if (feedback?.isCorrect === 'correct' && feedback.answerId === question.id) return 'correct'
+    if (feedback?.isCorrect === 'incorrect' && feedback.answerId === question.id) return 'incorrect'
+    if (!feedback && isSelectedAnswer(question.id, shuffledAnswers[index])) return 'selected'
     return base
   }
 
@@ -153,7 +111,7 @@ const WordMatchQuiz = ({
             text={question.question}
             questionId={question.id}
             handleClick={handleQuestionClick}
-            style={getButtonStyle('question', question, null, index)}
+            style={getButtonType('question', question, null, index)}
           />
           <QuizButton
             disabled={disabledButtons.some(
@@ -162,7 +120,7 @@ const WordMatchQuiz = ({
             text={shuffledAnswers[index] || 'No answer available'}
             questionId={question.id}
             handleClick={handleAnswerClick}
-            style={getButtonStyle('answer', question, shuffledAnswers[index], index)}
+            style={getButtonType('answer', question, shuffledAnswers[index], index)}
           />
         </div>
       ))}
