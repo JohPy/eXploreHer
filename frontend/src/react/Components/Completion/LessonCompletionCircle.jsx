@@ -23,9 +23,9 @@ const containerVariants = {
 // single dot animation
 const dotVariants = {
   initial: (index) => ({
-    x: (index - (totalDots - 1) / 2) * (dotSize + 8),
-    y: -120,
-    scale: 0.8
+    x: (index - (totalDots - 1) / 2) * dotSize,
+    y: -265,
+    scale: 0.5
   }),
   animate: (index) => ({
     // calculating final position with circle's circumference
@@ -34,8 +34,8 @@ const dotVariants = {
     scale: 1,
     transition: {
       type: 'spring',
-      damping: 10,
-      stiffness: 100
+      damping: 15,
+      stiffness: 120
     }
   })
 }

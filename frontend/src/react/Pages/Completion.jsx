@@ -27,19 +27,22 @@ const Completion = () => {
   // useMemo() to make random props of each star (to have wowie animation effect)
   const starData = useMemo(() => Array.from({ length: correctAnswers }, (_, index) => ({
     id: `star-${index}`,
-    size: 30 + Math.random() * 10,
+    size: 30 + Math.random() * 5,
     rotation: Math.random() * 360,
     delay: Math.random() * 0.5
   })), [correctAnswers])
 
   return (
     <Stack sx={{ height: '100%', alignItems: 'center', justifyContent: 'space-between', p: 2, boxSizing: 'border-box' }}>
-      <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '15vh' }}>
         <LessonCompletionAnimation />
       </Box>
 
-      <Stack spacing={2} sx={{ width: '100%', alignItems: 'center' }}>
-        <Typography variant="h6" sx={{ fontWeight: 'bold', textAlign: 'center' }}>
+      <Stack spacing={5} sx={{ width: '100%', alignItems: 'center' }}>
+        <Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center' }}>
+          Lektion geschafft!
+        </Typography>
+        <Typography variant="h5" sx={{ textAlign: 'center' }}>
           {`Du hast ${correctAnswers} Aufgaben richtig!`}
         </Typography>
         {correctAnswers > 0 && (

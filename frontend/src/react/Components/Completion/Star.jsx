@@ -18,7 +18,7 @@ const Star = ({ size, rotation, delay }) => (
       sx={{
         fontSize: `${size}px`,
         color: '#FFC700',
-        filter: 'drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3))'
+        filter: 'drop-shadow(0px 2px 3px rgba(185, 90, 0, 0.3))'
       }}
     />
   </motion.div>
