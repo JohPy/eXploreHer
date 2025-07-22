@@ -7,11 +7,14 @@ import DraggableCard from './DraggableCard'
 import DropField from './DropField'
 
 const DragAndDrop = ({ fields, ImageComponent, onCorrectChange }) => {
-  const [correct, setCorrect] = useState()
+  // Initial state is set as null to clearly identify when the user gives their answer
+  const [correct, setCorrect] = useState(null)
 
-  // Report back to the parent wether the assignments are correct
+  // Report back to the parent wether the answer is correct only (!) when the answer is provided
   useEffect(() => {
-    onCorrectChange(correct)
+    if (correct !== null) {
+      onCorrectChange(correct)
+    }
   }, [correct, onCorrectChange])
 
   const emptyAssignments = {}
@@ -35,7 +38,7 @@ const DragAndDrop = ({ fields, ImageComponent, onCorrectChange }) => {
           [over.id]: active.id
         }
 
-        // Check is all 'over' IDs are assigned
+        // Check if all 'over' IDs are assigned
         const allAssigned = Object.values(newAssignments).every((val) => val !== null)
 
         if (allAssigned) {
@@ -108,7 +111,7 @@ DragAndDrop.propTypes = {
     }).isRequired
   ),
   ImageComponent: PropTypes.any.isRequired,
-  onCorrectChange: PropTypes.any.isRequired
+  onCorrectChange: PropTypes.func.isRequired
 }
 
 export default DragAndDrop
