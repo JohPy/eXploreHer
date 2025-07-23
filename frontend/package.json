@@ -104,7 +104,6 @@
     "react-router": "^6.26.1",
     "react-router-dom": "^6.26.1",
     "react-transition-group": "^4.4.5",
-    "stream-browserify": "^3.0.0",
-    "zustand": "^5.0.6"
+    "stream-browserify": "^3.0.0"
   }
 }
