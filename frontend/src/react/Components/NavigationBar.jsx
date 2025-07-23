@@ -12,7 +12,7 @@ import ProfileIcon from './Icons/ProfileIcon'
 import SettingsIcon from './Icons/SettingsIcon'
 
 const NavigationBar = ({ navigationIndex, navigate }) => {
-  const iconStyle = { width: 30, height: 30 }
+  const iconStyle = { width: 28, height: 28 }
 
   const actions = [
     {
@@ -53,7 +53,7 @@ const NavigationBar = ({ navigationIndex, navigate }) => {
       <BottomNavigation
         showLabels
         value={navigationIndex}
-        sx={{ width: '100%' }}
+        sx={{ width: '100%', height: 60, mb: 2 }}
       >
         {actions.map((action, idx) => (
           <BottomNavigationAction
