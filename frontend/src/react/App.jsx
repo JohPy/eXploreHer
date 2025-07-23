@@ -7,7 +7,6 @@ import { CssBaseline } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 
 import AppLayout from './AppLayout'
-// eslint-disable-next-line import/no-unresolved
 import Theme from '../theme/theme'
 
 const container = document.getElementById('app')

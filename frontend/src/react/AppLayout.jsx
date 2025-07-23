@@ -21,7 +21,6 @@ const AppLayout = () => {
   const navigate = useNavigate()
 
   let navigationIndex = 0
-  if (location.pathname.startsWith('/catnames')) navigationIndex = 1
   if (location.pathname.startsWith('/profile')) navigationIndex = 2
   if (location.pathname.startsWith('/profile/settings')) navigationIndex = 3
 
