@@ -43,8 +43,16 @@ const Lesson = () => {
   const navigate = useNavigate()
   const [footerStatus, setFooterStatus] = useState('disabled')
 
+  const [answerStatuses, setAnswerStatuses] = useState(
+    Array(lesson.length).fill('unanswered')
+  )
+
   const handleAnswer = (correct) => {
     setFooterStatus(correct ? 'correct' : 'wrong')
+
+    const newStatuses = [...answerStatuses]
+    newStatuses[currentIndex] = correct ? 'correct' : 'incorrect'
+    setAnswerStatuses(newStatuses)
   }
 
   const handleExit = () => {
@@ -53,7 +61,7 @@ const Lesson = () => {
 
   const headerSteps = lesson.map((exercise, index) => ({
     id: exercise.id,
-    status: index === currentIndex ? 'current' : 'unanswered'
+    status: index === currentIndex ? 'current' : answerStatuses[index]
   }))
 
   const goToNext = () => {
@@ -61,7 +69,7 @@ const Lesson = () => {
       setCurrentIndex(i => i + 1)
       setFooterStatus('disabled')
     } else {
-      // TO DO: show success screen in the end
+      navigate('/completion')
     }
   }
 
