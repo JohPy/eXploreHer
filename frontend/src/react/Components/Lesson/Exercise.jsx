@@ -20,7 +20,7 @@ const Exercise = ({ exercise, onComplete }) => {
     case 'explanation':
       return <Explanation text={exercise.text} />
     case 'word-match-quiz':
-      return <WordMatchQuiz questions={exercise.questions} onCorrectChange={onCorrectChange} />
+      return <WordMatchQuiz questions={exercise.questions} onCorrectChange={onComplete} />
     default:
       return <div> Unbekannter Übungstyp </div>
   }
