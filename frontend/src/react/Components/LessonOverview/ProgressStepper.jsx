@@ -8,10 +8,10 @@ const ProgressStepper = ({ label, currentValue, maxValue, barColor, progressColo
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 1 }}>
-        <Typography variant="body1" sx={{ fontWeight: 'medium', color: 'text.secondary' }}>
+        <Typography variant="body1" sx={{ fontWeight: 'medium', color: 'primary.main' }}>
           {label}
         </Typography>
-        <Typography variant="body1" sx={{ fontWeight: 'medium', color: 'text.secondary' }}>
+        <Typography variant="body1" sx={{ fontWeight: 'medium', color: 'primary.main' }}>
           {currentValue}
           /
           {maxValue}
