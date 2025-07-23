@@ -16,7 +16,7 @@ const LessonOverview = () => {
         <ChapterHeader />
       </Box>
       <Box
-        sx={{ flex: 1, overflow: 'hidden', display: 'flex', position: 'relative', justifyContent: 'center', alignItems: 'center', p: 5, pt: 9, height: '95%', maxHeight: '340', minHeight: '280' }}
+        sx={{ flex: 1, overflow: 'hidden', display: 'flex', position: 'relative', justifyContent: 'center', alignItems: 'center', pt: 7, width: '65%', maxWidth: 320, minWidth: 200 }}
       >
 
         <LessonCircle
