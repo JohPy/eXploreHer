@@ -9,7 +9,6 @@ import PropTypes from 'prop-types'
 import HomeIcon from './Icons/HomeIcon'
 import MistakesIcon from './Icons/MistakesIcon'
 import ProfileIcon from './Icons/ProfileIcon'
-import SettingsIcon from './Icons/SettingsIcon'
 
 const NavigationBar = ({ navigationIndex, navigate }) => {
   const iconStyle = { width: 30, height: 30 }
@@ -29,11 +28,6 @@ const NavigationBar = ({ navigationIndex, navigate }) => {
       icon: <ProfileIcon style={iconStyle} />,
       onClick: () => navigate('/profile'),
       key: 'profile'
-    },
-    {
-      icon: <SettingsIcon style={iconStyle} />,
-      onClick: () => navigate('/profile/settings'),
-      key: 'settings'
     }
   ]
 
