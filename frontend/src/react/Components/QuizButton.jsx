@@ -17,6 +17,7 @@ const buttonSx = {
   color: '#374151',
   borderStyle: 'solid',
   textTransform: 'none',
+  textAlign: 'left',
   height: '110px'
 }
 
