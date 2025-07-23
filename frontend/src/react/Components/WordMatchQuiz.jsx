@@ -2,7 +2,7 @@ import React, { useMemo, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import shuffle from '../utils/shuffle'
-import useWordMatchQuizStore from '../../stores/useWordMatchQuizStore'
+import useWordMatchQuiz from '../stores/useWordMatchQuizStore'
 import QuizButton from './QuizButton'
 
 const containerStyle = {
@@ -16,15 +16,19 @@ const WordMatchQuiz = ({
   questions = [],
   onCorrectChange
 }) => {
-  const selectQuestion = useWordMatchQuizStore((state) => state.selectQuestion)
-  const selectedQuestion = useWordMatchQuizStore((state) => state.selectedQuestion)
-  const selectAnswer = useWordMatchQuizStore((state) => state.selectAnswer)
-  const selectedAnswer = useWordMatchQuizStore((state) => state.selectedAnswer)
+  const {
+    selectedQuestion,
+    selectedAnswer,
+    disabledButtons,
+    selectAnswer,
+    selectQuestion,
+    checkAnswer,
+    disableButton
+  } = useWordMatchQuiz(questions)
 
   const shuffledQuestions = useMemo(() => shuffle(questions), [questions])
   const shuffledAnswers = useMemo(() => shuffle(questions.map((q) => q.answer)), [questions])
 
-  const disabledButtons = useWordMatchQuizStore((state) => state.disabledButtons) || []
   const [tempFeedback, setTempFeedback] = useState()
 
   const handleQuestionClick = (question, id) => {
@@ -40,7 +44,7 @@ const WordMatchQuiz = ({
   useEffect(() => {
     if (
       questions.length > 0 &&
-    disabledButtons.length === questions.length
+      disabledButtons.length === questions.length
     ) {
       onCorrectChange(true)
     }
@@ -49,13 +53,11 @@ const WordMatchQuiz = ({
   useEffect(() => {
     if (
       selectedQuestion?.question &&
-      selectedAnswer?.answer &&
-      selectedQuestion.id &&
-      selectedAnswer.id
+    selectedAnswer?.answer &&
+    selectedQuestion.id &&
+    selectedAnswer.id
     ) {
-      const isCorrect = useWordMatchQuizStore
-        .getState()
-        .checkAnswer(selectedQuestion.question, selectedAnswer.answer)
+      const isCorrect = checkAnswer(selectedQuestion.question, selectedAnswer.answer)
 
       const questionId = selectedQuestion.id
       const answerId = selectedAnswer.id
@@ -69,9 +71,7 @@ const WordMatchQuiz = ({
 
         setTimeout(() => {
           setTempFeedback(null)
-          useWordMatchQuizStore.getState().disableButton(questionId, answerId)
-          selectQuestion(null, null)
-          selectAnswer(null, null)
+          disableButton(questionId, answerId)
         }, 1000)
       } else {
         setTempFeedback({
