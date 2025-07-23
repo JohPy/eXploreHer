@@ -1,8 +1,8 @@
 import React, { useMemo, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import shuffle from '../utils/shuffle'
-import useWordMatchQuiz from '../../hooks/useWordMatchQuiz'
+import shuffle from '../../utils/shuffle'
+import useWordMatchQuiz from '../../../hooks/useWordMatchQuiz'
 import QuizButton from './QuizButton'
 
 const containerStyle = {

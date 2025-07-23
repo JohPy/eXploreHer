@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import * as React from 'react'
 
 import DragAndDrop from '../DragAndDrop/DragAndDrop'
-import WordMatchQuiz from '../WordMatchQuiz'
+import WordMatchQuiz from '../WordMatchQuiz/WordMatchQuiz'
 
 const Exercise = ({ exercise, onCorrectChange }) => {
   switch (exercise.type) {
