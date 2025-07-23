@@ -46,7 +46,7 @@ const ChapterHeader = () => (
         </Box>
       </Grid2>
       <Grid2 sx={{ display: 'flex', alignItems: 'center', px: 1 }}>
-        <BookIcon width={30} height={30} />
+        <BookIcon width={28} height={28} />
       </Grid2>
     </Grid2>
   </Box>
