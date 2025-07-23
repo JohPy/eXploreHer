@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import DragAndDrop from '../DragAndDrop/DragAndDrop'
+import WordMatchQuiz from '../WordMatchQuiz/WordMatchQuiz'
 import Explanation from '../Explanation/Explanation'
 
 const Exercise = ({ exercise, onComplete }) => {
@@ -18,6 +19,8 @@ const Exercise = ({ exercise, onComplete }) => {
       return <DragAndDrop fields={exercise.fields} ImageComponent={exercise.ImageComponent} onCorrectChange={onComplete} />
     case 'explanation':
       return <Explanation text={exercise.text} />
+    case 'word-match-quiz':
+      return <WordMatchQuiz questions={exercise.questions} onCorrectChange={onCorrectChange} />
     default:
       return <div> Unbekannter Übungstyp </div>
   }

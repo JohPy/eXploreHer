@@ -38,6 +38,33 @@ const Lesson = () => {
       //     { correct: false, text: 'Die Eizelle wird befruchtet' }
       //   ],
       //   explanation: 'In der Follikelphase reifen die Eibläschen (Follikel) heran' // Optional explanation text after submitting an answer
+      },
+      {
+        id: '103',
+        task: 'Finde die passenden Paare',
+        type: 'word-match-quiz',
+        questions: [
+          {
+            id: '1',
+            question: 'Follikelphase',
+            answer: 'Einer der herangreiften Follikel wird dominant und produziert das Hormon Östrogen'
+          },
+          {
+            id: '2',
+            question: 'Eisprung',
+            answer: 'Die freigesetzte Eizelle wird in den Eileiter transportiert'
+          },
+          {
+            id: '3',
+            question: 'Menstruation',
+            answer: 'Die Gebärmutter stößt ihre innere Auskleidung aus Weichteilen und Blutgefäßen ab'
+          },
+          {
+            id: '4',
+            question: 'Lutealphase',
+            answer: 'Der geplatzte Follikel wird zum Gelbkörper (Corpus luteum) und produziert Progesteron'
+          }
+        ]
       }
     ]
   }
