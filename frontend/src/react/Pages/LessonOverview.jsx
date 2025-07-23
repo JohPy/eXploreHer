@@ -16,16 +16,16 @@ const LessonOverview = () => {
         <ChapterHeader />
       </Box>
       <Box
-        sx={{ flex: 1, overflow: 'auto', display: 'flex', position: 'relative', justifyContent: 'center', p: 5, width: '100%', maxWidth: 380, minWidth: 280 }}
+        sx={{ flex: 1, overflow: 'hidden', display: 'flex', position: 'relative', justifyContent: 'center', alignItems: 'center', p: 5, pt: 9, height: '95%', maxHeight: '340', minHeight: '280' }}
       >
 
         <LessonCircle
           segments={[
-            { id: '1', disabled: false, onClick: () => console.log('1') },
-            { id: '2', disabled: true, onClick: () => console.log('2') },
-            { id: '3', disabled: true, onClick: () => console.log('3') },
-            { id: '4', disabled: true, onClick: () => console.log('4') },
-            { id: '5', disabled: true, onClick: () => console.log('5') }
+            { id: '1', disabled: false },
+            { id: '2', disabled: true },
+            { id: '3', disabled: true },
+            { id: '4', disabled: true },
+            { id: '5', disabled: true }
           ]}
         />
 
