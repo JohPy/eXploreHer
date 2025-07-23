@@ -5,8 +5,16 @@ import shuffle from '../utils/shuffle'
 import useWordMatchQuizStore from '../../stores/useWordMatchQuizStore'
 import QuizButton from './QuizButton'
 
+const containerStyle = {
+  padding: '32px',
+  maxWidth: '600px',
+  margin: '40px auto',
+  boxSizing: 'border-box'
+}
+
 const WordMatchQuiz = ({
-  questions = []
+  questions = [],
+  onCorrectChange
 }) => {
   const selectQuestion = useWordMatchQuizStore((state) => state.selectQuestion)
   const selectedQuestion = useWordMatchQuizStore((state) => state.selectedQuestion)
@@ -28,6 +36,15 @@ const WordMatchQuiz = ({
     if (tempFeedback) return
     selectAnswer(answer, id)
   }
+
+  useEffect(() => {
+    if (
+      questions.length > 0 &&
+    disabledButtons.length === questions.length
+    ) {
+      onCorrectChange(true)
+    }
+  }, [disabledButtons, questions, onCorrectChange])
 
   useEffect(() => {
     if (
@@ -101,32 +118,35 @@ const WordMatchQuiz = ({
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      {shuffledQuestions.map((question, index) => (
-        <div key={question.id} style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '1rem' }}>
-          <QuizButton
-            disabled={disabledButtons.some(
-              (btn) => btn.questionId === question.id
-            )}
-            text={question.question}
-            questionId={question.id}
-            handleClick={handleQuestionClick}
-            buttonType={getButtonType('question', question, null, index)}
-          />
-          <QuizButton
-            disabled={disabledButtons.some(
-              (btn) => btn.answerId === question.id
-            )}
-            text={shuffledAnswers[index] || 'No answer available'}
-            questionId={question.id}
-            handleClick={handleAnswerClick}
-            buttonType={getButtonType('answer', question, shuffledAnswers[index], index)}
-          />
-        </div>
-      ))}
+    <div style={containerStyle}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        {shuffledQuestions.map((question, index) => (
+          <div key={question.id} style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '1rem' }}>
+            <QuizButton
+              disabled={disabledButtons.some(
+                (btn) => btn.questionId === question.id
+              )}
+              text={question.question}
+              questionId={question.id}
+              handleClick={handleQuestionClick}
+              buttonType={getButtonType('question', question, null, index)}
+            />
+            <QuizButton
+              disabled={disabledButtons.some(
+                (btn) => btn.answerId === question.id
+              )}
+              text={shuffledAnswers[index] || 'No answer available'}
+              questionId={question.id}
+              handleClick={handleAnswerClick}
+              buttonType={getButtonType('answer', question, shuffledAnswers[index], index)}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
+
 WordMatchQuiz.propTypes = {
   questions: PropTypes.arrayOf(
     PropTypes.shape({
@@ -134,7 +154,8 @@ WordMatchQuiz.propTypes = {
       question: PropTypes.string.isRequired,
       answer: PropTypes.string.isRequired
     })
-  )
+  ),
+  onCorrectChange: PropTypes.func.isRequired
 }
 
 export default WordMatchQuiz
