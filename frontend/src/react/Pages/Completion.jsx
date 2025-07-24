@@ -51,7 +51,7 @@ const Completion = () => {
           Lektion geschafft!
         </Typography>
         <Typography variant="h5" sx={{ textAlign: 'center' }}>
-          {`Du hast ${correctAnswers} Aufgaben richtig!`}
+          {`Du hast ${correctAnswers} ${correctAnswers === 1 ? 'Aufgabe' : 'Aufgaben'} richtig!`}
         </Typography>
         {correctAnswers > 0 && (
           <motion.div
