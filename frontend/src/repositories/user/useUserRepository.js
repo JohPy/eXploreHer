@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
 
 const useUserRepository = (userRepository) => {
-  const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState()
+  const [loading, setLoading] = useState(false)
   const [errorUser, setErrorUser] = useState(null)
   const [errorStats, setErrorStats] = useState(null)
   const [errorCompleteLesson, setErrorCompleteLesson] = useState(null)
