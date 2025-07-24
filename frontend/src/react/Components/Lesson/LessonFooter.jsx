@@ -54,13 +54,11 @@ const LessonFooter = ({ status = 'disabled', onClick, explanation, containerRef 
       )}
 
       {/* In all other situations just display the normal button */}
-      {!showFeedback && (
       <Box sx={{ pb: 2 }}>
         <Button variant="contained" fullWidth sx={{ minHeight: 45, borderRadius: '12px' }} disabled={status === 'disabled'} onClick={onClick}>
           {label}
         </Button>
       </Box>
-      )}
 
     </Box>
   )

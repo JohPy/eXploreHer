@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Container, Box, Stack } from '@mui/material'
 import { DndContext } from '@dnd-kit/core'
@@ -9,11 +9,13 @@ import DropField from './DropField'
 const DragAndDrop = ({ fields, ImageComponent, onCorrectChange }) => {
   // Initial state is set as null to clearly identify when the user gives their answer
   const [correct, setCorrect] = useState(null)
+  const hasReported = useRef(false)
 
   // Report back to the parent wether the answer is correct only (!) when the answer is provided
   useEffect(() => {
-    if (correct !== null) {
+    if (correct !== null && !hasReported.current) {
       onCorrectChange(correct)
+      hasReported.current = true
     }
   }, [correct, onCorrectChange])
 
@@ -47,9 +49,6 @@ const DragAndDrop = ({ fields, ImageComponent, onCorrectChange }) => {
           allCorrect = Object.entries(newAssignments).every(
             ([dropId, dragId]) => {
               const isCorrect = dropId === dragId
-              if (!isCorrect) {
-                console.log(`Wrongly assigned: ${dropId} → ${dragId}`)
-              }
               return isCorrect
             }
           )
@@ -67,7 +66,6 @@ const DragAndDrop = ({ fields, ImageComponent, onCorrectChange }) => {
         <Box
           sx={{
             position: 'relative',
-            mb: 6,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center'
@@ -90,7 +88,7 @@ const DragAndDrop = ({ fields, ImageComponent, onCorrectChange }) => {
         </Box>
 
         {/* Display the draggable cards at the bottom of the screen */}
-        <Stack direction="row" spacing={2} justifyContent="center" sx={{ minHeight: 40, transition: 'all 0.3s ease' }}>
+        <Stack direction="row" spacing={2} justifyContent="center" sx={{ minHeight: 40, transition: 'all 0.3s ease', mt: 4, mb: 3 }}>
           {fields.map((field) => (
             !Object.values(assignments).includes(field.id) && (
             <DraggableCard key={field.id} id={field.id} label={field.label} />

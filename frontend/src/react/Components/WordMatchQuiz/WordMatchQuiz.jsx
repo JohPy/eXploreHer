@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useState } from 'react'
+import React, { useMemo, useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import shuffle from '../../utils/shuffle'
@@ -41,12 +41,16 @@ const WordMatchQuiz = ({
     selectAnswer(answer, id)
   }
 
+  const hasReported = useRef(false)
+
   useEffect(() => {
     if (
       questions.length > 0 &&
-      disabledButtons.length === questions.length
+      disabledButtons.length === questions.length &&
+      !hasReported.current
     ) {
       onCorrectChange(true)
+      hasReported.current = true
     }
   }, [disabledButtons, questions, onCorrectChange])
 
