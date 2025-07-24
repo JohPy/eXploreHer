@@ -7,7 +7,6 @@ import Lesson from './Pages/Lesson'
 import CatNames from './Pages/CatNames/CatNames'
 import Profile from './Pages/Profile/Profile'
 import ProfileOverview from './Pages/Profile/ProfileOverview'
-import ProfileSettings from './Pages/Profile/ProfileSettings'
 import Completion from './Pages/Completion'
 
 import Error404 from './Pages/Error404'
@@ -19,7 +18,6 @@ const AppRoutes = () => (
     <Route path="/completion" element={<Completion />} />
     <Route path="/profile" element={<Profile />}>
       <Route path="" element={<ProfileOverview />} />
-      <Route path="settings" element={<ProfileSettings />} />
     </Route>
     <Route path="/catnames" element={<CatNames />} />
     <Route path="*" element={<Error404 />} />
