@@ -1,37 +1,44 @@
 import React, { createContext, useContext, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import useUserRepository from '../../hooks/useUserRepository'
+import useUserRepository from '../../repositories/user/useUserRepository'
+import userApiRepository from '../../repositories/user/userAPIRepository'
 
 const UserContext = createContext({
-  user: { score: 0, progress: { chapter: 1, lesson: 1 } },
+  user: { experience: 0, stars: 0, progress: { chapter: 1, lesson: 1 } },
   loading: false,
-  error: {},
+  errorUser: {},
+  errorStats: {},
+  errorCompleteLesson: {},
   loadUser: () => {},
+  loadUserStats: () => {},
   updateUser: () => {},
-  updateScore: () => {},
-  updateProgress: () => {}
+  completeLesson: () => {}
 })
 
 const UserProvider = ({ children }) => {
   const {
     user,
     loading,
-    error,
+    errorUser,
+    errorStats,
+    errorCompleteLesson,
     loadUser,
+    loadUserStats,
     updateUser,
-    updateScore,
-    updateProgress
-  } = useUserRepository()
+    completeLesson
+  } = useUserRepository(userApiRepository)
 
   const value = useMemo(() => ({
     user,
     loading,
-    error,
+    errorUser,
+    errorStats,
+    errorCompleteLesson,
     loadUser,
+    loadUserStats,
     updateUser,
-    updateScore,
-    updateProgress
-  }), [user, loading, error, loadUser, updateUser, updateScore, updateProgress])
+    completeLesson
+  }), [user, loading, errorUser, errorStats, errorCompleteLesson, loadUser, loadUserStats, updateUser, completeLesson])
 
   return (
     <UserContext.Provider value={value}>
