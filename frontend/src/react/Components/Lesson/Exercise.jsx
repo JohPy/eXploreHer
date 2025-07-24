@@ -1,23 +1,34 @@
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import * as React from 'react'
 
 import DragAndDrop from '../DragAndDrop/DragAndDrop'
 import WordMatchQuiz from '../WordMatchQuiz/WordMatchQuiz'
+import Explanation from '../Explanation/Explanation'
 
-const Exercise = ({ exercise, onCorrectChange }) => {
+const Exercise = ({ exercise, onComplete }) => {
+  // If the exercise type is 'explanation', immediatly communicate back to parent that the exercise is complete
+  useEffect(() => {
+    if (exercise.type === 'explanation') {
+      onComplete(null)
+    }
+  }, [exercise.type, onComplete])
+
+  // Load the component depending on the exercise type
   switch (exercise.type) {
     case 'drag-and-drop':
-      return <DragAndDrop fields={exercise.fields} ImageComponent={exercise.ImageComponent} onCorrectChange={onCorrectChange} />
+      return <DragAndDrop fields={exercise.fields} ImageComponent={exercise.ImageComponent} onCorrectChange={onComplete} />
+    case 'explanation':
+      return <Explanation text={exercise.text} />
     case 'word-match-quiz':
-      return <WordMatchQuiz questions={exercise.questions} onCorrectChange={onCorrectChange} />
+      return <WordMatchQuiz questions={exercise.questions} onCorrectChange={onComplete} />
     default:
-      return <div> Test </div>
+      return <div> Unbekannter Übungstyp </div>
   }
 }
 
 Exercise.propTypes = {
   exercise: PropTypes.object.isRequired,
-  onCorrectChange: PropTypes.any.isRequired
+  onComplete: PropTypes.any.isRequired
 }
 
 export default Exercise

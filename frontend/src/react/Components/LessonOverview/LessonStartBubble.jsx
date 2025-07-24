@@ -108,7 +108,7 @@ const LessonStartBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '
           }}
           onClick={() => handleLessonStart(lessonNum)}
         >
-          Anfangen + 15 XP
+          Anfangen + 20 XP
         </Button>
       </Box>
     </Box>

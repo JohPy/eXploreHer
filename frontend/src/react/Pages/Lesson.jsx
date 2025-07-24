@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { useParams, useNavigate } from 'react-router-dom'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 
 import LessonHeader from '../Components/Lesson/LessonHeader'
 import Exercise from '../Components/Lesson/Exercise'
@@ -12,7 +12,7 @@ const Lesson = () => {
   const MOCK_LESSONS = {
     1: [
       {
-        id: '102',
+        id: '101',
         task: 'Ziehe die Phasen zur richtigen Lösung',
         type: 'drag-and-drop',
         fields: [
@@ -22,16 +22,22 @@ const Lesson = () => {
         ImageComponent: CycleCalendar
       },
       {
-        id: '101', // To identify the question when saving user mistakes
-        task: 'Was passiert während der Follikelphase im Eierstock?', // This can be a question or an instruction like "Ordne diese Begriffe richtig zu"
-        type: 'multiple-choice', // This is needed by the QuestionRender to know which component to load
-        content: [ // This can be an image path or answer options - the format needs to be flexible
-          { correct: false, text: 'Das Corpus luteum bildet sich' },
-          { correct: true, text: 'Ein Follikel reift heran und produziert Östrogen' },
-          { correct: false, text: 'Die Gebärmutterschleimhaut wird abgestoßen' },
-          { correct: false, text: 'Die Eizelle wird befruchtet' }
-        ],
-        explanation: 'In der Follikelphase reifen die Eibläschen (Follikel) heran' // Optional explanation text after submitting an answer
+        id: '102',
+        task: null,
+        type: 'explanation',
+        text: 'In der <b>Follikelphase</b> macht sich dein Körper startklar: Ein Eibläschen (Follikel) reift heran, die Gebärmutterschleimhaut wird schick gemacht – alles für den großen Eisprung-Auftritt. Danach chillt dein Körper in der <b>Lutealphase</b>. Showtime jeden Monat!'
+      // },
+      // {
+      //   id: '103', // To identify the question when saving user mistakes
+      //   task: 'Was passiert während der Follikelphase im Eierstock?', // This can be a question or an instruction like "Ordne diese Begriffe richtig zu"
+      //   type: 'multiple-choice', // This is needed by the QuestionRender to know which component to load
+      //   content: [ // This can be an image path or answer options - the format needs to be flexible
+      //     { correct: false, text: 'Das Corpus luteum bildet sich' },
+      //     { correct: true, text: 'Ein Follikel reift heran und produziert Östrogen' },
+      //     { correct: false, text: 'Die Gebärmutterschleimhaut wird abgestoßen' },
+      //     { correct: false, text: 'Die Eizelle wird befruchtet' }
+      //   ],
+      //   explanation: 'In der Follikelphase reifen die Eibläschen (Follikel) heran' // Optional explanation text after submitting an answer
       },
       {
         id: '103',
@@ -74,13 +80,19 @@ const Lesson = () => {
     Array(lesson.length).fill('unanswered')
   )
 
-  const handleAnswer = (correct) => {
-    setFooterStatus(correct ? 'correct' : 'wrong')
+  // When the user provided an answer, give fedback and save points
+  const handleAnswer = useCallback((correct) => {
+    // If it's just an explanation and not an exercise, enable the button immediatly
+    if (correct === null) {
+      setFooterStatus('continue')
+    } else {
+      setFooterStatus(correct ? 'correct' : 'wrong')
 
-    const newStatuses = [...answerStatuses]
-    newStatuses[currentIndex] = correct ? 'correct' : 'incorrect'
-    setAnswerStatuses(newStatuses)
-  }
+      const newStatuses = [...answerStatuses]
+      newStatuses[currentIndex] = correct ? 'correct' : 'incorrect'
+      setAnswerStatuses(newStatuses)
+    }
+  }, [currentIndex])
 
   const handleExit = () => {
     navigate('/')
@@ -152,7 +164,7 @@ const Lesson = () => {
             alignItems: 'center'
           }}
         >
-          <Exercise exercise={currentExercise} onCorrectChange={handleAnswer} />
+          <Exercise exercise={currentExercise} onComplete={handleAnswer} />
         </Box>
       </Box>
 
