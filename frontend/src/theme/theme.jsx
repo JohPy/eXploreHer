@@ -33,6 +33,7 @@ const Theme = createTheme({
   palette: {
     primary: {
       main: '#AC2C5F',
+      light: '#EFC2D4',
       disabled: '#D6C2CA'
     },
     secondary: {

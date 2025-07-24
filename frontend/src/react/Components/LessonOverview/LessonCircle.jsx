@@ -58,7 +58,7 @@ const LessonCircle = ({ segments }) => {
   return (
     <div style={{ position: 'relative' }}>
 
-      <svg viewBox="0 -10 100 110" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: 'auto' }}>
+      <svg viewBox="0 -10 100 110" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
 
         <defs>
           <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
@@ -168,7 +168,7 @@ const LessonCircle = ({ segments }) => {
         <StartIndicatorBubble show={showStartIndicatorBubble} />
       </div>
       <div>
-        <LessonStartBubble y={140} show={showLessonStartBubble} lessonNum={selectedLesson} lessonCount={segments.length} />
+        <LessonStartBubble y={100} show={showLessonStartBubble} lessonNum={selectedLesson} lessonCount={segments.length} />
       </div>
     </div>
   )
@@ -179,7 +179,6 @@ LessonCircle.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       disabled: PropTypes.bool,
-      onClick: PropTypes.func,
       color: PropTypes.string
     })
   ).isRequired
