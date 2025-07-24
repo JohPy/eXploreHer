@@ -2,6 +2,13 @@ import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import ChoiceButton from './ChoiceButton'
 
+const containerStyle = {
+  padding: '32px',
+  maxWidth: '600px',
+  margin: '40px auto',
+  boxSizing: 'border-box'
+}
+
 const getButtonType = (selected, correct) => {
   if (selected && correct) return 'correct'
   if (selected && !correct) return 'incorrect'
@@ -33,17 +40,19 @@ const MultipleChoice = ({ content = [], onCorrectChange }) => {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      {content.map((item, idx) => (
-        <ChoiceButton
-          key={item.text}
-          type="button"
-          handleClick={handleClick}
-          buttonType={getButtonType(selectedIdx === idx, item.isCorrect)}
-          index={idx}
-          text={item.text}
-        />
-      ))}
+    <div style={containerStyle}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        {content.map((item, idx) => (
+          <ChoiceButton
+            key={item.text}
+            type="button"
+            handleClick={handleClick}
+            buttonType={getButtonType(selectedIdx === idx, item.isCorrect)}
+            index={idx}
+            text={item.text}
+          />
+        ))}
+      </div>
     </div>
   )
 }
