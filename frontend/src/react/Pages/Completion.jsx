@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Box, Stack, Typography } from '@mui/material'
 import { motion } from 'framer-motion'
 import LessonCompletionAnimation from '../Components/Completion/LessonCompletionCircle'
@@ -17,26 +17,32 @@ const starContainerVariants = {
 
 const Completion = () => {
   const navigate = useNavigate()
-  const location = useLocation()
 
   const handleFinish = () => {
     navigate('/')
   }
 
+  // for mock reasons hardcoded
+  const startXpValue = 0
+  const finalXpValue = 20
+
   // for mock and error purposes correctAnswers = 8
-  const { correctAnswers = 8 } = location.state || {}
+  const correctAnswers = 8
   // useMemo() to make random props of each star (to have wowie animation effect)
   const starData = useMemo(() => Array.from({ length: correctAnswers }, (_, index) => ({
     id: `star-${index}`,
     size: 30 + Math.random() * 5,
     rotation: Math.random() * 360,
-    delay: 1.5 + (index * 0.1) // start delay and then random pop up delay
+    delay: 1.5 + (index * 0.1) // start delay and one by one; funky version: 1.5 + Math.random() * 0.5
   })), [correctAnswers])
 
   return (
     <Stack sx={{ height: '100%', alignItems: 'center', justifyContent: 'space-between', p: 2, boxSizing: 'border-box' }}>
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '15vh' }}>
-        <LessonCompletionAnimation />
+        <LessonCompletionAnimation
+          startXpValue={startXpValue}
+          finalXpValue={finalXpValue}
+        />
       </Box>
 
       {/* stack for star animation and typographies */}

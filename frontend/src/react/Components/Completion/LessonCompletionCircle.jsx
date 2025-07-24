@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Box } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { motion } from 'framer-motion'
@@ -7,7 +8,6 @@ import AnimatedXpCounter from './AnimtedXpCounter'
 const totalDots = 8
 const dotSize = 20
 const circleRadius = 130
-const xpGained = 20
 
 // animation variants
 // animation of container of dots
@@ -44,7 +44,8 @@ const dots = Array.from({ length: totalDots }, (_, index) => ({
   id: `dot-${index}`
 }))
 
-const LessonCompletionCircle = () => {
+// finalValue is the XP gained
+const LessonCompletionCircle = ({ startXpValue, finalXpValue }) => {
   const theme = useTheme()
   return (
     <Box
@@ -87,10 +88,18 @@ const LessonCompletionCircle = () => {
         transition={{ duration: 1 }}
         style={{ position: 'absolute', textAlign: 'center' }}
       >
-        <AnimatedXpCounter finalValue={xpGained} />
+        <AnimatedXpCounter
+          startValue={startXpValue}
+          finalValue={finalXpValue}
+        />
       </motion.div>
     </Box>
   )
+}
+
+LessonCompletionCircle.propTypes = {
+  startXpValue: PropTypes.number.isRequired,
+  finalXpValue: PropTypes.number.isRequired
 }
 
 export default LessonCompletionCircle
