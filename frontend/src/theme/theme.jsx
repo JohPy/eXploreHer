@@ -33,6 +33,7 @@ const Theme = createTheme({
   palette: {
     primary: {
       main: '#AC2C5F',
+      light: '#EFC2D4',
       disabled: '#D6C2CA'
     },
     secondary: {
@@ -78,6 +79,10 @@ const Theme = createTheme({
       unanswered: {
         main: 'transparent',
         border: '#7C7C7C'
+      },
+      explanation: {
+        main: '#71B4EB',
+        border: '#2b3e4dff'
       }
     }
   }

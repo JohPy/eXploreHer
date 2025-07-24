@@ -23,20 +23,26 @@ const Completion = () => {
     navigate('/')
   }
 
-  // for mock and error purposes correctAnswers = 8
-  const { correctAnswers = 8 } = location.state || {}
+  // for mock reasons hardcoded
+  const startXpValue = 0
+  const finalXpValue = 20
+
+  const correctAnswers = location.state?.correctAnswers || 0
   // useMemo() to make random props of each star (to have wowie animation effect)
   const starData = useMemo(() => Array.from({ length: correctAnswers }, (_, index) => ({
     id: `star-${index}`,
     size: 30 + Math.random() * 5,
     rotation: Math.random() * 360,
-    delay: Math.random() * 0.5
+    delay: 1.5 + (index * 0.1) // start delay and one by one; funky version: 1.5 + Math.random() * 0.5
   })), [correctAnswers])
 
   return (
     <Stack sx={{ height: '100%', alignItems: 'center', justifyContent: 'space-between', p: 2, boxSizing: 'border-box' }}>
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '15vh' }}>
-        <LessonCompletionAnimation />
+        <LessonCompletionAnimation
+          startXpValue={startXpValue}
+          finalXpValue={finalXpValue}
+        />
       </Box>
 
       {/* stack for star animation and typographies */}
@@ -45,7 +51,7 @@ const Completion = () => {
           Lektion geschafft!
         </Typography>
         <Typography variant="h5" sx={{ textAlign: 'center' }}>
-          {`Du hast ${correctAnswers} Aufgaben richtig!`}
+          {`Du hast ${correctAnswers} ${correctAnswers === 1 ? 'Aufgabe' : 'Aufgaben'} richtig!`}
         </Typography>
         {correctAnswers > 0 && (
           <motion.div

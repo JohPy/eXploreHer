@@ -12,6 +12,18 @@ const Lesson = () => {
   const MOCK_LESSONS = {
     1: [
       {
+        id: '104', // To identify the question when saving user mistakes
+        task: 'Was passiert während der Follikelphase im Eierstock? \n Wähle die richtige Antwort aus.',
+        type: 'multiple-choice', // This is needed by the QuestionRender to know which component to load
+        content: [ // This can be an image path or answer options - the format needs to be flexible
+          { isCorrect: false, text: 'Das Corpus luteum bildet sich' },
+          { isCorrect: true, text: 'Ein Follikel reift heran und produziert Östrogen' },
+          { isCorrect: false, text: 'Die Gebärmutterschleimhaut wird abgestoßen' },
+          { isCorrect: false, text: 'Die Eizelle wird befruchtet' }
+        ],
+        explanation: 'In der Follikelphase reifen die Eibläschen (Follikel) heran.' // Optional explanation text after submitting an answer
+      },
+      {
         id: '101',
         task: 'Ziehe die Phasen zur richtigen Lösung',
         type: 'drag-and-drop',
@@ -26,18 +38,6 @@ const Lesson = () => {
         task: null,
         type: 'explanation',
         text: 'In der <b>Follikelphase</b> macht sich dein Körper startklar: Ein Eibläschen (Follikel) reift heran, die Gebärmutterschleimhaut wird schick gemacht – alles für den großen Eisprung-Auftritt. Danach chillt dein Körper in der <b>Lutealphase</b>. Showtime jeden Monat!'
-      // },
-      // {
-      //   id: '103', // To identify the question when saving user mistakes
-      //   task: 'Was passiert während der Follikelphase im Eierstock?', // This can be a question or an instruction like "Ordne diese Begriffe richtig zu"
-      //   type: 'multiple-choice', // This is needed by the QuestionRender to know which component to load
-      //   content: [ // This can be an image path or answer options - the format needs to be flexible
-      //     { correct: false, text: 'Das Corpus luteum bildet sich' },
-      //     { correct: true, text: 'Ein Follikel reift heran und produziert Östrogen' },
-      //     { correct: false, text: 'Die Gebärmutterschleimhaut wird abgestoßen' },
-      //     { correct: false, text: 'Die Eizelle wird befruchtet' }
-      //   ],
-      //   explanation: 'In der Follikelphase reifen die Eibläschen (Follikel) heran' // Optional explanation text after submitting an answer
       },
       {
         id: '103',
@@ -92,23 +92,41 @@ const Lesson = () => {
       newStatuses[currentIndex] = correct ? 'correct' : 'incorrect'
       setAnswerStatuses(newStatuses)
     }
-  }, [currentIndex])
+  }, [currentIndex, answerStatuses])
 
   const handleExit = () => {
     navigate('/')
   }
 
-  const headerSteps = lesson.map((exercise, index) => ({
-    id: exercise.id,
-    status: index === currentIndex ? 'current' : answerStatuses[index]
-  }))
+  const headerSteps = lesson.map((exercise, index) => {
+    let status
+    if (index !== currentIndex) {
+      status = answerStatuses[index]
+    } else if (exercise.task === null) { // if null = explanation screen
+      status = 'explanation'
+    } else {
+      status = 'current'
+    }
+
+    return {
+      id: exercise.id,
+      status
+    }
+  })
 
   const goToNext = () => {
+    if (currentExercise.task === null) {
+      const newStatuses = [...answerStatuses]
+      newStatuses[currentIndex] = 'explanation'
+      setAnswerStatuses(newStatuses)
+    }
+
     if (currentIndex < lesson.length - 1) {
       setCurrentIndex(i => i + 1)
       setFooterStatus('disabled')
     } else {
-      navigate('/completion')
+      const correctAnswersCount = answerStatuses.filter(status => status === 'correct').length
+      navigate('/completion', { state: { correctAnswers: correctAnswersCount } })
     }
   }
 

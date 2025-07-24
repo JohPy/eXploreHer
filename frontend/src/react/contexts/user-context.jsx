@@ -1,37 +1,65 @@
-import React, { createContext, useContext, useMemo } from 'react'
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import useUserRepository from '../../hooks/useUserRepository'
+import useUserRepository from '../../repositories/user/useUserRepository'
+import { defaultUser } from '../../utils/defaults'
+import initUserRepository from '../../utils/initUserRepository'
+import userApiRepository from '../../repositories/user/userAPIRepository'
 
 const UserContext = createContext({
-  user: { score: 0, progress: { chapter: 1, lesson: 1 } },
+  user: defaultUser,
   loading: false,
-  error: {},
+  errorUser: {},
+  errorStats: {},
+  errorCompleteLesson: {},
   loadUser: () => {},
+  loginUser: () => {},
+  registerUser: () => {},
+  logoutUser: () => {},
+  loadUserStats: () => {},
   updateUser: () => {},
-  updateScore: () => {},
-  updateProgress: () => {}
+  completeLesson: () => {}
 })
 
 const UserProvider = ({ children }) => {
+  const [userRepository, setUserRepository] = useState(userApiRepository)
+  useEffect(() => {
+    const init = async () => {
+      const userRepo = await initUserRepository()
+      setUserRepository(() => userRepo)
+    }
+    init()
+  }, [])
+
   const {
     user,
     loading,
-    error,
+    errorUser,
+    errorStats,
+    errorCompleteLesson,
     loadUser,
+    loginUser,
+    registerUser,
+    logoutUser,
+    loadUserStats,
     updateUser,
-    updateScore,
-    updateProgress
-  } = useUserRepository()
+    completeLesson
+  } = useUserRepository(userRepository)
 
   const value = useMemo(() => ({
     user,
     loading,
-    error,
+    errorUser,
+    errorStats,
+    errorCompleteLesson,
     loadUser,
+    loginUser,
+    registerUser,
+    logoutUser,
+    loadUserStats,
     updateUser,
-    updateScore,
-    updateProgress
-  }), [user, loading, error, loadUser, updateUser, updateScore, updateProgress])
+    completeLesson
+  }), [user, loading, errorUser, errorStats, errorCompleteLesson,
+    loadUser, loginUser, registerUser, logoutUser, loadUserStats, updateUser, completeLesson])
 
   return (
     <UserContext.Provider value={value}>
