@@ -125,7 +125,8 @@ const Lesson = () => {
       setCurrentIndex(i => i + 1)
       setFooterStatus('disabled')
     } else {
-      navigate('/completion')
+      const correctAnswersCount = answerStatuses.filter(status => status === 'correct').length
+      navigate('/completion', { state: { correctAnswers: correctAnswersCount } })
     }
   }
 

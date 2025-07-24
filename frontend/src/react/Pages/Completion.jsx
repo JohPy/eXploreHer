@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Box, Stack, Typography } from '@mui/material'
 import { motion } from 'framer-motion'
 import LessonCompletionAnimation from '../Components/Completion/LessonCompletionCircle'
@@ -17,6 +17,7 @@ const starContainerVariants = {
 
 const Completion = () => {
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleFinish = () => {
     navigate('/')
@@ -26,8 +27,7 @@ const Completion = () => {
   const startXpValue = 0
   const finalXpValue = 20
 
-  // for mock and error purposes correctAnswers = 8
-  const correctAnswers = 8
+  const correctAnswers = location.state?.correctAnswers || 0
   // useMemo() to make random props of each star (to have wowie animation effect)
   const starData = useMemo(() => Array.from({ length: correctAnswers }, (_, index) => ({
     id: `star-${index}`,
