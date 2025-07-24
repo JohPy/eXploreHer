@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { useUserRepository } from '../hooks/useUserRepository'
+import useUserRepository from '../../hooks/useUserRepository'
 
 const UserContext = createContext({
   user: { score: 0, progress: { chapter: 1, lesson: 1 } },

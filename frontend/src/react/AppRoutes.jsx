@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom'
 
 import LessonOverview from './Pages/LessonOverview'
 import Lesson from './Pages/Lesson'
-import CatNames from './Pages/CatNames/CatNames'
 import Profile from './Pages/Profile/Profile'
 import ProfileOverview from './Pages/Profile/ProfileOverview'
 import ProfileSettings from './Pages/Profile/ProfileSettings'
@@ -21,7 +20,6 @@ const AppRoutes = () => (
       <Route path="" element={<ProfileOverview />} />
       <Route path="settings" element={<ProfileSettings />} />
     </Route>
-    <Route path="/catnames" element={<CatNames />} />
     <Route path="*" element={<Error404 />} />
   </Routes>
 )
