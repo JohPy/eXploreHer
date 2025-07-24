@@ -72,6 +72,10 @@ const Theme = createTheme({
       unanswered: {
         main: 'transparent',
         border: '#7C7C7C'
+      },
+      explanation: {
+        main: '#71B4EB',
+        border: '#2b3e4dff'
       }
     }
   }
