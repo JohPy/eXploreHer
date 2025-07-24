@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import DragAndDrop from '../DragAndDrop/DragAndDrop'
 import WordMatchQuiz from '../WordMatchQuiz/WordMatchQuiz'
 import Explanation from '../Explanation/Explanation'
+import MultipleChoice from '../MultipleChoice/MultipleChoice'
 
 const Exercise = ({ exercise, onComplete }) => {
   // If the exercise type is 'explanation', immediatly communicate back to parent that the exercise is complete
@@ -21,6 +22,8 @@ const Exercise = ({ exercise, onComplete }) => {
       return <Explanation text={exercise.text} />
     case 'word-match-quiz':
       return <WordMatchQuiz questions={exercise.questions} onCorrectChange={onComplete} />
+    case 'multiple-choice':
+      return <MultipleChoice content={exercise.content} onCorrectChange={onComplete} />
     default:
       return <div> Unbekannter Übungstyp </div>
   }
