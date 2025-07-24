@@ -13,7 +13,7 @@ Wir helfen jungen Frauen das Selbstvertrauen in den eigenen Körper zu leveln, i
 siehe Frontend und Backend README
 
 ## Mitwirkende
-Liste der Teammitglieder und ggf. deren Rollen.
-
-## Lizenz
-Informationen zur verwendeten Lizenz.
+- Johanna - Frontend
+- Joh - Frontend
+- Lisa - Frontend
+- Witali - Backend
