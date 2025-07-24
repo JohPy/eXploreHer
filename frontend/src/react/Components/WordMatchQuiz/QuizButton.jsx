@@ -12,9 +12,9 @@ const buttonSx = {
   transitionProperty: 'background-color, color',
   transitionDuration: '0.2s',
   transitionTimingFunction: 'ease-in-out',
-  backgroundColor: '#e8e8f0',
-  borderColor: '#b4b4cd',
-  color: '#374151',
+  backgroundColor: (theme) => theme.palette.berryGrey.light,
+  borderColor: (theme) => theme.palette.berryGrey.main,
+  color: (theme) => theme.palette.berryGrey.text,
   borderStyle: 'solid',
   textTransform: 'none',
   textAlign: 'left',
@@ -23,23 +23,23 @@ const buttonSx = {
 
 const buttonSelectedSx = {
   ...buttonSx,
-  backgroundColor: '#e0f2fe',
-  borderColor: '#bae6fd',
-  color: '#0369a1'
+  backgroundColor: (theme) => theme.palette.selected.background,
+  borderColor: (theme) => theme.palette.selected.border,
+  color: (theme) => theme.palette.selected.text
 }
 
 const buttonCorrectSx = {
   ...buttonSx,
-  backgroundColor: '#ddfbe7',
-  borderColor: '#86efac',
-  color: '#166534'
+  backgroundColor: (theme) => theme.palette.correct.transparent,
+  borderColor: (theme) => theme.palette.correct.main,
+  color: (theme) => theme.palette.correct.text
 }
 
 const buttonIncorrectSx = {
   ...buttonSx,
-  backgroundColor: '#fbdde9',
-  borderColor: '#e5196b',
-  color: '#e5196b'
+  backgroundColor: (theme) => theme.palette.wrong.transparent,
+  borderColor: (theme) => theme.palette.wrong.main,
+  color: (theme) => theme.palette.wrong.main
 }
 
 const buttonDisabledSx = {

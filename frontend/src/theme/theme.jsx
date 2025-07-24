@@ -46,15 +46,22 @@ const Theme = createTheme({
     },
     berryGrey: {
       main: '#C4C4DF',
-      light: '#eaeaf2'
+      light: '#eaeaf2',
+      text: '#374151'
+    },
+    selected: {
+      background: '#e0f2fe',
+      border: '#bae6fd',
+      text: '#0369a1'
     },
     correct: {
       main: '#19E65D',
-      transparent: '#19E65D26'
+      transparent: '#ddfbe7',
+      text: '#166534'
     },
     wrong: {
       main: '#E6196B',
-      transparent: '#E6196B26'
+      transparent: '#fbdde9'
     },
     lessonStatus: {
       correct: {
