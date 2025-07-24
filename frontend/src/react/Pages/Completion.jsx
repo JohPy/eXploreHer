@@ -30,7 +30,7 @@ const Completion = () => {
     id: `star-${index}`,
     size: 30 + Math.random() * 5,
     rotation: Math.random() * 360,
-    delay: Math.random() * 0.5
+    delay: 1.6 + Math.random() * 0.5 // start delay and then random pop up delay
   })), [correctAnswers])
 
   return (
