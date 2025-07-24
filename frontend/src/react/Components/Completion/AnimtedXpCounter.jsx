@@ -1,19 +1,22 @@
 import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { motion, useMotionValue, useTransform, animate, AnimatePresence } from 'framer-motion'
-import { Typography, Box } from '@mui/material'
+import { Typography, Box, useTheme } from '@mui/material'
 
-const PopUp = () => (
-  <motion.div
-    initial={{ y: -50, opacity: 1, scale: 2 }}
-    animate={{ y: -80, opacity: 0, scale: 5 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: 0.7, ease: 'easeOut' }}
-    style={{ position: 'absolute' }}
-  >
-    <Typography sx={{ fontWeight: 'bold', color: '#4B8F7A' }}>+1</Typography>
-  </motion.div>
-)
+const PopUp = () => {
+  const theme = useTheme()
+  return (
+    <motion.div
+      initial={{ y: -50, opacity: 1, scale: 2 }}
+      animate={{ y: -80, opacity: 0, scale: 5 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      style={{ position: 'absolute' }}
+    >
+      <Typography sx={{ fontWeight: 'bold', color: theme.palette.correct.main }}>+1</Typography>
+    </motion.div>
+  )
+}
 
 const AnimatedXpCounter = ({ startValue = 0, finalValue }) => {
   const count = useMotionValue(startValue)
