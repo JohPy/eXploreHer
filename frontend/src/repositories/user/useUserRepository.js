@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import authApiRepository from '../auth/authApiRepository'
 
 const useUserRepository = (userRepository) => {
   const [user, setUser] = useState()
@@ -19,6 +20,48 @@ const useUserRepository = (userRepository) => {
       setLoading(false)
     }
   }, [userRepository])
+
+  const loginUser = useCallback(
+    async (identifier, password) => {
+      setLoading(true)
+      try {
+        const loggedInUser = await authApiRepository.login(
+          identifier,
+          password
+        )
+        setUser(loggedInUser)
+      } catch (err) {
+        setErrorUser(err)
+      } finally {
+        setLoading(false)
+      }
+    },
+    [authApiRepository]
+  )
+
+  const registerUser = useCallback(
+    async (username, email, password) => {
+      setLoading(true)
+      try {
+        const registeredUser = await authApiRepository.register(
+          username,
+          email,
+          password
+        )
+        setUser(registeredUser)
+      } catch (err) {
+        setErrorUser(err)
+      } finally {
+        setLoading(false)
+      }
+    },
+    [authApiRepository]
+  )
+
+  const logoutUser = useCallback(() => {
+    authApiRepository.logout()
+    setUser(null)
+  }, [authApiRepository])
 
   const loadUserStats = useCallback(async () => {
     setLoading(true)
@@ -103,6 +146,9 @@ const useUserRepository = (userRepository) => {
     errorUser,
     errorStats,
     errorCompleteLesson,
+    loginUser,
+    registerUser,
+    logoutUser,
     loadUser,
     loadUserStats,
     updateUser,

@@ -8,6 +8,7 @@ import { ThemeProvider } from '@mui/material/styles'
 
 import AppLayout from './AppLayout'
 import Theme from '../theme/theme'
+import UserProvider from './contexts/user-context'
 
 const container = document.getElementById('app')
 const root = createRoot(container)
@@ -15,8 +16,10 @@ root.render(
 
   <ThemeProvider theme={Theme}>
     <CssBaseline />
-    <Router>
-      <AppLayout />
-    </Router>
+    <UserProvider>
+      <Router>
+        <AppLayout />
+      </Router>
+    </UserProvider>
   </ThemeProvider>
 )

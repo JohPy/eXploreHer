@@ -1,4 +1,4 @@
-import { getAuthHeader } from '../../utils/auth'
+import getAuthHeader from '../../utils/auth'
 import getDefaultHeaders from '../../utils/api'
 import {
   BACKEND_URL,

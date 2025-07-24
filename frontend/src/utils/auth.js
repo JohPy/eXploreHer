@@ -1,8 +1,8 @@
-const TOKEN_KEY = 'jwt'
+import authApiRepository from '../repositories/auth/authApiRepository'
 
-export const getAuthToken = () => localStorage.getItem(TOKEN_KEY)
-
-export const getAuthHeader = () => {
-  const token = getAuthToken()
+const getAuthHeader = () => {
+  const token = authApiRepository.getToken()
   return token ? { Authorization: `Bearer ${token}` } : {}
 }
+
+export default getAuthHeader

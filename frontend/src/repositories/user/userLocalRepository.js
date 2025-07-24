@@ -1,9 +1,6 @@
+import { defaultUser } from '../../utils/defaults'
+
 const STORAGE_KEY = 'user'
-const defaultUser = {
-  experience: 0,
-  stars: 0,
-  progress: { chapter: 1, lesson: 1 }
-}
 
 const userLocalRepository = {
   getUser() {

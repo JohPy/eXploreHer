@@ -19,3 +19,9 @@ export const API_ENDPOINT_USER_STATS = '/api/user-progress/me'
 /** @type {string} - The endpoint for posting stats after lesson completion */
 export const API_ENDPOINT_COMPLETE_LESSON =
   '/api/user-progress/complete-lesson'
+
+/** @type {string} - The endpoint for login */
+export const API_ENDPOINT_LOGIN = '/api/auth/local'
+
+/** @type {string} - The endpoint for register */
+export const API_ENDPOINT_REGISTER = '/api/auth/local/register'

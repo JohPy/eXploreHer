@@ -1,21 +1,35 @@
-import React, { createContext, useContext, useMemo } from 'react'
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import useUserRepository from '../../repositories/user/useUserRepository'
+import { defaultUser } from '../../utils/defaults'
+import initUserRepository from '../../utils/initUserRepository'
 import userApiRepository from '../../repositories/user/userAPIRepository'
 
 const UserContext = createContext({
-  user: { experience: 0, stars: 0, progress: { chapter: 1, lesson: 1 } },
+  user: defaultUser,
   loading: false,
   errorUser: {},
   errorStats: {},
   errorCompleteLesson: {},
   loadUser: () => {},
+  loginUser: () => {},
+  registerUser: () => {},
+  logoutUser: () => {},
   loadUserStats: () => {},
   updateUser: () => {},
   completeLesson: () => {}
 })
 
 const UserProvider = ({ children }) => {
+  const [userRepository, setUserRepository] = useState(userApiRepository)
+  useEffect(() => {
+    const init = async () => {
+      const userRepo = await initUserRepository()
+      setUserRepository(() => userRepo)
+    }
+    init()
+  }, [])
+
   const {
     user,
     loading,
@@ -23,10 +37,13 @@ const UserProvider = ({ children }) => {
     errorStats,
     errorCompleteLesson,
     loadUser,
+    loginUser,
+    registerUser,
+    logoutUser,
     loadUserStats,
     updateUser,
     completeLesson
-  } = useUserRepository(userApiRepository)
+  } = useUserRepository(userRepository)
 
   const value = useMemo(() => ({
     user,
@@ -35,10 +52,14 @@ const UserProvider = ({ children }) => {
     errorStats,
     errorCompleteLesson,
     loadUser,
+    loginUser,
+    registerUser,
+    logoutUser,
     loadUserStats,
     updateUser,
     completeLesson
-  }), [user, loading, errorUser, errorStats, errorCompleteLesson, loadUser, loadUserStats, updateUser, completeLesson])
+  }), [user, loading, errorUser, errorStats, errorCompleteLesson,
+    loadUser, loginUser, registerUser, logoutUser, loadUserStats, updateUser, completeLesson])
 
   return (
     <UserContext.Provider value={value}>
