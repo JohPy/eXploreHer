@@ -46,6 +46,7 @@ const MultipleChoice = ({ content = [], onCorrectChange }) => {
           <ChoiceButton
             key={item.text}
             type="button"
+            disabled={answered}
             handleClick={handleClick}
             buttonType={getButtonType(selectedIdx === idx, item.isCorrect)}
             index={idx}

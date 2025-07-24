@@ -17,21 +17,40 @@ const buttonSx = {
   color: '#374151',
   borderStyle: 'solid',
   textTransform: 'none',
-  textAlign: 'left'
+  textAlign: 'left',
+  justifyContent: 'flex-start',
+  '&.Mui-disabled': {
+    backgroundColor: '#e8e8f0',
+    borderColor: '#b4b4cd',
+    color: '#374151',
+    opacity: 1
+  }
 }
 
 const buttonCorrectSx = {
   ...buttonSx,
   backgroundColor: '#ddfbe7',
   borderColor: '#86efac',
-  color: '#166534'
+  color: '#166534',
+  '&.Mui-disabled': {
+    backgroundColor: '#ddfbe7',
+    borderColor: '#86efac',
+    color: '#166534',
+    opacity: 1
+  }
 }
 
 const buttonIncorrectSx = {
   ...buttonSx,
   backgroundColor: '#fbdde9',
   borderColor: '#e5196b',
-  color: '#e5196b'
+  color: '#e5196b',
+  '&.Mui-disabled': {
+    backgroundColor: '#fbdde9',
+    borderColor: '#e5196b',
+    color: '#e5196b',
+    opacity: 1
+  }
 }
 
 const getButtonSx = (buttonType) => {
@@ -46,12 +65,14 @@ const getButtonSx = (buttonType) => {
 }
 
 const ChoiceButton = ({
+  disabled,
   text,
   handleClick,
   index,
   buttonType
 }) => (
   <Button
+    disabled={disabled}
     type="button"
     onClick={() => handleClick(index)}
     sx={getButtonSx(buttonType)}
@@ -63,6 +84,7 @@ const ChoiceButton = ({
 )
 
 ChoiceButton.propTypes = {
+  disabled: PropTypes.bool,
   text: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
