@@ -92,18 +92,35 @@ const Lesson = () => {
       newStatuses[currentIndex] = correct ? 'correct' : 'incorrect'
       setAnswerStatuses(newStatuses)
     }
-  }, [currentIndex])
+  }, [currentIndex, answerStatuses])
 
   const handleExit = () => {
     navigate('/')
   }
 
-  const headerSteps = lesson.map((exercise, index) => ({
-    id: exercise.id,
-    status: index === currentIndex ? 'current' : answerStatuses[index]
-  }))
+  const headerSteps = lesson.map((exercise, index) => {
+    let status
+    if (index !== currentIndex) {
+      status = answerStatuses[index]
+    } else if (exercise.task === null) { // if null = explanation screen
+      status = 'explanation'
+    } else {
+      status = 'current'
+    }
+
+    return {
+      id: exercise.id,
+      status
+    }
+  })
 
   const goToNext = () => {
+    if (currentExercise.task === null) {
+      const newStatuses = [...answerStatuses]
+      newStatuses[currentIndex] = 'explanation'
+      setAnswerStatuses(newStatuses)
+    }
+
     if (currentIndex < lesson.length - 1) {
       setCurrentIndex(i => i + 1)
       setFooterStatus('disabled')
