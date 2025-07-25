@@ -1,15 +1,15 @@
 {
-  "collectionName": "components_exercises_fill_in_the_blanks",
+  "collectionName": "components_exercises_explanations",
   "info": {
-    "displayName": "Fill-in-the-Blank",
-    "icon": "underline"
+    "displayName": "Explanation",
+    "icon": "message"
   },
   "options": {},
   "attributes": {
     "task": {
       "type": "string"
     },
-    "ClozeText": {
+    "Text": {
       "type": "blocks",
       "required": true
     }

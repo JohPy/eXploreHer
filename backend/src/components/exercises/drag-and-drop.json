@@ -6,6 +6,9 @@
   },
   "options": {},
   "attributes": {
+    "task": {
+      "type": "string"
+    },
     "Image": {
       "type": "media",
       "multiple": false,
