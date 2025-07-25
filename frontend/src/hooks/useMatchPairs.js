@@ -1,8 +1,14 @@
 import { useState } from 'react'
 
-function useWordMatchQuiz(questions) {
-  const [selectedQuestion, setSelectedQuestion] = useState({ question: null, id: null })
-  const [selectedAnswer, setSelectedAnswer] = useState({ answer: null, id: null })
+function useMatchPairs(pairs) {
+  const [selectedQuestion, setSelectedQuestion] = useState({
+    question: null,
+    id: null
+  })
+  const [selectedAnswer, setSelectedAnswer] = useState({
+    answer: null,
+    id: null
+  })
   const [disabledButtons, setDisabledButtons] = useState([])
 
   const selectAnswer = (answer, id) => {
@@ -18,7 +24,7 @@ function useWordMatchQuiz(questions) {
   }
 
   const checkAnswer = (question, answer) => {
-    const questionObj = questions.find((q) => q.question === question)
+    const questionObj = pairs.find((q) => q.question === question)
     if (!questionObj) return false
     if (questionObj.answer === answer) {
       setSelectedQuestion({ question: null, id: null })
@@ -43,4 +49,4 @@ function useWordMatchQuiz(questions) {
   }
 }
 
-export default useWordMatchQuiz
+export default useMatchPairs

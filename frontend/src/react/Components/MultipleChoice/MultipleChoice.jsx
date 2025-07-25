@@ -23,7 +23,8 @@ const MultipleChoice = ({ content = [], onCorrectChange }) => {
 
   useEffect(() => {
     if (selectedIdx !== null && !hasReported.current) {
-      if (content[selectedIdx]?.isCorrect) {
+      // eslint-disable-next-line dot-notation
+      if (content[selectedIdx]?.['IsCorrect']) {
         setAnswered(true)
         onCorrectChange(true)
         hasReported.current = true
@@ -44,13 +45,15 @@ const MultipleChoice = ({ content = [], onCorrectChange }) => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         {content.map((item, idx) => (
           <ChoiceButton
-            key={item.text}
+            key={item.id}
             type="button"
             disabled={answered}
             handleClick={handleClick}
-            buttonType={getButtonType(selectedIdx === idx, item.isCorrect)}
+            // eslint-disable-next-line dot-notation
+            buttonType={getButtonType(selectedIdx === idx, item['IsCorrect'])}
             index={idx}
-            text={item.text}
+            // eslint-disable-next-line dot-notation
+            text={item['Text']}
           />
         ))}
       </div>
@@ -61,8 +64,8 @@ const MultipleChoice = ({ content = [], onCorrectChange }) => {
 MultipleChoice.propTypes = {
   content: PropTypes.arrayOf(
     PropTypes.shape({
-      isCorrect: PropTypes.bool.isRequired,
-      text: PropTypes.string.isRequired
+      IsCorrect: PropTypes.bool.isRequired,
+      Text: PropTypes.string.isRequired
     })
   ),
   onCorrectChange: PropTypes.func.isRequired
