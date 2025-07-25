@@ -74,7 +74,7 @@ export interface ExercisesExplanation extends Struct.ComponentSchema {
   };
   attributes: {
     task: Schema.Attribute.String;
-    Text: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    text: Schema.Attribute.Blocks & Schema.Attribute.Required;
   };
 }
 

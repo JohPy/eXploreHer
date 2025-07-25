@@ -20,7 +20,7 @@ const Exercise = ({ exercise, onComplete }) => {
     case 'exercises.drag-and-drop':
       return <DragAndDrop fields={exercise.fields} ImageComponent={exercise.ImageComponent} onCorrectChange={onComplete} />
     case 'exercises.explanation':
-      return <Explanation text={exercise['Text']} />
+      return <Explanation text={exercise.text} />
     case 'exercises.match-pairs':
       return <MatchPairs pairs={exercise['Pairs']} onCorrectChange={onComplete} />
     case 'exercises.multiple-choice':
