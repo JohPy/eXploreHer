@@ -5,28 +5,17 @@ import React, { useState, useRef, useCallback } from 'react'
 
 import LessonHeader from '../Components/Lesson/LessonHeader'
 import Exercise from '../Components/Lesson/Exercise'
-import CycleCalendar from '../Components/Images/CycleCalendar'
 import LessonFooter from '../Components/Lesson/LessonFooter'
 import { useCourseContentContext } from '../contexts/course-context'
+import { mockDragAndDropExercise, mockExplanationExercise } from '../../utils/defaults'
 
 const Lesson = () => {
   const { currentChapter, currentChapterIndex } = useCourseContentContext()
-  const lessons = currentChapter?.lessons
-  const dragAndDropExercise = {
-    id: '101',
-    task: 'Ziehe die Phasen zur richtigen Lösung',
-    __component: 'exercises.drag-and-drop',
-    fields: [
-      { id: 'follikel', label: 'Follikelphase', position: { top: '5%', right: '0%' } },
-      { id: 'luteal', label: 'Lutealphase', position: { top: '88%', left: '0%' } }
-    ],
-    ImageComponent: CycleCalendar
-  }
-
   const { id } = useParams()
   const lessonNumber = Number(id)
+  const lessons = currentChapter?.lessons
   const lesson = lessons?.[lessonNumber - 1] || []
-  const exercises = [...lesson['Exercises'], dragAndDropExercise]
+  const exercises = [...lesson['Exercises'], mockExplanationExercise, mockDragAndDropExercise]
   const exercisesCount = exercises.length || 4
   const [currentIndex, setCurrentIndex] = useState(0)
   const currentExercise = exercises[currentIndex]

@@ -10,7 +10,7 @@ import MultipleChoice from '../MultipleChoice/MultipleChoice'
 const Exercise = ({ exercise, onComplete }) => {
   // If the exercise type is 'explanation', immediatly communicate back to parent that the exercise is complete
   useEffect(() => {
-    if (exercise['__component'] === 'explanation') {
+    if (exercise['__component'] === 'exercises.explanation') {
       onComplete(null)
     }
   }, [exercise['__component'], onComplete])
