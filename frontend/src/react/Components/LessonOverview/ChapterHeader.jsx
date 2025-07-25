@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { Box, Grid2, Typography } from '@mui/material'
 import BookIcon from '../Icons/BookIcon'
 
-const ChapterHeader = () => (
+const ChapterHeader = ({ number, title }) => (
   <Box
     sx={{
       backgroundColor: 'primary.main',
@@ -29,7 +30,7 @@ const ChapterHeader = () => (
               md: '1.2rem'
             }}
           >
-            Kapitel 1
+            {`Kapitel ${number}`}
           </Typography>
           <Typography
             variant="h5"
@@ -41,7 +42,7 @@ const ChapterHeader = () => (
               }
             }}
           >
-            Der Menstruationszyklus
+            {`${title}`}
           </Typography>
         </Box>
       </Grid2>
@@ -51,5 +52,10 @@ const ChapterHeader = () => (
     </Grid2>
   </Box>
 )
+
+ChapterHeader.propTypes = {
+  number: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  title: PropTypes.string.isRequired
+}
 
 export default ChapterHeader

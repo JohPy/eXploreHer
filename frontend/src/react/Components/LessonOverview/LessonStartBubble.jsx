@@ -3,16 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 import { useTheme } from '@mui/material/styles'
+import { useCourseContentContext } from '../../contexts/course-context'
 
 const LessonStartBubble = ({ y, show = 'false', lessonNum = '1', lessonCount = '5' }) => {
-  const titleList = [
-    'Die Phasen deines Zyklus',
-    'Wenn die Hormone jubeln...',
-    'Ernährung & Sport im Zyklus',
-    'Unregelmäßigkeiten im Zyklus',
-    'Abschlusstest'
-  ]
-  const lessonTitle = titleList[lessonNum - 1]
+  const { currentChapter } = useCourseContentContext()
+
+  // eslint-disable-next-line dot-notation
+  const lessonTitle = currentChapter?.lessons?.[lessonNum - 1]?.['title']
 
   const navigate = useNavigate()
 

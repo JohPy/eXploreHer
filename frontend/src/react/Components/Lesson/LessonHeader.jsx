@@ -70,7 +70,7 @@ LessonHeader.propTypes = {
   activeStep: PropTypes.number.isRequired,
   maxSteps: PropTypes.number.isRequired,
   steps: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     status: PropTypes.oneOf(['correct', 'incorrect', 'current', 'unanswered', 'explanation']).isRequired
   })).isRequired
 }
