@@ -4,80 +4,25 @@ import React, { useState, useRef, useCallback } from 'react'
 
 import LessonHeader from '../Components/Lesson/LessonHeader'
 import Exercise from '../Components/Lesson/Exercise'
-import CycleCalendar from '../Components/Images/CycleCalendar'
 import LessonFooter from '../Components/Lesson/LessonFooter'
+import { useCourseContentContext } from '../contexts/course-context'
+import { mockDragAndDropExercise, mockExplanationExercise } from '../../utils/defaults'
 
 const Lesson = () => {
-  // Only for testing - actual implementation should go into json / database
-  const MOCK_LESSONS = {
-    1: [
-      {
-        id: '104', // To identify the question when saving user mistakes
-        task: 'Was passiert während der Follikelphase im Eierstock? \n Wähle die richtige Antwort aus.',
-        type: 'multiple-choice', // This is needed by the QuestionRender to know which component to load
-        content: [ // This can be an image path or answer options - the format needs to be flexible
-          { isCorrect: false, text: 'Das Corpus luteum bildet sich' },
-          { isCorrect: true, text: 'Ein Follikel reift heran und produziert Östrogen' },
-          { isCorrect: false, text: 'Die Gebärmutterschleimhaut wird abgestoßen' },
-          { isCorrect: false, text: 'Die Eizelle wird befruchtet' }
-        ],
-        explanation: 'In der Follikelphase reifen die Eibläschen (Follikel) heran.' // Optional explanation text after submitting an answer
-      },
-      {
-        id: '101',
-        task: 'Ziehe die Phasen zur richtigen Lösung',
-        type: 'drag-and-drop',
-        fields: [
-          { id: 'follikel', label: 'Follikelphase', position: { top: '5%', right: '0%' } },
-          { id: 'luteal', label: 'Lutealphase', position: { top: '88%', left: '0%' } }
-        ],
-        ImageComponent: CycleCalendar
-      },
-      {
-        id: '102',
-        task: null,
-        type: 'explanation',
-        text: 'In der <b>Follikelphase</b> macht sich dein Körper startklar: Ein Eibläschen (Follikel) reift heran, die Gebärmutterschleimhaut wird schick gemacht – alles für den großen Eisprung-Auftritt. Danach chillt dein Körper in der <b>Lutealphase</b>. Showtime jeden Monat!'
-      },
-      {
-        id: '103',
-        task: 'Finde die passenden Paare',
-        type: 'word-match-quiz',
-        questions: [
-          {
-            id: '1',
-            question: 'Follikelphase',
-            answer: 'Einer der herangreiften Follikel wird dominant und produziert das Hormon Östrogen'
-          },
-          {
-            id: '2',
-            question: 'Eisprung',
-            answer: 'Die freigesetzte Eizelle wird in den Eileiter transportiert'
-          },
-          {
-            id: '3',
-            question: 'Menstruation',
-            answer: 'Die Gebärmutter stößt ihre innere Auskleidung aus Weichteilen und Blutgefäßen ab'
-          },
-          {
-            id: '4',
-            question: 'Lutealphase',
-            answer: 'Der geplatzte Follikel wird zum Gelbkörper (Corpus luteum) und produziert Progesteron'
-          }
-        ]
-      }
-    ]
-  }
-
+  const { currentChapter, currentChapterIndex } = useCourseContentContext()
   const { id } = useParams()
-  const lesson = MOCK_LESSONS[Number(id)]
+  const lessonNumber = Number(id)
+  const lessons = currentChapter?.lessons
+  const lesson = lessons?.[lessonNumber - 1] || []
+  const exercises = [...lesson.Exercises, mockExplanationExercise, mockDragAndDropExercise]
+  const exercisesCount = exercises.length || 4
   const [currentIndex, setCurrentIndex] = useState(0)
-  const currentExercise = lesson[currentIndex]
+  const currentExercise = exercises[currentIndex]
   const navigate = useNavigate()
   const [footerStatus, setFooterStatus] = useState('disabled')
 
   const [answerStatuses, setAnswerStatuses] = useState(
-    Array(lesson.length).fill('unanswered')
+    Array(exercisesCount).fill('unanswered')
   )
 
   // When the user provided an answer, give fedback and save points
@@ -98,7 +43,7 @@ const Lesson = () => {
     navigate('/')
   }
 
-  const headerSteps = lesson.map((exercise, index) => {
+  const headerSteps = exercises.map((exercise, index) => {
     let status
     if (index !== currentIndex) {
       status = answerStatuses[index]
@@ -121,16 +66,20 @@ const Lesson = () => {
       setAnswerStatuses(newStatuses)
     }
 
-    if (currentIndex < lesson.length - 1) {
+    if (currentIndex < exercisesCount - 1) {
       setCurrentIndex(i => i + 1)
       setFooterStatus('disabled')
     } else {
       const correctAnswersCount = answerStatuses.filter(status => status === 'correct').length
-      navigate('/completion', { state: { correctAnswers: correctAnswersCount } })
+      navigate('/completion', { state: { correctAnswers: correctAnswersCount, lessonNumber, chapterNumber: currentChapterIndex } })
     }
   }
 
   const containerRef = useRef()
+
+  if (!exercises) {
+    return (<div>Loading...</div>)
+  }
 
   return (
     <Box
@@ -149,13 +98,13 @@ const Lesson = () => {
         <LessonHeader
           onExit={handleExit}
           activeStep={currentIndex}
-          maxSteps={lesson.length}
+          maxSteps={exercisesCount}
           steps={headerSteps}
         />
         <Typography
           sx={{ mt: 2, mb: 1, mx: 4, textAlign: 'left', fontSize: { xs: '0.8rem', sm: '1rem', md: '1.2rem' }, fontWeight: 'bold' }}
         >
-          {currentExercise.task}
+          {currentExercise?.task}
         </Typography>
       </Box>
 
@@ -187,7 +136,7 @@ const Lesson = () => {
       </Box>
 
       <Box sx={{ flexShrink: 0, p: 2, textAlign: 'center' }}>
-        <LessonFooter status={footerStatus} onClick={goToNext} explanation={currentExercise.explanation} containerRef={containerRef} />
+        <LessonFooter status={footerStatus} onClick={goToNext} explanation={currentExercise?.explanation} containerRef={containerRef} />
       </Box>
     </Box>
   )

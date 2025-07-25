@@ -45,7 +45,7 @@ const userApiRepository = {
     return res.json()
   },
 
-  async completeLesson({ experience, stars, chapter, lesson }) {
+  async completeLesson({ experienceGained, starsGained, chapter, lesson }) {
     const res = await fetch(BACKEND_URL + API_ENDPOINT_COMPLETE_LESSON, {
       method: 'POST',
       headers: {
@@ -53,8 +53,8 @@ const userApiRepository = {
         ...getAuthHeader()
       },
       body: JSON.stringify({
-        experience,
-        stars,
+        experienceGained,
+        starsGained,
         chapter,
         lesson
       })

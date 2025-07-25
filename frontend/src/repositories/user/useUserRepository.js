@@ -127,8 +127,8 @@ const useUserRepository = (userRepository) => {
       setErrorCompleteLesson(null)
       try {
         const newUserStats = await userRepository.completeLesson({
-          experience,
-          stars,
+          experienceGained: experience,
+          starsGained: stars,
           chapter,
           lesson
         })

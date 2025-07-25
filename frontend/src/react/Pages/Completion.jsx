@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Box, Stack, Typography } from '@mui/material'
 import { motion } from 'framer-motion'
 import LessonCompletionAnimation from '../Components/Completion/LessonCompletionCircle'
 import Star from '../Components/Completion/Star'
 import LessonFooter from '../Components/Lesson/LessonFooter'
+import { useUserContext } from '../contexts/user-context'
 
 const starContainerVariants = {
   initial: {},
@@ -18,6 +19,7 @@ const starContainerVariants = {
 const Completion = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const { completeLesson } = useUserContext()
 
   const handleFinish = () => {
     navigate('/')
@@ -28,6 +30,11 @@ const Completion = () => {
   const finalXpValue = 20
 
   const correctAnswers = location.state?.correctAnswers || 0
+  const lessonNumber = location.state?.correctAnswers || 0
+  const chapterNumber = location.state?.correctAnswers || 0
+
+  useEffect(() => { completeLesson({ experience: finalXpValue, stars: correctAnswers, chapter: chapterNumber, lesson: lessonNumber }) }, [])
+
   // useMemo() to make random props of each star (to have wowie animation effect)
   const starData = useMemo(() => Array.from({ length: correctAnswers }, (_, index) => ({
     id: `star-${index}`,

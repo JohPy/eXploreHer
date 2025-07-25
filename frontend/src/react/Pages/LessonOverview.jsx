@@ -6,14 +6,19 @@ import LessonCircle from '../Components/LessonOverview/LessonCircle'
 import ProgressStepper from '../Components/LessonOverview/ProgressStepper'
 import XpBubble from '../Components/LessonOverview/XpBubble'
 import ExpertiseStar from '../Components/LessonOverview/ExpertiseStar'
+import { useUserContext } from '../contexts/user-context'
+import { useCourseContentContext } from '../contexts/course-context'
 
 const LessonOverview = () => {
   const theme = useTheme()
+  const { user } = useUserContext()
+  const { currentChapter, currentChapterIndex } = useCourseContentContext()
+  const chapterTitle = currentChapter?.['title']
 
   return (
     <Stack sx={{ height: '100%', alignItems: 'center' }}>
       <Box sx={{ height: 120 }}>
-        <ChapterHeader />
+        <ChapterHeader title={chapterTitle || 'Der Menstruationszyklus'} number={currentChapterIndex + 1} />
       </Box>
       <Box
         sx={{ flex: 1, overflow: 'hidden', display: 'flex', position: 'relative', justifyContent: 'center', alignItems: 'center', pt: 6, width: '65%', maxWidth: 320, minWidth: 200 }}
@@ -35,7 +40,7 @@ const LessonOverview = () => {
       <Stack sx={{ width: '100%', maxWidth: 320, p: 2, marginBottom: 2 }} spacing={2}>
         <ProgressStepper
           label="Beende dieses Kapitel"
-          currentValue={20}
+          currentValue={user?.experience || 0}
           maxValue={100}
           barColor={theme.palette.primary.light}
           progressColor={theme.palette.primary.main}
@@ -43,7 +48,7 @@ const LessonOverview = () => {
         />
         <ProgressStepper
           label="Zeig dein Fachwissen"
-          currentValue={3}
+          currentValue={user?.stars || 0}
           maxValue={40}
           barColor={theme.palette.secondary.light}
           progressColor={theme.palette.secondary.main}

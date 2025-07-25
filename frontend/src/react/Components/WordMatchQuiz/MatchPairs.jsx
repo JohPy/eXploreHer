@@ -2,7 +2,7 @@ import React, { useMemo, useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import shuffle from '../../utils/shuffle'
-import useWordMatchQuiz from '../../../hooks/useWordMatchQuiz'
+import useMatchPairs from '../../../hooks/useMatchPairs'
 import QuizButton from './QuizButton'
 
 const containerStyle = {
@@ -12,10 +12,17 @@ const containerStyle = {
   boxSizing: 'border-box'
 }
 
-const WordMatchQuiz = ({
-  questions = [],
+const MatchPairs = ({
+  pairs = [],
   onCorrectChange
 }) => {
+  const normalizeKeys = (array) => array.map(({ Question, Answer, ...rest }) => ({
+    ...rest,
+    question: Question,
+    answer: Answer
+  }))
+
+  const normalizedPairs = useMemo(() => normalizeKeys(pairs), [pairs])
   const {
     selectedQuestion,
     selectedAnswer,
@@ -24,10 +31,10 @@ const WordMatchQuiz = ({
     selectQuestion,
     checkAnswer,
     disableButton
-  } = useWordMatchQuiz(questions)
+  } = useMatchPairs(normalizedPairs)
 
-  const shuffledQuestions = useMemo(() => shuffle(questions), [questions])
-  const shuffledAnswers = useMemo(() => shuffle(questions.map((q) => q.answer)), [questions])
+  const shuffledQuestions = useMemo(() => shuffle(normalizedPairs), [normalizedPairs])
+  const shuffledAnswers = useMemo(() => shuffle(normalizedPairs.map((q) => q.answer)), [normalizedPairs])
 
   const [tempFeedback, setTempFeedback] = useState()
 
@@ -45,14 +52,14 @@ const WordMatchQuiz = ({
 
   useEffect(() => {
     if (
-      questions.length > 0 &&
-      disabledButtons.length === questions.length &&
+      normalizedPairs.length > 0 &&
+      disabledButtons.length === normalizedPairs.length &&
       !hasReported.current
     ) {
       onCorrectChange(true)
       hasReported.current = true
     }
-  }, [disabledButtons, questions, onCorrectChange])
+  }, [disabledButtons, normalizedPairs, onCorrectChange])
 
   useEffect(() => {
     if (
@@ -151,15 +158,15 @@ const WordMatchQuiz = ({
   )
 }
 
-WordMatchQuiz.propTypes = {
-  questions: PropTypes.arrayOf(
+MatchPairs.propTypes = {
+  pairs: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      question: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired
+      id: PropTypes.number.isRequired,
+      Question: PropTypes.string.isRequired,
+      Answer: PropTypes.string.isRequired
     })
   ),
   onCorrectChange: PropTypes.func.isRequired
 }
 
-export default WordMatchQuiz
+export default MatchPairs

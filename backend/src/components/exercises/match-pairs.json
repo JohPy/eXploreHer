@@ -6,6 +6,9 @@
   },
   "options": {},
   "attributes": {
+    "task": {
+      "type": "string"
+    },
     "Pairs": {
       "type": "component",
       "component": "buildingblocks.pair",

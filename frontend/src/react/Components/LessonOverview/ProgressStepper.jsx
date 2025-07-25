@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { Box, Typography } from '@mui/material'
 
 const ProgressStepper = ({ label, currentValue, maxValue, barColor, progressColor, EndIcon }) => {
-  const progressPercent = maxValue > 0 ? (currentValue / maxValue) * 100 : 0
+  const clampedValue = Math.min(currentValue, maxValue)
+  const progressPercent = maxValue > 0 ? (clampedValue / maxValue) * 100 : 0
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -12,7 +13,7 @@ const ProgressStepper = ({ label, currentValue, maxValue, barColor, progressColo
           {label}
         </Typography>
         <Typography variant="body1" sx={{ fontWeight: 'medium', color: 'primary.main' }}>
-          {currentValue}
+          {clampedValue}
           /
           {maxValue}
         </Typography>

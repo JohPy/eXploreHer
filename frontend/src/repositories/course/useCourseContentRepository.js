@@ -59,10 +59,10 @@ const useCourseContentRepository = (courseContentRepository) => {
   }, [loadChapters])
 
   return {
-    chapters: chaptersState,
-    chapter: chapterByIdState,
-    lessons: lessonsState,
-    lesson: lessonByIdState,
+    chaptersState,
+    chapterByIdState,
+    lessonsState,
+    lessonByIdState,
     loadChapters,
     loadChapterById,
     loadLessons,

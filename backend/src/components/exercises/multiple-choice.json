@@ -6,6 +6,9 @@
   },
   "options": {},
   "attributes": {
+    "task": {
+      "type": "string"
+    },
     "Question": {
       "type": "string",
       "required": true

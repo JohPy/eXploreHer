@@ -6,6 +6,9 @@
   },
   "options": {},
   "attributes": {
+    "task": {
+      "type": "string"
+    },
     "ClozeText": {
       "type": "blocks",
       "required": true

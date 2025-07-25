@@ -62,6 +62,19 @@ export interface ExercisesDragAndDrop extends Struct.ComponentSchema {
         number
       >;
     Image: Schema.Attribute.Media<'images'>;
+    task: Schema.Attribute.String;
+  };
+}
+
+export interface ExercisesExplanation extends Struct.ComponentSchema {
+  collectionName: 'components_exercises_explanations';
+  info: {
+    displayName: 'Explanation';
+    icon: 'message';
+  };
+  attributes: {
+    task: Schema.Attribute.String;
+    text: Schema.Attribute.Blocks & Schema.Attribute.Required;
   };
 }
 
@@ -73,6 +86,7 @@ export interface ExercisesFillInTheBlank extends Struct.ComponentSchema {
   };
   attributes: {
     ClozeText: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    task: Schema.Attribute.String;
   };
 }
 
@@ -91,6 +105,7 @@ export interface ExercisesMatchPairs extends Struct.ComponentSchema {
         },
         number
       >;
+    task: Schema.Attribute.String;
   };
 }
 
@@ -110,6 +125,7 @@ export interface ExercisesMultipleChoice extends Struct.ComponentSchema {
         number
       >;
     Question: Schema.Attribute.String & Schema.Attribute.Required;
+    task: Schema.Attribute.String;
   };
 }
 
@@ -122,6 +138,7 @@ export interface ExercisesShortAnswer extends Struct.ComponentSchema {
   attributes: {
     Answer: Schema.Attribute.String & Schema.Attribute.Required;
     Question: Schema.Attribute.Text & Schema.Attribute.Required;
+    task: Schema.Attribute.String;
   };
 }
 
@@ -133,6 +150,7 @@ export interface ExercisesTextDragAndDrop extends Struct.ComponentSchema {
   };
   attributes: {
     ClozeText: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    task: Schema.Attribute.String;
   };
 }
 
@@ -231,6 +249,7 @@ declare module '@strapi/strapi' {
       'buildingblocks.image-dropfield': BuildingblocksImageDropfield;
       'buildingblocks.pair': BuildingblocksPair;
       'exercises.drag-and-drop': ExercisesDragAndDrop;
+      'exercises.explanation': ExercisesExplanation;
       'exercises.fill-in-the-blank': ExercisesFillInTheBlank;
       'exercises.match-pairs': ExercisesMatchPairs;
       'exercises.multiple-choice': ExercisesMultipleChoice;

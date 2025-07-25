@@ -85,7 +85,7 @@ const QuizButton = ({
 QuizButton.propTypes = {
   disabled: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,
-  questionId: PropTypes.string.isRequired,
+  questionId: PropTypes.number.isRequired,
   handleClick: PropTypes.func.isRequired,
   buttonType: PropTypes.oneOf(['regular', 'selected', 'correct', 'incorrect', 'disabled']).isRequired
 }
