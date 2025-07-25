@@ -26,9 +26,10 @@ const Lesson = () => {
   const { id } = useParams()
   const lessonNumber = Number(id)
   const lesson = lessons?.[lessonNumber - 1] || []
-  const exercisesCount = lesson?.['Exercises']?.length || 4
+  const exercises = [...lesson['Exercises'], dragAndDropExercise]
+  const exercisesCount = exercises.length || 4
   const [currentIndex, setCurrentIndex] = useState(0)
-  const currentExercise = lesson?.['Exercises']?.[currentIndex]
+  const currentExercise = exercises[currentIndex]
   const navigate = useNavigate()
   const [footerStatus, setFooterStatus] = useState('disabled')
 
@@ -55,7 +56,7 @@ const Lesson = () => {
   }
 
   // eslint-disable-next-line dot-notation
-  const headerSteps = lesson?.['Exercises']?.map((exercise, index) => {
+  const headerSteps = exercises.map((exercise, index) => {
     let status
     if (index !== currentIndex) {
       status = answerStatuses[index]
