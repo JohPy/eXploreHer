@@ -1,0 +1,115 @@
+import React, { useState, useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
+import { Container, Box, Stack } from '@mui/material'
+import { DndContext } from '@dnd-kit/core'
+
+import DraggableCard from './DraggableCard'
+import DropField from './DropField'
+
+const DragAndDrop = ({ fields, ImageComponent, onCorrectChange }) => {
+  // Initial state is set as null to clearly identify when the user gives their answer
+  const [correct, setCorrect] = useState(null)
+  const hasReported = useRef(false)
+
+  // Report back to the parent wether the answer is correct only (!) when the answer is provided
+  useEffect(() => {
+    if (correct !== null && !hasReported.current) {
+      onCorrectChange(correct)
+      hasReported.current = true
+    }
+  }, [correct, onCorrectChange])
+
+  const emptyAssignments = {}
+  fields.forEach((item) => {
+    emptyAssignments[item.id] = null
+  })
+
+  // Set the initial state for the dropableIds as null
+  const [assignments, setAssignments] = useState(emptyAssignments)
+
+  // Is called when a drag operation has been completed
+  const handleDragEnd = (event) => {
+    const { over, active } = event
+
+    // If draggable ('active') operation ended above a drop destination ('over'), do stuff
+    // Example of assignments after drop event: 'const assignments = { follikel: 'luteal',   luteal: 'follikel' }
+    if (over) {
+      setAssignments((prev) => {
+        const newAssignments = {
+          ...prev,
+          [over.id]: active.id
+        }
+
+        // Check if all 'over' IDs are assigned
+        const allAssigned = Object.values(newAssignments).every((val) => val !== null)
+
+        if (allAssigned) {
+          // Check if all assignments are correct
+          let allCorrect = true
+          allCorrect = Object.entries(newAssignments).every(
+            ([dropId, dragId]) => {
+              const isCorrect = dropId === dragId
+              return isCorrect
+            }
+          )
+          setCorrect(allCorrect)
+        }
+        return newAssignments
+      })
+    }
+  }
+
+  return (
+    <DndContext onDragEnd={handleDragEnd} autoScroll={false}>
+      <Container sx={{ mt: 2, mb: 2 }}>
+
+        <Box
+          sx={{
+            position: 'relative',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          {/* Load image background as component */}
+          <ImageComponent sx={{ mt: 4, height: '70%', width: 'auto' }} />
+
+          {/* Create a DropField for each item */}
+          {/* Dynamically refresh DraggableCard assignment */}
+          {fields.map((field) => (
+            <DropField
+              key={field.id}
+              id={field.id}
+              position={field.position}
+              assigned={fields.find(i => i.id === assignments[field.id])}
+              correct={correct}
+            />
+          ))}
+        </Box>
+
+        {/* Display the draggable cards at the bottom of the screen */}
+        <Stack direction="row" spacing={2} justifyContent="center" sx={{ minHeight: 40, transition: 'all 0.3s ease', mt: 4, mb: 3 }}>
+          {fields.map((field) => (
+            !Object.values(assignments).includes(field.id) && (
+            <DraggableCard key={field.id} id={field.id} label={field.label} />
+            )
+          ))}
+        </Stack>
+      </Container>
+    </DndContext>
+  )
+}
+
+DragAndDrop.propTypes = {
+  fields: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      position: PropTypes.any
+    }).isRequired
+  ),
+  ImageComponent: PropTypes.any.isRequired,
+  onCorrectChange: PropTypes.func.isRequired
+}
+
+export default DragAndDrop

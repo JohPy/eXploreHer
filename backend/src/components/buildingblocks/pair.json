@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_buildingblocks_pairs",
+  "info": {
+    "displayName": "Text Pair",
+    "icon": "server"
+  },
+  "options": {},
+  "attributes": {
+    "Question": {
+      "type": "text"
+    },
+    "Answer": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

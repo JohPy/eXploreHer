@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_exercises_explanations",
+  "info": {
+    "displayName": "Explanation",
+    "icon": "message"
+  },
+  "options": {},
+  "attributes": {
+    "task": {
+      "type": "string"
+    },
+    "text": {
+      "type": "blocks",
+      "required": true
+    }
+  },
+  "config": {}
+}

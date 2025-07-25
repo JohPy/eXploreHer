@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_exercises_fill_in_the_blanks",
+  "info": {
+    "displayName": "Fill-in-the-Blank",
+    "icon": "underline"
+  },
+  "options": {},
+  "attributes": {
+    "task": {
+      "type": "string"
+    },
+    "ClozeText": {
+      "type": "blocks",
+      "required": true
+    }
+  },
+  "config": {}
+}

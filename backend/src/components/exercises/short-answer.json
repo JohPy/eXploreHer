@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_exercises_short_answers",
+  "info": {
+    "displayName": "Short Answer",
+    "icon": "italic"
+  },
+  "options": {},
+  "attributes": {
+    "task": {
+      "type": "string"
+    },
+    "Question": {
+      "type": "text",
+      "required": true
+    },
+    "Answer": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}
