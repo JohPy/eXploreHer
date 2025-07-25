@@ -9,6 +9,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import AppLayout from './AppLayout'
 import Theme from '../theme/theme'
 import UserProvider from './contexts/user-context'
+import { CourseContentProvider } from './contexts/course-context'
 
 const container = document.getElementById('app')
 const root = createRoot(container)
@@ -17,9 +18,11 @@ root.render(
   <ThemeProvider theme={Theme}>
     <CssBaseline />
     <UserProvider>
-      <Router>
-        <AppLayout />
-      </Router>
+      <CourseContentProvider>
+        <Router>
+          <AppLayout />
+        </Router>
+      </CourseContentProvider>
     </UserProvider>
   </ThemeProvider>
 )
