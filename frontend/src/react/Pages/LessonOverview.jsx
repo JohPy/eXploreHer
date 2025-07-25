@@ -40,7 +40,7 @@ const LessonOverview = () => {
       <Stack sx={{ width: '100%', maxWidth: 320, p: 2, marginBottom: 2 }} spacing={2}>
         <ProgressStepper
           label="Beende dieses Kapitel"
-          currentValue={user?.experience || 30}
+          currentValue={user?.experience || 0}
           maxValue={100}
           barColor={theme.palette.primary.light}
           progressColor={theme.palette.primary.main}
@@ -48,7 +48,7 @@ const LessonOverview = () => {
         />
         <ProgressStepper
           label="Zeig dein Fachwissen"
-          currentValue={user?.stars || 3}
+          currentValue={user?.stars || 0}
           maxValue={40}
           barColor={theme.palette.secondary.light}
           progressColor={theme.palette.secondary.main}
