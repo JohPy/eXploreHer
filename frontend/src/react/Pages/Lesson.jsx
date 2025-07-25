@@ -90,6 +90,10 @@ const Lesson = () => {
 
   const containerRef = useRef()
 
+  if (!exercises) {
+    return (<div>Loading...</div>)
+  }
+
   return (
     <Box
       ref={containerRef}
