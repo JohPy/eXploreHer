@@ -10,4 +10,4 @@ export const defaultUserCredentials = {
   password: 'Testpwd1'
 }
 
-export const defaultChapter = {}
+export const defaultChapters = {}
