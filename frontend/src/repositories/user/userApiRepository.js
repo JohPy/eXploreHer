@@ -53,8 +53,8 @@ const userApiRepository = {
         ...getAuthHeader()
       },
       body: JSON.stringify({
-        experience,
-        stars,
+        experienceGained: experience,
+        starsGained: stars,
         chapter,
         lesson
       })

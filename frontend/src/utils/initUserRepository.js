@@ -1,5 +1,5 @@
 import authRepository from '../repositories/auth/authApiRepository'
-import userApiRepository from '../repositories/user/userAPIRepository'
+import userApiRepository from '../repositories/user/userApiRepository'
 import userLocalRepository from '../repositories/user/userLocalRepository'
 import { defaultUserCredentials } from './defaults'
 
