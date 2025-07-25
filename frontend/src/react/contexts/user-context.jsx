@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import useUserRepository from '../../repositories/user/useUserRepository'
 import { defaultUser } from '../../utils/defaults'
 import initUserRepository from '../../utils/initUserRepository'
-import userApiRepository from '../../repositories/user/userAPIRepository'
+import userApiRepository from '../../repositories/user/userApiRepository'
 
 const UserContext = createContext({
   user: defaultUser,
