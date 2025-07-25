@@ -1,4 +1,3 @@
-/* eslint-disable dot-notation */
 import { Box, Typography } from '@mui/material'
 import { useParams, useNavigate } from 'react-router-dom'
 import React, { useState, useRef, useCallback } from 'react'
@@ -15,7 +14,7 @@ const Lesson = () => {
   const lessonNumber = Number(id)
   const lessons = currentChapter?.lessons
   const lesson = lessons?.[lessonNumber - 1] || []
-  const exercises = [...lesson['Exercises'], mockExplanationExercise, mockDragAndDropExercise]
+  const exercises = [...lesson.Exercises, mockExplanationExercise, mockDragAndDropExercise]
   const exercisesCount = exercises.length || 4
   const [currentIndex, setCurrentIndex] = useState(0)
   const currentExercise = exercises[currentIndex]
@@ -44,7 +43,6 @@ const Lesson = () => {
     navigate('/')
   }
 
-  // eslint-disable-next-line dot-notation
   const headerSteps = exercises.map((exercise, index) => {
     let status
     if (index !== currentIndex) {
